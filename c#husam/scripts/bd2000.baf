@@ -1,0 +1,32 @@
+/* PC surrendered Bridgefort to the Crusaders */
+IF
+	Global("bd_plot","global",260)
+	Global("C#Husam_bd_betrayal_discussion","GLOBAL",0)
+	!GlobalTimerNotExpired("bd_betrayal_discuss_timer","bd2000")	
+	!IsValidForPartyDialogue("KHALID")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2) 
+	InMyArea("C#Husam1") 
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID) 
+	OR(2) 
+		!IsValidForPartyDialogue("CORWIN")
+		Global("bd_betrayal_discussion","bd2000",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_bd_betrayal_discussion","GLOBAL",1)
+		SetGlobalTimer("bd_betrayal_discuss_timer","bd2000",ONE_MINUTE)
+		DisplayStringHead("C#Husam1",@10004)
+END
+
+/* Battle at Bridgefort starts */
+IF
+	Global("bd_plot","global",250)
+	!GlobalTimerNotExpired("bd_mdd410z_ot_timer","bd2000")  // Boareskyr Bridge & Bridgefort
+	Global("C#Husam_bd_ot","bd2000",0)  // Boareskyr Bridge & Bridgefort
+	IfValidForPartyDialog("C#Husam1")  
+	TriggerOverride("C#Husam1",Range([ENEMY.0.0.0.CRUSADERS],30))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("bd_mdd410z_ot_timer","bd2000",THREE_MINUTES)  // Boareskyr Bridge & Bridgefort
+		SetGlobal("C#Husam_bd_ot","bd2000",1)  // Boareskyr Bridge & Bridgefort
+		DisplayStringHead("C#Husam1",@10005)  
+END

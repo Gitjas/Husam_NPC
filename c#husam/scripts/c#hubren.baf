@@ -1,0 +1,38 @@
+IF
+	See([PC])
+	!Allegiance(Myself,ENEMY)
+	Dead("c#husdya")
+	Global("C#HU_SoD_BrensQuest","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StartDialogNoSet([PC])
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",10)
+	!See([PC])
+	AreaCheck("bd2000")
+THEN
+	RESPONSE #100
+		SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",4)
+		DestroySelf()
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",5)
+	Global("C#HU_SoD_BrensGone","MYAREA",0)
+	AreaCheck("bd2000")
+THEN
+	RESPONSE #100
+		SetGlobal("C#HU_SoD_BrensGone","MYAREA",1)
+		EscapeArea()
+END
+
+IF
+	GlobalGT("C#HU_SoD_BrensQuest","GLOBAL",10)
+	AreaCheck("bd2000")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+	

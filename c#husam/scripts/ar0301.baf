@@ -1,0 +1,39 @@
+/* BGII: spawn Husam in Mae'Var's hideout */
+
+IF 
+	!Dead("C#HUSAM1") 
+	!Dead("HUSAM") 
+	!Dead("HUSAM2") 
+	!Dead("C#HUSAM") //bg1re
+	!Dead("JA#HUSAM")  //Jarl's adventurer pack (BG1 more UB)
+	Global("C#HusamSpawn","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HusamSpawn","GLOBAL",10)
+		CreateCreature("C#HUSAM1",[785.564],12)
+		%Husam_MakeGlobalOverride%
+		ActionOverride("C#HUSAM1",SetDialog("C#HUSAM2")
+		ActionOverride("C#Husam1",ChangeAIScript("C#Husam2",OVERRIDE))
+		ActionOverride("C#HUSAM1",SetGlobal("C#LevelUp","LOCALS",0))
+		ActionOverride("C#HUSAM1",DestroyAllEquipment())
+END
+
+/* Continuous game: Move Husam here in case he isn't here, yet */
+
+IF 
+	!InMyArea("C#HUSAM1")
+	!Dead("C#HUSAM1")
+	Global("C#HusamSoDInParty","GLOBAL",1)
+	!Global("C#HusamSpawn","GLOBAL",10)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HusamSpawn","GLOBAL",10)
+		MoveGlobal("AR0301","C#HUSAM1",[830.680])
+	   	ActionOverride("C#HUSAM1",Face(6))
+		ReallyForceSpellRES("SPWM168","C#HUSAM1") //Heal 
+	   	ActionOverride("C#HUSAM1",SetDialog("C#Husam2")
+		ActionOverride("C#HUSAM1",ChangeAIScript("",DEFAULT))
+	    	ActionOverride("C#HUSAM1",ChangeAIScript("C#Husam2",OVERRIDE))
+		ActionOverride("C#HUSAM1",DestroyAllEquipment())
+		ActionOverride("C#HUSAM1",SetGlobal("C#LevelUp","LOCALS",0))
+END

@@ -1,0 +1,121 @@
+/* PC paid for journey to Maztica */
+
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("B!TouristFirstClass","GLOBAL",1)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	Global("C#Husam2_CM_AltMal","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_CM_AltMal","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_CM_AltMal","GLOBAL",1)		
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam2_DialogTimer","GLOBAL",1800)
+		StartDialogNoSet(Player1)
+END
+
+
+/* Husam warns about Malficus */
+/* set timer */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	GlobalGT("B!Tourist","GLOBAL",0)
+	!Global("B!RefusedAlternaMal","GLOBAL",1)
+	Global("C#Husam2_CM_AltMal2","GLOBAL",0)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#HusamDialogPausenTimer","GLOBAL",1800)
+		SetGlobal("C#Husam2_CM_AltMal2","GLOBAL",1)
+END
+
+/* activate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_CM_AltMal2","GLOBAL",1)
+	RealGlobalTimerExpired("C#HusamDialogPausenTimer","GLOBAL")		
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_CM_AltMal2","GLOBAL",2)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_CM_AltMal2","GLOBAL",2)		
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+
+/* Malficus path, arrival at Brynnlaw because of Bodhi's betrayal */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	GlobalGT("AsylumPlot","GLOBAL",2) 
+	GlobalLT("AsylumPlot","GLOBAL",12)   
+	Global("B!Tourist","GLOBAL",10)
+	Dead("ppvalen")
+	Dead("ppparis")
+	Dead("ppdel")
+	!See("ppsaem")
+	!See("ppsaem2")
+	AreaCheck("AR1600")
+	Global("C#Husam2_CM_AltMal3","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_CM_AltMal3","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_CM_AltMal3","GLOBAL",1)		
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam2_DialogTimer","GLOBAL",1800)
+		StartDialogNoSet(Player1)
+END

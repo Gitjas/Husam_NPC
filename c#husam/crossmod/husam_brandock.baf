@@ -1,0 +1,30 @@
+/* activation */
+IF
+	!RealGlobalTimerNotExpired("C#BrandockDialogTimer","GLOBAL")
+	OR(2) InParty(Myself) Global("C#BrandockJoined","GLOBAL",2)
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Brandock_HusamInGroupComment","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Brandock_HusamInGroupComment","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#BrandockJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Brandock_HusamInGroupComment","GLOBAL",1)	
+THEN
+	RESPONSE #100
+    		RealSetGlobalTimer("C#BrandockDialogTimer","GLOBAL",850)
+		StartDialogNoSet(Player1)
+END

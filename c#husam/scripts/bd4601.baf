@@ -1,0 +1,16 @@
+/* Husam comments in the elevator in hell */
+
+IF
+	GlobalGT("bd_plot","global",554)
+	Global("C#Husam_hellevator","bd4601",0)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+	!GlobalTimerNotExpired("bd_hellevator_timer","bd4601")
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_hellevator","bd4601",1)
+		SetGlobalTimer("bd_hellevator_timer","bd4601",7)
+		DisplayStringHead("C#Husam1",@10007) 
+END

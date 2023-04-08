@@ -1,0 +1,10 @@
+IF
+	Global("ShadowFightBodhi","GLOBAL",1)
+	Global("AttackedShadow","GLOBAL",0)
+	!Dead("C#Husam1")  
+	Global("C#Husam3_AgainstBodhi","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_AgainstBodhi","GLOBAL",2)
+		MoveGlobalObject("C#Husam1",Player1)
+END

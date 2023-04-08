@@ -1,0 +1,62 @@
+/* this script is used for the direct transition to BGII */
+
+/* #L_Cut09.bcs */
+
+
+/* Husam is in party heal and revive */
+IF
+	Global("C#Husam_EETTransit","MYAREA",0)
+	InPartyAllowDead("C#Husam1")
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		FadeToColor([30.0],0)	
+		DisableAI("C#Husam1",FALSE)  
+		SetGlobal("C#Husam_EETTransit","MYAREA",1)
+		ApplySpellRES("bdresurr","C#Husam1")  
+		SmallWait(10)
+		ApplySpellRES("K#UNREST","C#Husam1")  
+		SmallWait(10)
+		ApplySpellRES("bdrejuve","C#Husam1")  
+		SmallWait(10)
+		ActionOverride("C#Husam1",ChangeAIScript("",DEFAULT))
+		ActionOverride("C#Husam1",LeaveParty())
+		SmallWait(10)
+		ActionOverride("C#Husam1",SetGlobal("bd_joined","locals",0))
+		SetGlobal("C#HusamJoined","GLOBAL",0)
+		ActionOverride("C#Husam1",DestroySelf())
+END
+
+
+/* Husam is 7th party member */
+IF
+	Global("C#Husam_EETTransit","MYAREA",0)
+	InMyArea("C#Husam1")
+	!Dead("C#Husam1")
+	Global("C#HusamJoined","GLOBAL",2)  
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		FadeToColor([30.0],0)	
+		DisableAI("C#Husam1",FALSE)  
+		SetGlobal("C#Husam_EETTransit","MYAREA",1)
+		ApplySpellRES("bdresurr","C#Husam1")  
+		SmallWait(10)
+		ApplySpellRES("K#UNREST","C#Husam1")  
+		SmallWait(10)
+		ApplySpellRES("bdrejuve","C#Husam1")  
+		SmallWait(10)
+		ActionOverride("C#Husam1",MakeGlobalOverride())
+		SmallWait(1)
+		ActionOverride("C#Husam1",RemoveFamiliar())
+		SmallWait(1)
+		ChangeEnemyAlly("C#Husam1",NEUTRAL)
+		ActionOverride("C#Husam1",ChangeAIScript("",DEFAULT))
+		SmallWait(10)
+		ActionOverride("C#Husam1",SetGlobal("bd_joined","locals",0))
+		SetGlobal("C#HusamJoined","GLOBAL",0)
+		ActionOverride("C#Husam1",DestroySelf())
+END
+
+
+

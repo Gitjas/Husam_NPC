@@ -1,0 +1,128 @@
+/* Husam not in party: he will fight against Bodhi if the PC asked for help */
+
+IF 
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	Global("C#Husam3_AgainstBodhi","GLOBAL",1)
+	AreaCheck("AR0809")
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_AgainstBodhi","GLOBAL",2)
+		DisplayStringHead("C#Husam1",@10014)
+END
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	AreaCheck("AR0808")
+	OpenState("DOOR01",TRUE)
+	!Detect([PC])
+THEN
+	RESPONSE #100
+		EscapeAreaMove("AR0305",1095,620,0)
+END
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	AreaCheck("AR0808")
+	OpenState("DOOR01",TRUE)
+	Global("C#Husam3_MoveToBodhi","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToObjectNoInterrupt("DOOR01")
+		SetGlobal("C#Husam3_MoveToBodhi","LOCALS",1)
+END
+
+IF
+	AreaCheck("AR0808")
+	OpenState("DOOR01",TRUE)
+	Range("Tran0809",8)
+THEN
+	RESPONSE #100
+		EscapeAreaMove("AR0305",1095,620,0)
+END
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	OR(2)
+		AreaCheck("AR0808")
+		AreaCheck("AR0809")
+	Global("AttackedShadow","GLOBAL",1)
+	Global("C#Husam3_HusamShout","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_HusamShout","LOCALS",1)
+		DisplayStringHead("C#Husam1",@10015)
+		EscapeAreaMove("AR0305",1095,620,0)
+END
+
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	OR(2)
+		AreaCheck("AR0808")
+		AreaCheck("AR0809")
+	Global("ArkanisHelpShout","GLOBAL",1)
+	Global("C#Husam3_ArkanisShout","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_ArkanisShout","LOCALS",1)
+		DisplayStringHead("C#Husam1",@10016)
+END
+
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	OR(2)
+		AreaCheck("AR0808")
+		AreaCheck("AR0809")
+	Global("ArkanisHelpShout","GLOBAL",1)
+	!Range([PC],4)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	OR(2)
+		AreaCheck("AR0808")
+		AreaCheck("AR0809")
+	Dead("c6bodhi")  // Bodhi
+	GlobalLT("C#Husam3_AgainstBodhi","GLOBAL",3)
+	See([PC])
+	OR(2)
+		!See("c6arkan")  
+		Dead("c6arkan") 
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_AgainstBodhi","GLOBAL",3)
+		DisplayStringHead("C#Husam1",@10017)
+END
+
+
+IF
+	
+	OR(2)
+		AreaCheck("AR0808")
+		AreaCheck("AR0809")
+	GlobalLT("C#Husam3_AgainstBodhi","GLOBAL",4)
+	Dead("c6bodhi")  // Bodhi
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_AgainstBodhi","GLOBAL",4)
+		EscapeAreaMove("AR0305",1095,620,0)
+END
+
+IF
+	!InParty(Myself) Global("C#HusamJoined","GLOBAL",0)
+	GlobalGT("C#Husam3_AgainstBodhi","GLOBAL",0)
+	GlobalLT("C#Husam3_AgainstBodhi","GLOBAL",4)
+	AreaCheck("AR0305")
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_AgainstBodhi","GLOBAL",4)
+		ChangeAIScript("",DEFAULT)
+		ChangeAIScript("c#husam2",OVERRIDE) 
+END

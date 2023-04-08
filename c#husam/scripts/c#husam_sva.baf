@@ -1,0 +1,299 @@
+/* just in case player didn't talk to Husam after killing Mae'Var */
+
+
+
+IF
+	AreaCheck("AR0301")
+	GlobalGT("RenalJob","GLOBAL",3)
+	GlobalLT("C#HusamSpawn","GLOBAL",12)
+	Global("C#Husam2_WentHome","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_WentHome","GLOBAL",1)
+END
+
+/* Husam was not taken into group */
+IF
+	AreaCheck("AR0301")
+	Global("C#Husam2_WentHome","GLOBAL",1)
+THEN
+	RESPONSE #100
+		GiveItemCreate("LEAT07","C#Husam1",0,0,0)
+		ActionOverride("C#Husam1",FillSlot(SLOT_ARMOR))
+		GiveItemCreate("SW1H10","C#Husam1",0,0,0)
+		ActionOverride("C#Husam1",FillSlot(SLOT_WEAPON0))
+		GiveItemCreate("AROW02","C#Husam1",20,0,0)
+		ActionOverride("C#Husam1",FillSlot(SLOT_AMMO0))
+		GiveItemCreate("BOW18","C#Husam1",0,0,0)
+		GiveItemCreate("POTN52","C#Husam1",5,0,0)
+		SetGlobal("C#HusamSpawn","GLOBAL",13) 
+		SetGlobal("C#HusamJoined","GLOBAL",0)
+		SetGlobal("C#Husam2_WentHome","GLOBAL",2)
+		EscapeAreaMove("AR0305",1095,618,0)
+END
+
+
+/* joining: after cutscene, initiate dialogue */
+IF
+	AreaCheck("AR0301")
+	See(Player1)
+	CombatCounter(0)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#HusamSpawn","GLOBAL",12)
+THEN
+	RESPONSE #100
+		Dialog(Player1)
+END
+
+
+
+
+/* First FP dialogue - should happen first */
+IF
+  OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  RealGlobalTimerExpired("C#HusamDialogTimer","GLOBAL")
+  !See([ENEMY])
+	!Range([NEUTRAL],10)
+  See(Player1) 
+  !StateCheck(Player1,CD_STATE_NOTVALID)
+  CombatCounter(0)
+  Global("C#Husam2_Dialog","GLOBAL",1)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",1800)
+    IncrementGlobal("C#Husam2_Dialog","GLOBAL",1)
+END
+
+
+/* PC got reward from Renal albeit killing Mae'var before the order was given */
+/* activation */
+IF
+	RealGlobalTimerExpired("C#Husam2_DialogTimer","GLOBAL")
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_RenalRevenge","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_RenalRevenge","GLOBAL",2)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_RenalRevenge","GLOBAL",2)		
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam2_DialogTimer","GLOBAL",1800)
+		StartDialogNoSet(Player1)
+END
+
+/* Ama 'Shadowmaster': Husam warns */
+
+IF
+	Global("C#Husam2_SHTHASS1_9","GLOBAL",1)
+	GlobalGT("AmaWaukeen","GLOBAL",0)
+//	!Dead("##") //Planar Sphere mod ?
+	!Dead("SHTHASS1")
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_SHTHASS1_9","GLOBAL",2)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_SHTHASS1_9","GLOBAL",2)		
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+
+/* Linvail sent PC on errands after paying the sum */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	!AreaCheck("AR0307") //Aran Linvail's Hideout
+	GlobalGT("AranJob","GLOBAL",0)
+	GlobalLT("AranJob","GLOBAL",3)
+	Global("C#Husam2_AboutLinvail","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_AboutLinvail","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_AboutLinvail","GLOBAL",1)		
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+/* After arriving in Brynnlaw: Husam ponders about Saemon. */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	GlobalGT("AsylumPlot","GLOBAL",2) 
+	GlobalLT("AsylumPlot","GLOBAL",12)
+	!Global("B!Tourist","GLOBAL",10) //not for Alternatives' Malficus path
+	OR(2)
+		Global("B!Alternatives","GLOBAL",10) //Alternatives, Aster path
+		// Shadow Thieves
+	Dead("ppvalen")
+	Dead("ppparis")
+	Dead("ppdel")
+	!See("ppsaem")
+	!See("ppsaem2")
+	Global("C#Husam2_SaemonBetrayal","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_SaemonBetrayal","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#C#Husam2_SaemonBetrayal","GLOBAL",1)		
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam2_DialogTimer","GLOBAL",1800)
+		StartDialogNoSet(Player1)
+END
+
+
+
+
+
+
+/* Chapter 6: we need every help we can get against Bodhi */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	!See("C6Elhan")
+	Global("ElhanFinishedSpeaking","GLOBAL",1)
+//	##
+	Global("C#Husam2_AskLinvailCh6","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_AskLinvailCh6","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(PLAYER1,CD_STATE_NOTVALID)
+	Global("C#Husam2_AskLinvailCh6","GLOBAL",1)		
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+
+
+
+///////////////////////////////////////////////////////////
+/* timer-triggered friendship dialogues */
+
+/* to ensure that the dialogue does not fire directly after wake up */
+IF
+  OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  RealGlobalTimerExpired("C#HusamDialogTimer","GLOBAL")
+  PartyRested()
+OR(3)
+    Global("C#Husam2_Dialog","GLOBAL",1)
+    Global("C#Husam2_Dialog","GLOBAL",3)
+    Global("C#Husam2_Dialog","GLOBAL",5)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",20)
+END
+
+
+/* FP dialogue activation */
+IF
+  OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  RealGlobalTimerExpired("C#HusamDialogTimer","GLOBAL")
+  !See([ENEMY])
+	!Range([NEUTRAL],10)
+  See(Player1) 
+  !StateCheck(Player1,CD_STATE_NOTVALID)
+  CombatCounter(0)
+    OR(2)
+    Global("C#Husam2_Dialog","GLOBAL",3)
+    Global("C#Husam2_Dialog","GLOBAL",5)
+THEN
+  RESPONSE #100
+    IncrementGlobal("C#Husam2_Dialog","GLOBAL",1)
+END
+
+/* FP dialogue triggering: BG2 */
+IF
+  OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  !See([ENEMY])
+  CombatCounter(0)
+  See(Player1) 
+  !StateCheck(Myself,CD_STATE_NOTVALID)
+  !StateCheck(Player1,CD_STATE_NOTVALID)
+  OR(2)
+    Global("C#Husam2_Dialog","GLOBAL",2)  //
+    Global("C#Husam2_Dialog","GLOBAL",4)  //
+//    Global("C#Husam2_Dialog","GLOBAL",6)  //
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",1800)
+    StartDialogNoSet(Player1)
+END
+
+

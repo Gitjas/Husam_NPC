@@ -1,0 +1,13 @@
+IF
+	GlobalLT("bd_plot","global",505)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+	Global("C#Husam_SoD_avernus","bd4400",0)
+THEN
+	RESPONSE #100
+		DisplayStringWait("C#Husam1",@10006)  
+		SetGlobal("C#Husam_SoD_avernus","bd4400",1)
+		SmallWait(8)
+		Continue()
+END

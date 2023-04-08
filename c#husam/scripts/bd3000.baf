@@ -1,0 +1,22 @@
+/* Thieves Quest: prevent Waizahb from scolding if the PC had nothing to do with it */
+IF
+	Global("bd_sdd305_den_of_thieves","global",5)
+	OR(2)
+		Global("C#Husam_SoDCampThievesGuild","GLOBAL",15)
+		Global("C#Husam_SoDCampThievesGuild","GLOBAL",16)
+THEN
+	RESPONSE #100
+		SetGlobal("bd_sdd305_den_of_thieves","global",6)
+		IncrementGlobal("C#Husam_SoDCampThievesGuild","GLOBAL",2)
+END
+
+/* correct quest variable in case Husam talked to Rhynwis before PC got thieves guild quest from Stonehand - there will be no quest from Stonehand */
+
+IF
+	Global("bd_sdd305_den_of_thieves","global",4)
+	Global("C#Husam_SoDCampThievesGuild","GLOBAL",13)
+THEN
+	RESPONSE #100
+		SetGlobal("bd_sdd305_den_of_thieves","global",6)
+		SetGlobal("C#Husam_SoDCampThievesGuild","GLOBAL",14)
+END

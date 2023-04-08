@@ -1,0 +1,119 @@
+/* c#husbhs.baf - Bren's Hidden Stash in bd2000.are */
+
+IF 
+	!Range([PC],1)
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	GlobalTimerExpired("C#HU_SoD_DyalItemsT","GLOBAL")
+	HasItem("c#husmug",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("c#husmug")
+		SetGlobal("C#HuS_bhs_c#husmug","MYAREA",0)
+END
+
+IF 
+	!Range([PC],1)
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	GlobalTimerExpired("C#HU_SoD_DyalItemsT","GLOBAL")
+	HasItem("c#huslet",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("c#huslet")
+		SetGlobal("C#HuS_bhs_c#huslet","MYAREA",0)
+END
+
+
+IF
+	GlobalLT("C#HU_SoD_BrensQuest","GLOBAL",3)
+	Opened([ANYONE])
+	See([PC])
+	Range(LastTrigger,1)
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+	InMyArea(LastTrigger)
+	!StateCheck(LastTrigger,STATE_INVISIBLE)
+	!StateCheck(LastTrigger,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck("c#husgrd",CD_STATE_NOTVALID)
+	Range("c#husgrd",15)
+	Global("C#HuS_c#husgrd_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_c#husgrd_2","MYAREA",1)
+		ActionOverride("c#husgrd",StartDialogueNoSet([PC]))
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	HasItem("c#husknf",Myself)
+	Global("C#HuS_bhs_c#husknf","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_bhs_c#husknf","MYAREA",1)
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	HasItem("c#husmug",Myself)
+	Global("C#HuS_bhs_c#husmug","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_bhs_c#husmug","MYAREA",1)
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	HasItem("c#huslet",Myself)
+	Global("C#HuS_bhs_c#huslet","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_bhs_c#huslet","MYAREA",1)
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	OR(2)
+		HasItem("c#huslet",Myself)
+		HasItem("c#huslet",Myself)
+	Global("C#HuS_bhs_journal","MYAREA",0)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@100010)
+		AddJournalEntry(@100013,QUEST)
+		SetGlobal("C#HuS_bhs_journal","MYAREA",1)
+END
+
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	!HasItem("c#husknf",Myself)
+	!Global("C#HuS_bhs_c#husknf","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_bhs_c#husknf","MYAREA",0)
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	!HasItem("c#husmug",Myself)
+	!Global("C#HuS_bhs_c#husmug","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_bhs_c#husmug","MYAREA",0)
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",2)
+	!HasItem("c#huslet",Myself)
+	!Global("C#HuS_bhs_c#huslet","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuS_bhs_c#huslet","MYAREA",0)
+END
+
+IF
+	GlobalGT("C#HU_SoD_BrensQuest","GLOBAL",2)
+	Global("C#HuS_bhs_noitems","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroyAllEquipment()
+		SetGlobal("C#HuS_bhs_noitems","MYAREA",1)
+END

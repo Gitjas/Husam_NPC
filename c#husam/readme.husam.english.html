@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Husam NPC</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="readme/bgreadme.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+<tr>
+	<td align="center"><a href="https://www.baldurs-gate.de/index.php"><img src="readme/BannerSword.png" border="0" alt="Baldur's Gate Forum" /></a></td>
+	<td align="right">
+		&nbsp;
+	</td>
+</tr>
+
+</table>
+<h1>Husam NPC for BGT, BGII, BG(SoD), BGII:EE, and EET</h1>
+<div class="section"> 
+  <p><strong><a href="https://www.baldurs-gate.de/index.php">A Kerzenburgforum Modification</a><br />  </strong>
+    Author: jastey<br />
+	Portrait Artist: Acifer<br />
+    <strong> Languages:</strong> English<br />
+    <strong>Platform: </strong>Windows, macOS, Linux</p> 
+  <p>Husam NPC is a continuous NPC Mod for SoD and BGII. It is natively compatible with SoD, BGII, BGT, BGII:EE, EET. No Tutu. So far, the mod does not contain any official BGII content, but Husam can be met in BGII, join the party, and reacts to the Mae'Var quest and the Thief Stronghold.</p>
+  <p>Please note: The mod assumes that the PC was kidnapped by Mae'Var for BGII.
+  </p>
+    <img src="readme/husaml.png">
+</div>
+
+
+<h2>Content</h2>
+<div class="section">
+  <ol>
+    <li><a href="#install">Installation</a></li>
+      <ul> 
+		<li><a href="#eegames">Notes to modding EE games</a> </li>
+        <li><a href="#windows">Windows</a> </li>
+		<li><a href="#osx">macOS</a> </li>
+		<li><a href="#linux">Linux</a> </li>
+      </ul> 
+    <li><a href="#compat">Compatibility with other mods and Install Order</a></li>
+    <li><a href="#content">Description</a>
+      <ul> 
+		<li><a href="#generalcontent">General Info</a> </li>
+        <li><a href="#where">Where to meet in Game</a> </li>
+		<li><a href="#content">Content</a> </li>
+		<li><a href="#stats">Husam's Stats and Portrait</a> </li>
+		<li><a href="#spoiler">Walkthrough / Spoilers</a> </li>
+		<li><a href="#7th">7th Party Member Mode</a> </li>
+      </ul> 
+    </li> 
+    <li><a href="#issues">Known Issues</a></li> 
+    <li><a href="#acknow">Credits</a></li> 	
+    <li><a href="#tools">Tools Used</a>
+      <ul> 
+		<li><a href="#communities">Modding Communities, Tutorials, and technical Assistance</a> </li>
+        <li><a href="#links">Further Links</a> </li>
+      </ul> 
+    </li> 	
+    <li><a href="#credit">Copyright</a></li>
+    <li><a href="#version">Version History</a> </li> 
+  </ol> 
+</div> 
+
+<h1><a name="install" id="install">Installation</a></h1>
+<div class="section">
+
+NOTE: If you've previously installed the mod, remove it before extracting a new version. To do this, uninstall all previously installed components and delete the mod folder and executables. 
+<br />
+Make sure the game is not running while installing the mod.<br />
+When installing or uninstalling, do not close the DOS window by clicking on the X button! Instead, press the Enter key when instructed to do so.<br />
+
+<h2> <a name="eegames" id="quest">Notes to modding EE games</a></h2>
+If you use SoD from GOG or Steam, you need to prepare your game with DLC Merger before installing any mods:<br />
+<a href="https://forums.beamdog.com/discussion/71305/mod-dlc-merger-merge-steam-gog-sod-dlc-or-custom-dlcs-with-the-main-game">argent77's DLC Merger</a><br />
+For Enhanced Edition it is important that you istall the mod to the language version you are playing the game in. Otherwise, the dialogues of the mod will not show but give error messages.
+<br />
+The EE games are actively supported games. Please note that every patch update will wipe your current mod setup! If in the middle of a modded game you might want to delay the patch update as even after reinstalling the mods, you might not be able to continue with your old savegames. 
+<h2> <a name="windows" id="quest">Windows</a></h2>
+Extract the contents of the mod archive to your game's main directory (BG:EE/SOD/BG2/BGT/BGII:EE/EET which contains the CHITIN.KEY file). On successful extraction, there should be an c#husam folder and a setup-c#husam.exe file in your game folder. To install, simply double-click setup-c#husam.exe and follow the instructions on screen.<br />
+Run setup-c#husam.exe in your game folder to reinstall, uninstall or otherwise change components.<br />
+<h2> <a name="osx" id="quest">macOS</a></h2>
+Extract the mod archive, then copy the contents of the folder into your game folder (BG:EE/SOD/BG2/BGT/BGII:EE/EET which contains the CHITIN.KEY file). If properly extracted, you should have a "c#husam" folder, setup-c#husam, and setup-c#husam.command in your game folder. To install, simply double-click setup-c#husam.command and follow the instructions on screen.<br />
+Run setup-c#husam.command in your game folder to reinstall, uninstall or otherwise change components.<br />
+<h2> <a name="linux" id="quest">Linux</a></h2>
+Extract the contents of the mod to the folder of the game you wish to modify. Download the latest version of WeiDU for Linux from https://github.com/WeiDUorg/weidu/releases and copy WeiDU and WeInstall to /usr/bin. Following that, open a terminal and cd to your BG2 installation directory, run 'tolower' and answer Y to both queries. You can avoid running the second option (linux.ini) if you've already ran it once in the same directory. If you're unsure, running tolower and choosing both options is the safe bet.<br />
+Run WeInstall c#husam in your game folder to install the mod. Then run wine BGMain.exe and start playing. <br />
+
+</div>
+
+<h1><a name="compat" id="compat">Compatibility with other mods and Install Order</a></h1>
+<div class="section">
+Husam NPC was implemented with WeiDU with highest priority to compatibility with other mods.<br />
+The mod is compatible with Imoen 4 Ever.<br />
+As an NPC mod, this mod should be installed after quest mods and before tweak mods. There is crossmod content included in the mod which should show if the install order suggestions are being followed.<br />
+To see most crossmod content, install the mod in the following order (other mods listed in alphabetical order!):<br />
+(at least the Crossmod component:) AFTER: Ajantis BG1 Expansion, Sir Ajantis for BGII, Alternatives, Brage's Redemption, Brandock the Mage, EET, Expanded Thief Stronghold, Imoen4Ever, The Boareskyr Bridge Scene, Transitions.<br /> 
+(main component:) BEFORE: Grey the Dog, EET_End..<br />
+
+</div>
+
+<h1><a name="content" id="content">Description</a></h1>
+<div class="section">
+<h2> <a name="generalcontent" id="generalcontent">General Info</a></h2>
+Husam is a Shadow Thief from Amn, who was sent in BG1 to make sure the accusations against his guild regarding the murders where proven to be wrong. In the original game, he reveals himself to the PC near the end of BG1 and guides the PC to the real culprits.<br />
+The mod contains 3 components:<br />
+Component 1 is the main component that will insert Husam as an NPC into SoD and BGII. All other components are dependent on this one but optional.<br />
+As a second, optional component, the mod's portrait and soundset can be assigned to the original game Husam, as well. This will not change his very first line if met while he is still pretending to be drunk.<br />
+The 3rd component installs the crossmod with other mods and should be installed late.<br />
+
+<h2> <a name="where" id="where">Where to meet in Game</a></h2>
+In SoD, Husam will be standing in the BG East area (where Sorcerous Sundries is located), in the north at the bench. He will not approach the PC by himself.<br />
+Note that Husam will only appear if the PC worked with him in BG1 (or a new SoD game).<br />
+In BGII, he will be in Mae'Var's hideout.<br />
+
+<h2> <a name="content" id="content">Content</a></h2>
+Husam comes with friendship talks, own quest, and banters with some NPCs, and player initiated dialogues. In SoD, the latter offers the possibility to ask Husam about information with regard to Caelar's crusade. His "information services" are such that he will not spoil any details by himself, but only if the PC asks him directly. In SoD, Husam joins the PC to get firsthand information about the coalition - and the PC himself, about which he communicates completely open. In BGII, Husam will have lost his loyal rogues to Mae'Var and Irenicus. He will join the PC for revenge.<br />
+<br />
+
+<h2> <a name="stats" id="stats">Husam's Stats and Portrait</a></h2>
+When first met in SoD, he will be a first level unkitted thief, but receives correspondingly experience points according to the PC's level.<br />
+If following as a "7th party member", Husam will gain XP automatically every time when rejoining the group if his XP are lower than the PC's.<br /><br />
+Husam's alignment is Lawful Evil. He will not leave the group due to reputation.<br /><br />
+His stats are the following:
+      <ul> 
+		<li>STR: 17</li>
+		<li>DEX: 18</li>
+		<li>CON: 16</li>
+		<li>INT: 15</li>
+		<li>WIS: 14</li>
+		<li>CHA: 10</li>
+      </ul> <br />
+Husam's soundset are some of his original lines from BGII. I will replace this with a custom or more suited soundset eventually.<br /><br />
+Husam's portrait was generously created and provided by Acifer.<br /><br />
+<img src="readme/husaml.png"><br />
+
+<h2> <a name="spoiler" id="spoiler">Walkthrough / Spoilers</a></h2>	
+Husam wants to join the PC in SoD to get firsthand information about the coalition's doings. The PC himself has also aroused the interest of the Shadow Thieves - completely without obligation, of course. After joining, Husam cannot be kicked out of party - not even to wait for a short moment. Instead, he can be told to "stay close", which will free his party slot and make him follow as "7th party member". (Glitches and things to note with regard to this see below). <br />
+<br />
+In SoD, Husam has his spies and informants, inside the coalition forces as well as the crusade. He can also be asked to get more information by the PC via player initiated dialogues. The information will be such that no crucial game knowledge will be just spoiled. They will either be available later, and the PC will have to explicitely tell Husam to reveal them.<br />
+<br />
+In BGII, Husam needs to be freed from captivity. He will have lost his loyal rogues and his standing with the Shadow Thieves and will join the PC's group to get revenge if asked to. In BGII, he can be kicked out normally.<br />
+
+
+<h2> <a name="7th" id="7th">7th Party Member Mode</a></h2>
+If you need the party slot for someone else, Husam can be kicked out of the party and told to "stay close", then he will follow as a "familiar" or, as I call it "7th party member". If in 7th party member mode he needs to join the group from time to time to level up. In 7th party member mode Husam can be selected and given commands, as well as told to use quick slot items. All his dialogues, banters, and interjections will trigger as normal.<br />
+To rejoin the group, talk to him and tell him you need "access to (his) inventory", and he will rejoin as a full party member. If you time this accordingly, the moment he is in group before any other kicked out NPC reaches the PC for his post-kickout dialogue is sufficient to let Husam level up and rearrange his spells and items, without having to finally kick out any other party NPC to achieve this. (Unless those just leave without a follow-up dialogue, of course.)<br />
+He cannot die while following as a 7th party member, but will remain at 1 HP. If Husam's HP fall to 1 HP during a fight, he will pass out. Healing him then will not change this. He will change to "neutral blue" so enemies stop attacking him. Once the fight is over, he will regain consciousness, be healed fully, and rejoin the party as a "familiar" as before. The full healing might be seen as a cheat, but it's one way to fix the engine behavior (not to call it bug) with Husam dying upon rejoining if his HP are too low.<br />
+The 1 HP drop out can be prevented if Husam is healed in time during a fight. If told to he will give a warning before his HP drop too low, but this seems to be buggy in BGT.<br />
+<br />
+NOTE TO PLAYERS: <br />
+Unfortunately, the "7th party member mode" in the game requires special handling to accommodate all restrictions: 
+(The hints are a mix of the existing engine restrictions and the workarounds I used).<br />
+-The NPC has no "Clear Fog of War" around him in the 7th GM. So he can "disappear" in the "black" area of the map. Unfortunately, this can lead to Husam no longer be included in the "gather all party" button although he is still green circled and will return properly with the group as soon as he is seen by a full party member again. This is especially annoying if he loses sight of full party members because the AI wanted him to walk to whatever destination on a different path, and he needs to be searched for by walking the map until he can be seen again. This seems to be especially a problem if several "7th party members" follow, and with the old game engine.<br />
+-Items in the NPC's inventory are *not* recognized as items owned by the group. This is an engine problem. It follows that quest items that are needed in the game should not be in the NPC's inventory if they are to be recognized by the quest giver. Examples: Elvenhair's book, Ankheg shell for Taerom, etc.<br />
+-Quest items tagged as "critical" will be moved to the PC's inventory when moving to the 7th PMM. This may cause items from the PC's inventory to end up on the floor. This is an engine problem. As a result, you should always check after switching the NPC to the 7th PMM to see if items have landed on the floor!<br />
+-When new items are given to one of my NPCs in 7th PMM in a quest specifically for this NPC, they always appear in the inventory of the group or PC, even if the NPC is supposed to receive them. This is an engine problem. Even if I scripted it so that the items would end up in the NPC's inventory after the encounter, they would still be handled via the PC's inventory. And thus, items from the inventory may have ended up on the floor.<br />
+-For my NPCs, I have tried to have their own quest items (even if they are original in-game items, as long as they are necessary for my NPC's quest) recognized in the NPC's inventory as well. This works with the following restrictions:<br />
+-- All items in question are handled through the PC's inventory before they are either given to or received from a quest giver. This means that other items may have ended up on the floor.<br />
+-- If the item was in a bottomless bag (this includes all kind of bags, gem bags, bags for bottles etcpp.), then the item will not be removed in a dialogue with the quest giver. It is still in the bottomless bag afterwards and can cause problems if the scripting of the quest does not consider this (and assumes that the item should be gone).<br />
+-- 2. Problem with items in bottomless bags: If the item was in a bottomless bag, then the game crashes for unknown reasons if the NPC is to be taken afterwards into the group as a full member. This "crash bug" can be worked around by saving the game and reloading it.<br />
+<br />
+</div>
+
+<h1><a name="issues" id="issues">Known Issues</a></h1>
+<div class="section">
+<br />
+His current voiceset is not complete and the sounds too quiet, at least for EE.<br />
+Short summary of things to keep in mind while playing in 7th party member mode:<br />
+-After each quest event and after moving to the 7th PMM, check whether the PC has lost items from the inventory that should be picked back up from the floor.<br />
+-Save before adding a 7th PM back to the group. If the game then crashes, reload the save game. This should prevent the crash from occurring.<br />
+-It is necessary and also recommended to have non-critical quest items not in the inventory of the 7th GM but in that of the normal party members.<br />
+-Take quest items out of bottomless bags in the 7th PM's inventory before approaching the appropriate quest givers, or at least save the game to prevent the "crash bug" before taking the NPC back as a full PM.<br />
+-In some game cutscenes, Husam might be visible at places where he shouldn't be as 7th party member. This can only be prevented by explicitely considering Husam in the relevant scripts. Some will be covered in later versions.</br>
+-Items in Husam's inventory will not be recognized by quest givers. Exception is some custom mod items for which I specifically scripted in that they are being noticed.</br>
+-Husam has no clear fog of war effect. (The reason is that the engines cannot handle more than 8 creatures with CFoW - and that includes the 6 party members and cutscene spies.) So when following as 7th party member, he might "vanish" behind the line of sight and stop walking. He will then no longer come to a meeting point but needs to be back in visual range of a party member to be activated again. </br>
+</div>
+
+<h1><a name="acknow" id="acknow">Credits</a></h1>
+<div class="section">
+<strong>Acifer:</strong> Portrait, with many thanks!</br>
+<strong>maus:</strong> Ideas.</br>
+</br>
+Thanks to BioWare, Black Isle and Wizards of the Coast for Baldur's Gate 1, 2 and the Infinity Engine, and BeamDog for the revival of the games including the SoD campaign.</br>
+Thanks to Kerzenburgforum for hosting the mod and giving a place for exchange of ideas.</br>
+Thanks to all modders who developed and are maintaining the IE modding tools, without which this mod would not have been possible.</br>
+Thanks to all who play this mod or any of my mods, and also those of you who give feedback to help improving my mods. Modding would not be as much fun without you. </br>
+I totally mean this although I use this text modules in other readmes, too! :-)</br>
+</div>
+
+<h1><a name="tools" id="tools">Tools Used</a></h1>
+<div class="section">
+      <ul> 
+		<li><a href="https://gibberlings3.github.io/iesdp/index.htm">IESDP</a></li>
+		<li><a href="https://forums.beamdog.com/discussion/30593/new-versions-of-nearinfinity-available/p1">Near Infinity</a></li>
+		<li><a href="https://github.com/WeiDUorg/weidu/releases/latest">WeiDU</a></li>
+		<li><a href="http://tools.stefankueng.com/grepWin.html">grepWin</a></li>
+		<li><a href="http://winmerge.org/">WinMerge</a></li>
+      </ul>
+<h2> <a name="communities" id="communities">Modding Communities, Tutorials, and technical Assistance</a></h2>
+      <ul> 
+		<li><a href="https://www.baldurs-gate.de/index.php">Kerzenburgforum (German)</a></li>
+		<li><a href="https://www.gibberlings3.net/">The Gibberlings Three</a></li>
+		<li><a href="http://pocketplane.net">Pocket Plane Group</a></li>
+		<li><a href="http://www.shsforums.net/">Spellhold Studios</a></li>
+      </ul>
+<h2> <a name="links" id="links">Further Links</a></h2>
+      <ul> 
+		<li><a href="https://forums.beamdog.com/discussion/71305/mod-dlc-merger-merge-steam-gog-sod-dlc-or-custom-dlcs-with-the-main-game">DLC Merger</a></li>
+      </ul>
+</div>
+
+
+<h1><a name="credit" id="credit">Copyright</a></h1>
+<div class="section">
+This mod is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.
+This mod is also not developed, supported, or endorsed by BioWare, Black Isle Studios, Interplay Entertainment Corp., Overhaul Games or Beamdog. All other trademarks and copyrights are property of their respective owners.
+</div> 
+
+<h1><a name="version" id="version">Version History</a></h1>
+<div class="section">
+Version Beta_230407:</br>
+- First public release with SoD content.</br>
+<br />
+</div>
+
+</body>

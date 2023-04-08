@@ -1,0 +1,20 @@
+/* SoD quest cutscene 2: Husam kills Bren */
+IF
+	True()
+THEN
+	RESPONSE #100
+	CutSceneID(Player1)
+	MoveViewObject(Player1,INSTANT)
+	ActionOverride("c#husam1",FaceObject("c#hubren"))
+	DisplaystringHead("c#hubren",@10023)
+	SmallWait(10)
+	DisplaystringHead("c#husam1",@10024)
+	FadeToColor([20.0],0)
+	Wait(2)
+	ActionOverride("c#hubren",Kill(Myself))
+	FadeFromColor([20.0],0)
+	Wait(1)
+	EndcutSceneMode()
+	SetInterrupt(TRUE)
+	ActionOverride("c#husam1",StartDialogueNoSet(Player1))
+END

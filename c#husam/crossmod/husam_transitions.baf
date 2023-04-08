@@ -1,0 +1,31 @@
+/* set variables for detection of mod-added content */
+IF	%BGT_VAR%
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!See([ENEMY])
+	CombatCounter(0)
+	Global("#L_BG2ExitModded","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("#L_BG2ExitModded","LOCALS",1)
+END
+
+/* Transitions. BGII transition. Husam will leave. */
+
+IF	%BGT_VAR%
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	InMyArea("C#Husam1") !StateCheck("C#Husam1",CD_STATE_NOTVALID)
+	Global("#L_StartBG2","GLOBAL",1) 
+	Global("C#Husam_TransitionsLeave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_TransitionsLeave","GLOBAL",1)
+END
+
+IF
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	InMyArea("C#Husam1") !StateCheck("C#Husam1",CD_STATE_NOTVALID)
+	Global("C#Husam_TransitionsLeave","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END

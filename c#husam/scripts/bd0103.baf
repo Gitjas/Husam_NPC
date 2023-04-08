@@ -1,0 +1,20 @@
+/* after Skie woke the PC up on the day of departure */
+
+IF
+	Global("bd_plot","global",55)
+	Global("C#Husam_PLAY_ONCE","BD0103",0)
+	Global("BD_OT_DELAY","BD0103",0)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)   
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BD_OT_DELAY","BD0103",1)
+		SetGlobal("C#Husam_PLAY_ONCE","BD0103",1)
+		Wait(1)
+		DisplayStringWait("C#Husam1",@10001)  
+		SetGlobal("BD_OT_DELAY","BD0103",0)
+		SetInterrupt(TRUE)
+		Continue()
+END

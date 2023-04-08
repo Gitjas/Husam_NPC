@@ -1,0 +1,74 @@
+/* Hephernaan discovered the group inside the castle */
+
+IF
+	Global("bd_plot","global",370)
+	!GlobalTimerNotExpired("bd_mdd905a_ot_timer","bd4300")
+	Global("C#Husam_bd_ot","bd4300",0)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+THEN
+	RESPONSE #100
+		SetGlobalTimer("bd_mdd905a_ot_timer","bd4300",THREE_MINUTES)
+		SetGlobal("C#Husam_bd_ot","bd4300",1)
+		DisplayStringHead("C#Husam1",@10008)  
+		Continue()
+END
+
+
+/* Portal is opened after Hephernaan's scheme  */
+
+IF
+	AreaCheck("BD4300")
+	Global("bd_plot","global",495)
+	Global("C#Husam_SoDPortalComment","bd4300",0)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDPortalComment","bd4300",1)
+		DisplayStringHead("C#Husam1",@10009)
+		SmallWait(8)  
+		Continue()
+END
+
+
+
+
+
+/* Comment after first wave of demons if PC lingers */
+
+IF
+	GlobalLT("bd_plot","global",499)
+	Global("bd_mdd1290d_ot","bd4300",1)
+	Global("C#Husam_SoDPortalComment","bd4300",1)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDPortalComment","bd4300",2)
+		DisplayStringHead("C#Husam1",@10010)  
+		SmallWait(8)
+		Continue()
+END
+
+
+/* Comment after return from Avernus: portal is closed */
+
+IF
+	Global("bd_plot","global",586)
+	!GlobalTimerNotExpired("bd_mdd1341a_ot_timer","bd4300")
+	Global("C#Husam_bd_ot2","bd4300",0)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)    
+THEN
+	RESPONSE #100
+		SetGlobalTimer("bd_mdd1341a_ot_timer","bd4300",3)
+		SetGlobal("C#Husam_bd_ot2","bd4300",1)
+		DisplayStringHead("C#Husam1",@10011)    
+		SmallWait(8)
+		Continue()
+END

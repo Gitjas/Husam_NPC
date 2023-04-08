@@ -1,0 +1,595 @@
+/* first we set a general dialogue timer. */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	CombatCounter(0)
+	!See([ENEMY])
+	Global("C#Husam_IniDialogueTimer","LOCALS",0)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		SetGlobal("C#Husam_IniDialogueTimer","LOCALS",1)
+END	
+
+
+/* bd1000: after arrival at camp and leaving it for the first time. */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	AreaCheck("bd1000")
+	!Range("Ff_camp",10)
+	Global("C#Husam_SoD1stCamp","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoD1stCamp","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoD1stCamp","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+
+/* bd1000 after meeting Caelar and Hephernaan */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	AreaCheck("bd1000")
+	Global("bd_plot","global",170)
+	!See("bdcaelar")
+	Global("C#Husam_SoD_CWC","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoD_CWC","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoD_CWC","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+
+/* bd1000: after bridge is destroyed and it's clear the way will go via Boareskyr Bridge. FF soldiers left. */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+// no timer check, should happen right after Bence's dialogue
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	AreaCheck("bd1000")
+	GlobalGT("bd_plot","global",169)
+	!InMyArea("bdfscout")
+	!InMyArea("bdfscou2")
+	Global("C#Husam_SoD_BBridgeInfo","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoD_BBridgeInfo","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoD_BBridgeInfo","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+/* Husam informs that Caelar is no child of Bhaal (if player hasn't heard yet) or talks about it anyway */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	GlobalGT("bd_plot","global",169)
+	!InMyArea("bdfscout")
+	!InMyArea("bdfscou2")
+	Global("C#HusamSoD_CaelarBC","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HusamSoD_CaelarBC","GLOBAL",2)
+END
+
+/* If PC didn't ask Husam about rumor but learns about it ingame */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	OR(2)
+  		GlobalGT("bd_mdd018","global",0) //Caelar told she is no child of Bhaal
+		GlobalGT("C#RtD_CaelarBhaalChild","GLOBAL",1) //from Road to Discovery
+	Global("C#HusamSoD_CaelarBC","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HusamSoD_CaelarBC","GLOBAL",3)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	OR(2)
+		Global("C#HusamSoD_CaelarBC","GLOBAL",2)
+		Global("C#HusamSoD_CaelarBC","GLOBAL",3)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+
+
+/* bd1200 Lich scrying pool - detect whether Husam witnessed the scene with Hephernaan */
+
+/* Detection: Husam is in area */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	CombatCounter(0)
+	!See([ENEMY])
+	!Dead("C#Husam1")
+	AreaCheck("bd1200")
+	Global("C#Husam_HepherScryPool","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_HepherScryPool","GLOBAL",1)
+END
+
+/* reset variable: Husam is not in area or can't watch the scene */
+IF
+	OR(3) 
+		Global("C#HusamJoined","GLOBAL",0)
+		Dead("C#Husam1")
+		!AreaCheck("bd1200")
+	CombatCounter(0)
+	!See([ENEMY])
+	Global("C#Husam_HepherScryPool","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_HepherScryPool","GLOBAL",0)
+END
+
+/* scrying pool scene watched - Husam initiates dialogue */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+//	AreaCheck("bd1200")
+	!Range("Scryingpool",20)
+	Global("C#Husam_HepherScryPool","GLOBAL",2)	
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_HepherScryPool","GLOBAL",3)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_HepherScryPool","GLOBAL",3)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+/* 1.3 General reaction to the knowledge that Hephernaan is working for a fiend */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	OR(2)
+		!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+		GlobalGT("bd_plot","GLOBAL",589) //after returning from Avernus
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	GlobalGT("C#RtD_HephernaanFiend","GLOBAL",1)
+	OR(3) //not inside castle if crusaders still hold it
+		!AreaCheck("bd4300")
+		GlobalLT("bd_plot","GLOBAL",315)
+		GlobalGT("bd_plot","GLOBAL",380)
+	OR(2) //not inside the crusader camp near entrance 
+		!AreaCheck("bd5100")
+		!Range("TranBD5000",35) 
+	!AreaCheck("bd5200")
+	OR(2) //not inside the crusader camp near entrance 
+		!AreaCheck("bd5000")
+		!Range("TranBD5100",35) 
+	Global("C#Husam_HepherFiend","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_HepherFiend","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_HepherFiend","GLOBAL",1)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+/* 1.2 General reaction to Hephernaan is betraying Caelar: knowledge gained BEFORE the portal scene at Dragonspear basement; PC does NOT know that he is working for a fiend yet. */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#RtD_HephernaanIdentity","GLOBAL",1)
+	GlobalGT("C#RtD_HephernaanBetrayal","GLOBAL",0)
+	Global("C#RtD_HephernaanFiend","GLOBAL",0)
+	Global("C#Husam_HepherFiend","GLOBAL",0)
+	GlobalLT("bd_plot","global",485) //before portal scene
+	Global("C#Husam_HephernaanBetrayal","GLOBAL",0) 
+THEN 
+	RESPONSE #100
+		SetGlobal("C#Husam_HephernaanBetrayal","GLOBAL",1)
+END
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_HephernaanBetrayal","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+/* big coalition camp bd3000: Husam has more info */
+/* activate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+// no timer check
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	GlobalGT("bd_plot","global",300) //met Nederlok at the coalition camp entrance
+	GlobalLT("bd_plot","global",485) //before portal scene
+	!See("bdnederl") //wait until he's gone
+	GlobalLT("C#Husam_SoD1stCamp","GLOBAL",4)
+THEN 
+	RESPONSE #100
+		SetGlobal("C#Husam_SoD1stCamp","GLOBAL",4)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoD1stCamp","GLOBAL",4)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+
+
+/* player asked about Crusader Uniform and/or Seal of Caelar */
+/* Husam will tell about hideout, sometime after arriving at the Coalition Camp */
+/* activate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	GlobalGT("bd_plot","global",304) //after meeting with the officers
+	GlobalLT("bd_plot","global",485) //before portal scene
+	Global("C#HusamSoD_PID_SoC","GLOBAL",2)
+THEN 
+	RESPONSE #100
+		SetGlobal("C#HusamSoD_PID_SoC","GLOBAL",3)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#HusamSoD_PID_SoC","GLOBAL",3)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",1000)
+		StartDialogNoSet(Player1)
+END
+
+
+/* after the sign incident at the Boareskyr bridge */
+/* activate - in case The Boareskyr Bridge mod run */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  RealGlobalTimerExpired("C#HusamDialogTimer","GLOBAL")
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+  !See([ENEMY])
+  See(Player1) 
+  !StateCheck(Player1,CD_STATE_NOTVALID)
+  CombatCounter(0)
+  !AreaType(DUNGEON)
+	GlobalGT("bd_plot","global",294) //after it happened
+	Global("C#Husam_c#stff24_10","GLOBAL",1) // interjection from tbbs run
+	Global("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",1)
+END
+
+/* initiate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  !See([ENEMY])
+  See(Player1) 
+  !StateCheck(Player1,CD_STATE_NOTVALID)
+  CombatCounter(0)
+  Global("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",1)
+THEN
+  RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",1800)
+		StartDialogNoSet(Player1)
+END
+
+
+
+/* 5.4 General reaction: Caelar wants to open a portal to Avernus. */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	!See([ENEMY])
+	See(Player1) 
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	CombatCounter(0)
+	OR(4)
+		GlobalGT("C#RtD_CaelarPlan","GLOBAL",3) //from Road to Discovery
+		GlobalGT("C#RtD_KnowsPortalBlood","GLOBAL",2) //from Road to Discovery
+  		GlobalGT("bd_plot","global",390) //after meeting with Caelar on Dead Man's Pass
+		Global("C#RtD_RoadToDiscovery","GLOBAL",1) //check for Road to Discovery
+	OR(3)
+		GlobalGT("C#RtD_CaelarPlan","GLOBAL",3) //from Road to Discovery
+		GlobalGT("C#RtD_KnowsPortalBlood","GLOBAL",2) //from Road to Discovery
+		Global("C#RtD_RoadToDiscovery","GLOBAL",0) //broaden trigger if Road to Discovery is not installed
+	GlobalLT("bd_plot","global",485) //before the portal is opened
+	Global("C#Husam_PortalAvernus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_PortalAvernus","GLOBAL",1)
+END
+/* initiation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_PortalAvernus","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+/* 2.2 General reaction to the knowledge that Caelar's ulterior motive is to free her uncle. */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	OR(2)
+		GlobalGT("C#RtD_CaelarPlan","GLOBAL",4) 
+		Global("C#Husam_SoDDauston","GLOBAL",5) //
+	GlobalLT("bd_plot","global",485) //before the portal is opened
+	Global("C#Husam_AllForAun","GLOBAL",0) 
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_AllForAun","GLOBAL",1) 
+END
+/* initiation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_AllForAun","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+
+
+
+/* General reaction to the knowledge that Caelar needs the PC's blood (BEFORE portal scene) */
+/* activation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!See("bdcaelar")
+	!See("bdhepher")
+	OR(2)
+		GlobalGT("C#RtD_KnowsPortalBlood","GLOBAL",2)
+		GlobalGT("C#RtD_WantBhaalBlood","GLOBAL",0)
+	OR(2)
+		GlobalGT("C#IM_SoD_PortalPCBlood","GLOBAL",1) //[Imoen suggested bottling PC's blood] 
+		!InParty("%IMOEN_DV%") //no Imoen around
+	GlobalLT("bd_plot","global",485) //before the portal is opened
+	Global("C#Husam_SoDCaelarWantsPC","GLOBAL",0)
+THEN 
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDCaelarWantsPC","GLOBAL",1)
+END
+/* initiation */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoDCaelarWantsPC","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+
+/* after the sign incident at the Boareskyr Bridge */
+/* activate - no The Boareskyr Bridge Scene mod installed */
+/* activation with TBBS see below */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  !See([ENEMY])
+  See(Player1) 
+  !StateCheck(Player1,CD_STATE_NOTVALID)
+  CombatCounter(0)
+  !AreaType(DUNGEON)
+	GlobalGT("bd_plot","global",294) //after it happened
+	GlobalLT("chapter","global",10) // not if game went on
+	AreaCheck("bd2000")
+	!InMyArea("bdireni")
+	!InMyArea("bdfist24")
+	Global("C#Husam_c#stff24_10","GLOBAL",0) // no interjection from tbbs
+	Global("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",0)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",1800)
+		SetGlobal("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",1)
+END
+
+
+
+/* player asked about Aun and Caelar */
+/* Husam will get the answer in the big coalition camp after the meeting with the officers. */
+/* compatibility Themed Tweaks: if player already heard the answer via the Dukes, Husam will refer to it. */
+/* activate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	GlobalGT("bd_plot","global",304) //after meeting with the officers
+	GlobalLT("bd_plot","global",485) //before portal scene
+	Global("C#Husam_SoDDauston","GLOBAL",2)
+THEN 
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDDauston","GLOBAL",3)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoDDauston","GLOBAL",3)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",1000)
+		StartDialogNoSet(Player1)
+END

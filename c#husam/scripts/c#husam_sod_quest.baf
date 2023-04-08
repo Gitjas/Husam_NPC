@@ -1,0 +1,66 @@
+/* bd7100 after arriving and talking with Bence: my informant is gone */
+/* activate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!See("bdbence")
+	GlobalGT("bd_plot","global",200) //after Bence's intro dialogue in bd7100
+	Global("C#Husam_SoDInformantBB","GLOBAL",0)
+THEN 
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDInformantBB","GLOBAL",1)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#Husam_SoDInformantBB","GLOBAL",1)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet(Player1)
+END
+
+/* some time after arriving in bd3000: my informant is gone - again */
+/* activate */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	GlobalGT("bd_plot","global",300) //met Nederlok at the coalition camp entrance
+	GlobalGT("C#Husam_SoD1stCamp","GLOBAL",4) //not before the "I have more info" dialogue at the beginning of the camp
+	Global("C#HU_SoD_BrensQuest","GLOBAL",5)
+THEN 
+	RESPONSE #100
+		SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",6)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C#HU_SoD_BrensQuest","GLOBAL",6)	
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",2400)
+		StartDialogNoSet(Player1)
+END

@@ -1,0 +1,15 @@
+
+IF
+	Global("BD_AREA_HOSTILE","BD5300",1)
+	!GlobalTimerNotExpired("bd_sdd350b_ot_timer","bd2000")
+	Global("C#HusamSoD_bd_ot","bd5300",0)
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+	TriggerOverride("C#Husam1",Range([ENEMY.0.0.0.HOSTILES3],30))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("bd_sdd350b_ot_timer","bd2000",THREE_MINUTES)
+		SetGlobal("C#HusamSoD_bd_ot","bd5300",1)
+		DisplayStringHead("C#Husam1",@10005)  
+END

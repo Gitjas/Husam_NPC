@@ -1,0 +1,1225 @@
+BACKUP ~C#Husam/backup~
+AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
+
+
+VERSION ~Beta_230407~
+
+README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
+
+AUTO_TRA ~C#Husam/Translations/%s~
+
+ALWAYS
+
+/* check for a ready SoD */
+
+ACTION_IF ((FILE_EXISTS ~dlc/sod-dlc.zip~) OR (FILE_EXISTS ~sod-dlc.zip~)) THEN BEGIN
+  FAIL ~Modmerge is required before mods can be installed on this game. Check the readme for more information and a link to download Modmerge.~
+END
+
+/* continuous chapter for EET */
+
+  ACTION_IF GAME_IS ~eet~ BEGIN
+    OUTER_SET bg2_chapter = 12
+  END ELSE BEGIN
+    OUTER_SET bg2_chapter = 0
+  END
+  OUTER_FOR (i=1; i<=10; i=i+1) BEGIN
+    OUTER_SET bg2_chapter = bg2_chapter + 1
+    OUTER_SPRINT name_source ~bg2_chapter_%i%~
+    OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+  END
+
+  ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+    OUTER_SPRINT ~IT_IS_SOD~ ~GlobalGT("BD_PLOT","GLOBAL",40)~
+    OUTER_SPRINT ~IT_IS_BG2~ ~False()~
+    OUTER_SPRINT ~Husam_MakeGlobalOverride~ ~ActionOverride("C#Husam1",MakeGlobalOverride())~
+    OUTER_SPRINT ~eet_2~ ~~
+    OUTER_SPRINT ~Dialog_Timer_SoD~ ~2400~
+  END
+
+  ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN
+    OUTER_SPRINT ~IT_IS_SOD~ ~False()~
+    OUTER_SPRINT ~IT_IS_BG2~ ~~
+    OUTER_SPRINT ~Husam_MakeGlobalOverride~ ~ActionOverride("C#Husam1",MakeGlobalOverride())~
+  END
+
+  ACTION_IF GAME_IS ~eet~ THEN BEGIN
+    OUTER_SPRINT ~IT_IS_SOD~ ~Global("ENDOFBG1","GLOBAL",1) GlobalGT("bd_plot","global",40)~
+    OUTER_SPRINT ~IT_IS_BG2~ ~Global("ENDOFBG1","GLOBAL",2)~
+    OUTER_SPRINT ~Husam_MakeGlobalOverride~ ~ActionOverride("C#Husam1",MakeGlobalOverride())~
+    OUTER_SPRINT ~eet_2~ ~2~
+    OUTER_SPRINT ~Dialog_Timer_SoD~ ~2400~
+  END
+
+  ACTION_IF GAME_IS ~bgt tob~ THEN BEGIN
+    OUTER_SPRINT ~IT_IS_SOD~ ~False()~
+    OUTER_SPRINT ~IT_IS_BG2~ ~~
+    OUTER_SPRINT ~Husam_MakeGlobalOverride~ ~ActionOverride("C#Husam1",MakeGlobal())~
+  END
+
+/* this will overwrite the "tob" definition for bgt: */
+  ACTION_IF GAME_IS ~bgt~ THEN BEGIN
+    OUTER_SPRINT ~IT_IS_BG2~ ~Global("endofbg1","GLOBAL",2)~
+  END
+
+//CamDawgs CD_STATE_NOTVALID zum Checken der Dialogfähigkeit eines Char
+//Thank you very much, CamDawg!
+APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
+
+
+  INCLUDE ~C#Husam/lib/extra_regexp_vars.tph~
+
+  OUTER_SET eet_200000 = GAME_IS ~eet~ ? 200000 : 0
+
+
+  ACTION_IF GAME_IS ~bgt~ THEN BEGIN
+    INCLUDE ~C#Husam/lib/g3_bgt_cpmvars.tpa~ 
+  END
+
+  ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+    INCLUDE ~C#Husam/lib/g3_bgee_cpmvars.tpa~
+  END
+
+  ACTION_IF GAME_IS ~eet~ THEN BEGIN
+    INCLUDE ~EET/other/cpmvars/eet_cpmvars.tpa~
+  END
+
+/* extras needed for 7th party member mode */
+  OUTER_SPRINT "NPCname" "Husam"
+  ACTION_IF GAME_IS ~eet bg2ee~ THEN BEGIN
+    OUTER_SPRINT ~RunAwayFromNoLeaveArea~ ~RunAwayFromNoLeaveArea~
+  END ELSE BEGIN
+    OUTER_SPRINT ~RunAwayFromNoLeaveArea~ ~RunAwayFrom~
+  END
+
+
+
+//////////////
+// Do everything only once from here 
+//////////////
+  ACTION_IF !FILE_EXISTS ~C#Husam/Install/C#Husaminstall.mrk~ BEGIN
+
+/* BG:EE - formatted texts etc. */
+
+
+    /* Copies tra files into the autotra-folder (to leave the originals untouched) */
+    DEFINE_ACTION_FUNCTION autotra_workaround BEGIN
+      COPY ~C#Husam/Translations/english~  ~C#Husam/Translations/autotra/%LANGUAGE%~
+      COPY ~C#Husam/Translations/%LANGUAGE%~  ~C#Husam/Translations/autotra/%LANGUAGE%~
+    END
+
+    LAF autotra_workaround END
+
+  ACTION_DEFINE_ARRAY c#noconvert BEGIN setup END
+  ACTION_DEFINE_ARRAY c#reload BEGIN game baf journal END
+      LAF HANDLE_CHARSETS
+        INT_VAR
+          infer_charsets = 1
+        STR_VAR
+          tra_path = EVAL ~C#Husam/Translations/autotra~
+          noconvert_array = c#noconvert
+          reload_array = c#reload
+	  default_language = ~english~
+      END
+
+
+   COPY ~C#Husam/install/component.xx~ ~C#Husam/Install/C#Husaminstall.mrk~
+ 
+ END //DO ONLY ONCE
+
+//reloading of tras:
+
+  LOAD_TRA ~C#Husam/Translations/autotra/english/game.tra~
+  LOAD_TRA ~C#Husam/Translations/autotra/%LANGUAGE%/game.tra~
+  LOAD_TRA ~C#Husam/Translations/autotra/english/baf.tra~
+  LOAD_TRA ~C#Husam/Translations/autotra/%LANGUAGE%/baf.tra~
+  LOAD_TRA ~C#Husam/Translations/autotra/english/journal.tra~
+  LOAD_TRA ~C#Husam/Translations/autotra/%LANGUAGE%/journal.tra~
+
+END //ALWAYS
+
+
+LANGUAGE ~English~
+         ~english~   
+         ~C#Husam/Translations/english/setup.tra~
+         ~C#Husam/Translations/english/gametra~
+	 ~C#Husam/Translations/english/journal.tra~
+
+
+BEGIN @50000 /* ~Husam NPC for SoD, BGT, BGII:EE, BGII:ToB, and EET~ */
+DESIGNATED 0
+LABEL c#husam-main
+REQUIRE_PREDICATE ((GAME_IS ~bgt bg2ee eet tob~) OR (GAME_IS ~bgee~ AND FILE_EXISTS_IN_GAME ~bd0103.are~))  @50001 /* ~This mod is only compatible with SoD, BGII:EE, EET, BGII:ToB, or BGT.~ */
+FORBID_COMPONENT ~EET_end.tp2~ ~0~ @50002 /* ~This mod needs to be installed before EET_End on your EET install.~ */
+FORBID_COMPONENT ~EET_end.tp2~ ~1~ @50002 /* ~This mod needs to be installed before EET_End on your EET install.~ */
+
+/* journal entries for EE */
+/* SoD */
+ACTION_IF (GAME_IS ~bgee eet~ AND FILE_EXISTS_IN_GAME ~bd0103.are~) THEN BEGIN
+
+<<<<<<<< .../inlined/journal.tph
+>>>>>>>>
+OUTER_SET strref_journal = eet_200000 + 61529
+APPEND_OUTER - ~.../inlined/journal.tph~ "/* journal entries */
+
+/* Den of Thieves */
+ADD_JOURNAL EXISTING TITLE (#%strref_journal%) @100002 @100003 @100004 @100006 @100007 USING ~C#Husam/translations/autotra/%LANGUAGE%/journal.tra~"
+INCLUDE ~.../inlined/journal.tph~
+
+/* Husam and the Coalition Camp Thieves Guild */
+  ADD_JOURNAL TITLE (@100000) @100001 @100005 @100025 USING ~C#Husam/translations/autotra/%LANGUAGE%/journal.tra~
+/* Husam's Informant at Boareskyr Bridge */
+  ADD_JOURNAL TITLE (@100008) @100009 @100010 @100011 @100012@100013 @100014 @100015 @100016 @100019 @100021 USING ~C#Husam/translations/autotra/%LANGUAGE%/journal.tra~
+/* Husam's Informant against Hephernaan */
+  ADD_JOURNAL TITLE (@100018) @100017 @100020 USING ~C#Husam/translations/autotra/%LANGUAGE%/journal.tra~
+/* Crusader Uniform and Seal of Caelar */
+  ADD_JOURNAL TITLE (@100022) @100023 @100024 USING ~C#Husam/translations/autotra/%LANGUAGE%/journal.tra~
+END
+
+
+/* SoD: bdbanter.2da */
+
+ACTION_IF (GAME_IS ~bgee~ AND FILE_EXISTS_IN_GAME ~bd0103.are~) THEN BEGIN
+
+APPEND ~bddialog.2da~
+~C#Husam1 	C#HusamP 	C#HusamJ 	C#HusamD~
+UNLESS ~C#Husam1~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbanter.2da~ THEN BEGIN
+APPEND ~bdbanter.2da~
+~C#Husam1 	C#HusamB~
+UNLESS ~C#Husam1~
+END ELSE BEGIN 
+
+<<<<<<<< .../BDBANTER.2DA
+2DA      V1.0
+NONE
+         FILE
+KIVAN    BDKIVANB
+ALORA    BDALORAB
+MINSC    BDMINSCB
+DYNAHEIR BDDYNAHB
+YESLICK  BDYESLIB
+CORAN    BDCORANB
+AJANTIS  BDAJANTB
+KHALID   BDKHALIB
+JAHEIRA  BDJAHEIB
+GARRICK  BDGARRIB
+SAFANA   BDSAFANB
+FALDORN  BDFALDOB
+BRANWEN  BDBRANWB
+QUAYLE   BDQUAYLB
+XAN      BDXANB
+SKIE     BDSKIEB
+ELDOTH   BDELDOTB
+XZAR     BDXZARB
+MONTARON BDMONTAB
+TIAX     BDTIAXB
+KAGAIN   BDKAGAIB
+SHARTEEL BDSHARTB
+EDWIN    BDEDWINB
+VICONIA  BDVICONB
+IMOEN    BDIMOENB
+NEERA    BDNEERAB
+DORN     BDDORNB
+RASAAD   BDRASAAB
+BAELOTH  BDBAELOB
+VOGHILN  BDVOGHIB
+MKHIIN   BDMKHIIB
+CORWIN   BDCORWIB
+GLINT    BDGLINTB
+C#Husam1 	C#HusamB
+>>>>>>>>
+
+    COPY ~.../BDBANTER.2DA~ ~override~ 
+  END
+
+END
+
+
+/* BG1:EET */
+
+ACTION_IF GAME_IS ~eet~ THEN BEGIN
+APPEND ~bgdialog.2da~
+~C#Husam1 	C#HusamP 	C#HusamJ 	C#HusamD~
+UNLESS ~C#Husam1~
+
+APPEND ~bgbanter.2da~
+~C#Husam1 	C#HusamB~
+UNLESS ~C#Husam1~
+
+APPEND ~bddialog.2da~
+~C#Husam1 	C#HusamP 	C#HusamJ 	C#HusamD~
+UNLESS ~C#Husam1~
+
+APPEND ~bdbanter.2da~
+~C#Husam1 	C#HusamB~
+UNLESS ~C#Husam1~
+
+END
+
+ACTION_IF GAME_INCLUDES ~sod~ THEN BEGIN
+/* Create NPCs' Banter files if not present */
+COPY_EXISTING ~BDBANTER.2DA~ ~%MOD_FOLDER%/install~
+	COUNT_2DA_COLS cols
+	COUNT_2DA_ROWS cols rows
+	FOR ( row = 2 ; row < rows ; row = row + 1 ) BEGIN
+		READ_2DA_ENTRY %row% 0 2 npc_dv
+    	READ_2DA_ENTRY %row% 1 2 banterfile
+      	INNER_ACTION BEGIN
+		ACTION_IF NOT FILE_EXISTS_IN_GAME ~%banterfile%.dlg~ THEN BEGIN
+		  <<<<<<<< .../banterfiles-inlined/%banterfile%.d
+		  BEGIN %banterfile%
+		  >>>>>>>>
+		  COMPILE EVALUATE_BUFFER ~.../banterfiles-inlined/%banterfile%.d~ 
+		END
+      	END
+	END
+BUT_ONLY
+END
+
+
+/* BGT, BGII, BGII:EE */
+
+ACTION_IF GAME_IS ~bgt bg2ee eet tob~ THEN BEGIN
+
+APPEND ~pdialog.2da~
+~C#Husam1 	C#HusamP 	C#HusamJ 	C#HusamD 	C#HusamP 	C#HusamJ 		C#HusamD 	C#Husa25~
+UNLESS ~C#Husam1~
+
+
+APPEND ~interdia.2da~
+~C#Husam1 	C#HusamB      C#HusamB~
+UNLESS ~C#Husam1~
+
+END
+
+/* sound */
+
+ACTION_IF GAME_IS ~tob bg2ee~ THEN BEGIN
+  COPY ~c#husam/sound~ ~override~
+END
+
+/* Portraits */
+
+COPY ~c#husam/Portraits/c#husamL.bmp~ ~override~
+
+ACTION_IF GAME_IS ~tob bgt~ BEGIN
+  COPY ~c#husam/Portraits/c#husamM.bmp~ ~override~
+  COPY ~c#husam/Portraits/c#husamS.bmp~ ~override~
+END ELSE BEGIN
+  COPY ~c#husam/Portraits/c#husamL.bmp~ ~override/c#husamM.bmp~
+  COPY ~c#husam/Portraits/c#husamL.bmp~ ~override/c#husamS.bmp~
+END
+
+
+/* cre */
+
+COPY ~C#Husam/cre/c#husam1.CRE~ ~override/C#HUSAM1.CRE~
+  SAY NAME1 #12695 //~Husam~ // #12727
+  SAY NAME2 #12695 //~Husam~ // #12727
+WRITE_EVALUATED_ASCII 0x280 ~C#HUSAM1~ #32 // script name / DV
+WRITE_EVALUATED_ASCII 0x2cc ~C#HUSAM1~ #8
+WRITE_EVALUATED_ASCII 0x248 ~C#HUSAM1~ #8   // Override script
+WRITE_EVALUATED_ASCII 0x250 ~~ #8   // erase Class script
+WRITE_EVALUATED_ASCII 0x268 ~~ #8   // erase Default script
+SAY INITIAL_MEETING @0
+SAY MORALE @1
+SAY HAPPY @2   
+SAY UNHAPPY_ANNOYED @3
+SAY UNHAPPY_SERIOUS @4    
+SAY UNHAPPY_BREAKING @5  
+SAY LEADER  @6  
+SAY TIRED @7  
+SAY BORED @8   
+SAY BATTLE_CRY1 @9 
+SAY BATTLE_CRY2 @10  
+SAY BATTLE_CRY3 @11  
+SAY BATTLE_CRY4 @12   
+SAY BATTLE_CRY5 @13   
+SAY DAMAGE @14
+SAY DYING @15
+SAY HURT @16
+SAY AREA_FOREST @17  
+SAY AREA_CITY @18  
+SAY AREA_DUNGEON @19  
+SAY AREA_DAY @20 
+SAY AREA_NIGHT @21 
+SAY SELECT_COMMON1 @22
+SAY SELECT_COMMON2 @23
+SAY SELECT_COMMON3 @24
+SAY SELECT_ACTION1 @25
+SAY SELECT_ACTION2 @26  
+SAY SELECT_ACTION3 @27 
+SAY SELECT_ACTION4 @28   
+SAY SELECT_ACTION5 @29   
+SAY SELECT_ACTION6 @30   
+SAY SELECT_ACTION7 @31  
+SAY REACT_TO_DIE_GENERAL @32 
+SAY BIO @33
+WRITE_BYTE 0x2c 27 // Metal color
+WRITE_BYTE 0x2d 63 // Minor color
+WRITE_BYTE 0x2e 51 // Major color
+WRITE_BYTE 0x2f 8 // Skin color
+WRITE_BYTE 0x30 22 // Leather color
+WRITE_BYTE 0x31 21 // Armor color
+WRITE_BYTE 0x32 0 // Hair color
+
+
+ACTION_IF GAME_IS ~bgt tob~ BEGIN
+  COPY_EXISTING ~C#HUSAM1.cre~ ~override~
+	WRITE_ASCII 0x34 ~C#HUSAMS~ #8
+	WRITE_ASCII 0x3c ~C#HUSAMM~ #8
+END	
+
+ACTION_IF GAME_IS ~bgee eet bg2ee~ BEGIN
+  COPY_EXISTING ~C#HUSAM1.cre~ ~override~
+	WRITE_ASCII 0x34 ~C#HUSAML~ #8
+	WRITE_ASCII 0x3c ~C#HUSAML~ #8
+END
+
+ACTION_IF GAME_IS ~bgee eet~ BEGIN
+COPY_EXISTING ~C#HUSAM1.CRE~ ~override~
+/* items: */
+  ADD_CRE_ITEM ~LEAT02~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
+  ADD_CRE_ITEM ~SW1H08~ #0 #0 #0 ~IDENTIFIED~ ~weapon1~
+  ADD_CRE_ITEM ~BOW06~ #0 #0 #0 ~IDENTIFIED~ ~weapon2~ EQUIP
+  ADD_CRE_ITEM ~AROW02~ #40 #0 #0 ~IDENTIFIED~ ~quiver1~ 
+  ADD_CRE_ITEM ~AROW02~ #40 #0 #0 ~IDENTIFIED~ ~quiver2~
+  ADD_CRE_ITEM ~AROW04~ #20 #0 #0 ~IDENTIFIED~ ~quiver3~
+  ADD_CRE_ITEM ~POTN52~ #5 #0 #0 ~IDENTIFIED~ ~qitem1~
+  ADD_CRE_ITEM ~POTN36~ #1 #0 #0 ~IDENTIFIED~ ~qitem2~
+END
+
+/* extras needed for 7th party member mode */
+INCLUDE ~%MOD_FOLDER%/7thpmm/c#7thpmm_thingies.tpa~
+
+
+/* Ensures that Husam won't leave the party because of reputation: BGII, BGII:EE, BGT */
+ACTION_IF GAME_IS ~tob bg2ee bgt~ THEN BEGIN
+COPY_EXISTING ~dplayer2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~\(BreakingPoint()\)~
+                      ~\1  
+       !Name("C#Husam1",Myself)~
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+/* Now we need a scriptblock so Husam initiates dialogue if kicked out if "!HPGT(Myself,0)", too: */
+<<<<<<<< ...inlined/husam_bg2_unhappyleave.baf
+
+IF
+	!InParty(Myself)
+	!HPGT(Myself,0)
+	Name("C#Husam1",Myself)
+THEN
+	RESPONSE #100
+		SetLeavePartyDialogFile()
+		Dialog(Player1)
+		ChangeAIScript("",DEFAULT)
+END
+
+>>>>>>>>
+EXTEND_TOP ~dplayer2.bcs~ ~...inlined/husam_bg2_unhappyleave.baf~ EVALUATE_BUFFER
+
+END //BGII
+
+/* define Husam's banter file */
+<<<<<<<< ...inlined/begin_c#husam_dlg.d
+  BEGIN C#husamB
+>>>>>>>>
+COMPILE ~...inlined/begin_c#husam_dlg.d~
+
+
+/* SoD (Husam NPC has no BG1 part) 
+prevent bdparty.bcs to be set upon kickout, Husam NPC doesn't need this script */
+ACTION_IF (GAME_IS ~bgee~ AND FILE_EXISTS_IN_GAME ~bd0103.are~) THEN BEGIN
+<<<<<<<< ...inlined/husam_sod_unhappyleave.baf
+
+IF
+	!InPartyAllowDead(Myself)
+	GlobalGT("bd_plot","global",0)
+	Name("C#Husam1",Myself)
+THEN
+	RESPONSE #100
+		SetLeavePartyDialogFile()
+		Dialog(Player1)
+		ChangeAIScript("",DEFAULT)
+END
+
+>>>>>>>>
+EXTEND_TOP ~dplayer2.bcs~ ~...inlined/husam_sod_unhappyleave.baf~ EVALUATE_BUFFER
+
+END
+
+/* Ensures that Husam won't leave the party because of reputation: EET */
+
+ACTION_IF (GAME_IS ~eet~) THEN BEGIN
+
+/* (BGII) */
+
+COPY_EXISTING ~dplayer2.bcs~ ~override~
+  DECOMPILE_BCS_TO_BAF
+    REPLACE_TEXTUALLY ~BreakingPoint()~
+      ~BreakingPoint()
+       !Name("C#Husam1",Myself)~
+  COMPILE_BAF_TO_BCS
+BUT_ONLY_IF_IT_CHANGES
+
+<<<<<<<< ...inlined/husam_eet_unhappyleave.baf
+
+/* SoD */
+
+IF
+	GlobalLT("ENDOFBG1","GLOBAL",2)
+	!InPartyAllowDead(Myself)
+	GlobalGT("bd_plot","global",0)
+	Name("C#Husam1",Myself)
+THEN
+	RESPONSE #100
+		SetLeavePartyDialogFile()
+		Dialog(Player1)
+		ChangeAIScript("",DEFAULT)
+END
+
+/* BGII */
+
+IF
+	Global("ENDOFBG1","GLOBAL",2)
+	!InParty(Myself)
+	!HPGT(Myself,0)
+	Name("C#Husam1",Myself)
+THEN
+	RESPONSE #100
+		SetLeavePartyDialogFile()
+		Dialog(Player1)
+		ChangeAIScript("",DEFAULT)
+END
+
+
+>>>>>>>>
+EXTEND_TOP ~dplayer2.bcs~ ~...inlined/husam_eet_unhappyleave.baf~ EVALUATE_BUFFER
+
+END
+
+/* leaving party due to rep is hardcoded in EE, we need opcode 360 to prevent that: make him stay unrelated to rep for EE with opcode 360 */
+
+ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
+  COPY_EXISTING ~C#HUSAM1.CRE~ ~override~
+    SAY INTERACTION3 ~~ 
+    SAY COMPLIMENT1 ~~
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+      LPF ADD_CRE_EFFECT
+          INT_VAR
+              opcode = 360 //Ignore reputation
+              timing = 9 //Permanent
+              target = 1 //Self
+              resist_dispel = 0 //Not dispellable + bypass resistance
+      END
+  END 
+END
+
+
+
+
+
+/* dialogue valid for both SoD and BGII */
+
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/c#husamj.d~
+
+
+/* SoD content */
+
+ACTION_IF (GAME_IS ~bgee eet~ AND FILE_EXISTS_IN_GAME ~bd0103.are~) THEN BEGIN
+
+/* Prepare C#Husam1.bcs  */
+
+<<<<<<<< ...inlined/C#Husam1.baf
+>>>>>>>>
+COMPILE ~...inlined/C#Husam1.baf~
+
+
+
+/* script */
+EXTEND_BOTTOM ~C#Husam1.bcs~ ~c#husam/scripts/c#husam_base.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~C#Husam1.bcs~ ~c#husam/scripts/c#husam_sod_reactions_gamevents.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~C#Husam1.bcs~ ~c#husam/scripts/c#husam_sod.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~C#Husam1.bcs~ ~c#husam/scripts/c#husam_sod_quest.baf~ EVALUATE_BUFFER
+/* extras needed for 7th party member mode */
+EXTEND_BOTTOM ~C#Husam1.bcs~ ~%MOD_FOLDER%/7thpmm/script_patch/set_7pmm_scripts.baf~ EVALUATE_BUFFER
+
+/* add general resetting of the dialogue space timer (timer so dialogues and comments do not fire directly after each other) */
+/* this needs to be after any script blocks that use this timer */
+
+<<<<<<<< ...inlined/C#Husam_timer.baf
+/* Let's reset the timer once it run out without a valid dialogue, so the next reaction dialogue will not trigger right after the incident. */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	CombatCounter(0)
+	!See([ENEMY])
+	ActionListEmpty()
+	!RealGlobalTimerNotExpired("C#Husam_DialogTimer","GLOBAL")
+THEN
+	RESPONSE #25
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",1200)
+	RESPONSE #25
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",1100)
+	RESPONSE #25
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",1600)
+	RESPONSE #25
+		RealSetGlobalTimer("C#Husam_DialogTimer","GLOBAL",1400)
+END	
+>>>>>>>>
+EXTEND_BOTTOM ~C#Husam1.bcs~ ~...inlined/C#Husam_timer.baf~
+
+ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
+  EXTEND_BOTTOM ~C#Husam1.bcs~   ~c#husam/scripts/c#_lvl_ee.baf~   EXTEND_BOTTOM ~C#Husam1.bcs~   ~c#husam/scripts/c#husam_ee.baf~ EVALUATE_BUFFER
+END
+
+/* first meeting */
+EXTEND_BOTTOM ~bd0020.bcs~ ~c#husam/scripts/bd0020.baf~
+  EVALUATE_BUFFER
+
+/* first meeting in case PC didn't go to recruit in Baldur's Gate */
+EXTEND_BOTTOM ~bd0101.bcs~ ~c#husam/scripts/bd0101.baf~
+  EVALUATE_BUFFER
+
+/* in case Husam was in party the last night the PC slept in Ducal Palace - comment after Skie is gone */
+  EXTEND_TOP ~bd0103.bcs~   ~c#husam/scripts/bd0103.baf~    EVALUATE_BUFFER
+
+/* Reaction to Caelar's first appearance on bridge */
+EXTEND_BOTTOM ~bd1000.bcs~ ~c#husam/scripts/bd1000.baf~
+  EVALUATE_BUFFER
+
+/* React in case crusaders in cages are killed by spikes (bd7230.are) */
+//bdlever2.BCS
+COPY_EXISTING ~bdlever2.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		SPRINT textToReplace ~\(Kill("bdkharmy")\)~
+		COUNT_REGEXP_INSTANCES ~%textToReplace%~ num_matches
+		PATCH_IF (num_matches > 0) BEGIN
+			REPLACE_TEXTUALLY ~%textToReplace%~ ~SetGlobal("C#Husam_KillSpikes","bd7230",1) \1~
+			PATCH_PRINT ~Patching: %num_matches% matches found in %SOURCE_FILESPEC% for REPLACE_TEXTUALLY: %textToReplace%~
+		END ELSE BEGIN
+			PATCH_WARN ~WARNING: could not find %textToReplace% in %SOURCE_FILESPEC%~
+		END
+	END
+BUT_ONLY
+
+
+/* PC gave Bridgefort Castle to the crusaders */
+/* & Battle at Bridgefort starts */
+EXTEND_BOTTOM ~bd2000.bcs~ ~c#husam/scripts/bd2000.baf~
+  EVALUATE_BUFFER
+
+/* (T3) Comment on closed vault door (to portal) in Dragonspear Castle Interior */
+EXTEND_BOTTOM ~bdvaultd.bcs~ ~c#husam/scripts/bdvaultd.baf~
+EVALUATE_BUFFER
+
+/* comment on open portal */
+EXTEND_TOP ~bd4300.bcs~ ~c#husam/scripts/bd4300.baf~
+  EVALUATE_BUFFER
+
+/* in Avernus */
+EXTEND_BOTTOM ~bd4400.bcs~ ~c#husam/scripts/bd4400.baf~
+  EVALUATE_BUFFER
+
+/* Avernus, elevator */
+EXTEND_BOTTOM ~bd4601.bcs~ ~c#husam/scripts/bd4601.baf~
+  EVALUATE_BUFFER
+
+/* Comment when battle starts in Kanaglym (bd5300.are, Underground River) */
+EXTEND_BOTTOM ~bd5300.bcs~ ~c#husam/scripts/bd5300.baf~
+  EVALUATE_BUFFER
+
+/* Move NPC to entrance of the Allied Siege Camp (Crusade battle) */
+EXTEND_BOTTOM ~bdasc3.bcs~ ~%MOD_FOLDER%/scripts/bdasc3.baf~
+  EVALUATE_BUFFER
+
+/* (T3) Comment in random area (Canyon Ambush) bd0063.are */
+EXTEND_BOTTOM ~bd0063.bcs~ ~%MOD_FOLDER%/scripts/bd0063.baf~
+EVALUATE_BUFFER
+
+/* (T3) Comment after killing the Rhinoceros Beetle in bd0114.are */
+EXTEND_BOTTOM ~bd0114.bcs~ ~%MOD_FOLDER%/scripts/bd0114.baf~
+EVALUATE_BUFFER
+
+/* Comment in Dragonspear Castle Exterior */
+EXTEND_BOTTOM ~bdbark01.bcs~ ~%MOD_FOLDER%/scripts/bdbark01_commenting.baf~
+EVALUATE_BUFFER
+
+
+/* Move the PC in the cutscene of the plotting nobles in Three Old Kegs (bdc116d.bcs) */
+EXTEND_BOTTOM ~bdc116d.bcs~ ~%MOD_FOLDER%/scripts/bdc116d.baf~
+EVALUATE_BUFFER
+
+
+/* bd3000.baf Camp's Thieves Guild */
+EXTEND_BOTTOM ~bd3000.bcs~ ~%MOD_FOLDER%/scripts/bd3000.baf~
+EVALUATE_BUFFER
+
+/* dialogue */
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sod.d~
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sod_reaction_main_events.d~ USING ~c#husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sod_quest.d~
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sod_coalition_thievesguild.d~
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sod_banter.d~
+
+/* insert crevice in Bloodbark Grove bd7400.are */
+
+COPY_EXISTING ~bd7400.are~ ~override~
+//container and item
+  LPF ~fj_are_structure~
+    INT_VAR
+    fj_type        = 8 //nonvisible
+    fj_loc_x       = 721
+    fj_loc_y       = 926
+    fj_box_left    = 717
+    fj_box_top     = 926
+    fj_box_right   = 730
+    fj_box_bottom  = 953
+    fj_trap_loc_x  = 699
+    fj_trap_loc_y  = 952
+    fj_vertex_0    = 719 + (953 << 16)
+    fj_vertex_1    = 721 + (952 << 16)
+    fj_vertex_2    = 730 + (926 << 16)
+    fj_vertex_3    = 724 + (929 << 16)
+    fj_vertex_4    = 717 + (927 << 16)
+    fj_vertex_5    = 717 + (938 << 16)
+    fj_vertex_6    = 720 + (940 << 16)
+    STR_VAR
+    fj_structure_type = container
+    fj_name           = ~C#HUCrevice~
+  END
+BUT_ONLY
+
+/* patch area script so crevice will have items */
+<<<<<<<< ...inlined/husam_items_bd7400.baf
+IF
+	Global("C#HusamSoD_PID_SoC","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ActionOverride("C#HUCrevice",CreateItem("bdchan03",1,0,0))
+		ActionOverride("C#HUCrevice",CreateItem("bdmisc04",1,0,0))
+		AddMapNoteColor([722.926],~Husam's Hidden Stash~,SLATE)
+		SetGlobal("C#HusamSoD_PID_SoC","GLOBAL",5)
+		SetInterrupt(TRUE)
+END
+>>>>>>>>
+EXTEND_BOTTOM ~bd7400.bcs~ ~...inlined/husam_items_bd7400.baf~ EVALUATE_BUFFER
+
+/* SoD quest: insert containers into bd2000.are */
+
+COPY_EXISTING ~bd2000.are~ ~override~
+//Dyal's bedroll 
+  LPF ~fj_are_structure~
+    INT_VAR
+    fj_type        = 1 //bag
+    fj_loc_x       = 1999
+    fj_loc_y       = 2635
+    fj_box_left    = 1982
+    fj_box_top     = 2618
+    fj_box_right   = 2018
+    fj_box_bottom  = 2643
+    fj_trap_loc_x  = 1999
+    fj_trap_loc_y  = 2635
+    fj_vertex_0    = 1986 + (2643 << 16)
+    fj_vertex_1    = 2018 + (2642 << 16)
+    fj_vertex_2    = 2012 + (2637 << 16)
+    fj_vertex_3    = 1999 + (2635 << 16)
+    fj_vertex_4    = 1992 + (2623 << 16)
+    fj_vertex_5    = 1973 + (2618 << 16)
+    fj_vertex_6    = 1982 + (2633 << 16)
+    STR_VAR
+    fj_structure_type = container
+    fj_name           = ~C#HUBedroll~
+  END
+/* still bd2000.are */
+//Bren's hidden stash
+  LPF ~fj_are_structure~
+    INT_VAR
+    fj_type        = 8 //nonvisible
+    fj_loc_x       = 3224
+    fj_loc_y       = 2591
+    fj_box_left    = 3201
+    fj_box_top     = 2538
+    fj_box_right   = 3224
+    fj_box_bottom  = 2591
+    fj_trap_loc_x  = 3224
+    fj_trap_loc_y  = 2591
+    fj_vertex_0    = 3203 + (2591 << 16)
+    fj_vertex_1    = 3215 + (2556 << 16)
+    fj_vertex_2    = 3224 + (2544 << 16)
+    fj_vertex_3    = 3212 + (2538 << 16)
+    fj_vertex_4    = 3201 + (2544 << 16)
+    STR_VAR
+    fj_structure_type = container
+    fj_trap_script    = c#husbhs
+    fj_name           = ~c#husbhs~
+  END
+BUT_ONLY
+
+COPY ~c#husam/items/c#husknf.itm~ ~override/c#husknf.itm~
+    SAY NAME1 @34 /* ~Breakfast Knife~ */
+    SAY NAME2 @34 /* ~Breakfast Knife~ */
+    SAY DESC @35 /* ~This is a small knife like it is used to cut fruit for eating. It doesn't have a name or any ornaments on it, but it is colored in a very unique way and looks like it was used a lot.~ */
+
+COPY ~c#husam/items/c#huslet.itm~ ~override/c#huslet.itm~
+    SAY NAME1 @36 /* ~Dyal's Note~ */
+    SAY NAME2 @36 /* ~Dyal's Note~ */
+    SAY DESC @37 /* ~This is a note, issued to Dyal, about a smaller sum of gold from a name you don't know. It is signed by the borrower as well as Dyal.~ */
+
+COPY ~c#husam/items/c#husmug.itm~ ~override/c#husmug.itm~
+    SAY NAME1 @38 /* ~Dyal's Victory Cup~ */
+    SAY NAME2 @38 /* ~Dyal's Victory Cup~ */
+    SAY DESC @39 /* ~This cup says "Dyal's Victory Cup" in crooked letters on the side.~ */
+
+/* bd2000 Bren */
+COPY_EXISTING ~bdcrus95.CRE~ ~override/c#hubren.CRE~
+  SAY NAME1 @40 /* ~Bren~ */
+  SAY NAME2 @40 /* ~Bren~ */
+WRITE_EVALUATED_ASCII 0x280 ~c#hubren~ #32 // script name / DV
+WRITE_EVALUATED_ASCII 0x2cc ~c#hubren~ #8
+WRITE_EVALUATED_ASCII 0x248 ~c#hubren~ #8   // Override script
+WRITE_EVALUATED_ASCII 0x250 ~bd2000en~ #8   // Class script
+WRITE_EVALUATED_ASCII 0x258 ~~ #8   // Race script
+ 
+/* bd2000 crusader guard */
+COPY_EXISTING ~bdbsent1.CRE~ ~override/c#husgrd.CRE~
+WRITE_EVALUATED_ASCII 0x280 ~C#HUSGRD~ #32 // script name / DV
+WRITE_EVALUATED_ASCII 0x2cc ~C#HUSGRD~ #8
+WRITE_EVALUATED_ASCII 0x248 ~C#HUSGRD~ #8   // Override script
+
+/* bd2000 Dyal */
+COPY_EXISTING ~bdcrus37.CRE~ ~override/c#husdya.CRE~
+  SAY NAME1 @41 /* ~Dyal~ */
+  SAY NAME2 @41 /* ~Dyal~ */
+WRITE_EVALUATED_ASCII 0x280 ~C#HUSDYA~ #32 // script name / DV
+WRITE_EVALUATED_ASCII 0x2cc ~C#HUSDYA~ #8
+WRITE_EVALUATED_ASCII 0x248 ~C#HUSDYA~ #8   // Override script
+WRITE_EVALUATED_ASCII 0x250 ~bd2000en~ #8   // Class script
+WRITE_EVALUATED_ASCII 0x260 ~bdthie01~ #8   // General script
+  ADD_CRE_ITEM ~c#huslet~ #1 #0 #0 ~IDENTIFIED~ ~inv1~
+
+/* patch area script with quest content */
+EXTEND_BOTTOM ~bd2000.bcs~ ~C#Husam/scripts/bd2000_quest.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~bd5200.bcs~ ~C#Husam/scripts/bd5200_quest.baf~ EVALUATE_BUFFER
+
+/* other scripts with quest content */
+COMPILE ~c#husam/scripts/c#husbhs.baf~ //script for Bren's Stash
+COMPILE ~c#husam/scripts/c#hubren.baf~ //Override script Bren
+COMPILE ~c#husam/scripts/c#husgrd.baf~ //Override script bd2000 crusader guard
+COMPILE ~c#husam/scripts/c#husdya.baf~ //Override script bd2000 Dyal
+COMPILE ~c#husam/scripts/c#husqc1.baf~ //cutscene 1: all assemble for the trial
+COMPILE ~c#husam/scripts/c#husqc2.baf~ //cutscene 2: Husam kills Bren
+
+END //SoD
+
+
+
+/* Transition to BGII: EET. this is for the case that the player skips SoD (partly or completely) in EET. Transition from normal SoD will be done after the return from Avernus via dialogue. 
+This is to make sure the NPC doesn't count as "dead" if he was upon transition. */
+ACTION_IF GAME_IS ~eet~ THEN BEGIN
+  EXTEND_TOP ~K#TELBGT.bcs~ ~c#husam/scripts/c#husam_direct_eet_transition.baf~ 
+EVALUATE_BUFFER
+END
+
+
+
+/* SvA */
+ACTION_IF GAME_IS ~bgt eet tob bg2ee~ THEN BEGIN
+
+/* items */
+
+/* letter from Irenicus to Mae'Var */
+
+COPY_EXISTING ~misc5P.itm~ ~override/c#hu2let.itm~
+    SAY NAME1 @43 /* ~Irenicus' Note~ */
+    SAY NAME2 @43 /* ~Irenicus' Note~ */
+    SAY DESC @44 /* ~This is a note from Irenicus stating that he still owns Mae'Var over 50,000 gold  - the third and last payment for their deal for your capture.~ */
+
+
+/* SvA: C#Husam2.bcs */
+
+<<<<<<<< ...inlined/C#Husam2.baf
+>>>>>>>>
+COMPILE ~...inlined/C#Husam2.baf~
+
+
+/* script */
+EXTEND_BOTTOM ~C#Husam2.bcs~ ~c#husam/scripts/c#husam_base.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~C#Husam2.bcs~ ~c#husam/scripts/c#husam_sva.baf~ EVALUATE_BUFFER
+
+/* extras needed for 7th party member mode */
+EXTEND_BOTTOM ~C#Husam2.bcs~ ~%MOD_FOLDER%/7thpmm/script_patch/set_7pmm_scripts.baf~ EVALUATE_BUFFER
+
+ACTION_IF GAME_IS ~bgt tob~ THEN BEGIN
+  EXTEND_BOTTOM ~C#Husam2.bcs~   ~c#husam/scripts/c#_lvl.baf~ EVALUATE_BUFFER
+END
+
+ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN
+  EXTEND_BOTTOM ~C#Husam2.bcs~   ~c#husam/scripts/c#_lvl_ee.baf~ EXTEND_BOTTOM ~C#Husam2.bcs~   ~c#husam/scripts/c#husam_ee.baf~  EVALUATE_BUFFER
+END
+
+/* this script is in case Husam fights against Bodhi not in party - will replace the override script */
+COMPILE EVALUATE_BUFFER ~c#husam/scripts/c#husam3.baf~
+
+
+/* this is for compatibility with NPC strongholds, which replaces the existing dialogue with a new one. Renal will greet Husam after the mod dialogue is done */
+/* patch AR0306.are Renal's level in Shadow Thieves' Guild with area script */
+
+COPY_EXISTING ~AR0306.ARE~ ~override~ 
+  WRITE_EVALUATED_ASCII 0x94 ~%SOURCE_RES%~ #8 // area script
+BUT_ONLY_IF_IT_CHANGES
+
+<<<<<<<< ...inlined/C#Husam2_AR0306.baf
+IF
+	Global("RenalJob","GLOBAL",4) 
+	CombatCounter(0)
+	!See([ENEMY])
+	!Dead("C#HUSAM1") 
+	!Dead("Renal Bloodscalp") 
+	InMyArea(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!StateCheck("RENAL",CD_STATE_NOTVALID)
+	Global("C#Husam2_RENAL_48","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam2_RENAL_48","GLOBAL",2)
+		ActionOverride("Renal Bloodscalp",StartDialogNoSet(Player1))
+END
+
+	
+>>>>>>>>
+
+EXTEND_BOTTOM ~AR0306.bcs~ ~...inlined/C#Husam2_AR0306.baf~ EVALUATE_BUFFER
+
+
+/* Drawer 2 in AR0303.are containes Mae'Var's letter. Place here the letter from Irenicus, too */
+
+/* first patch AR0303.are Mae'Var's Guild with area script */
+
+COPY_EXISTING ~AR0303.ARE~ ~override~ 
+  WRITE_EVALUATED_ASCII 0x94 ~%SOURCE_RES%~ #8 // area script
+BUT_ONLY_IF_IT_CHANGES
+
+
+/* create script for the placement of the letter */
+<<<<<<<< ...inlined/C#Husam2_AR0303.baf
+
+IF 
+    !Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1")
+    Global("C#Husam2_MaeVarLetter","GLOBAL",0)
+THEN 
+    RESPONSE #100 
+        ActionOverride("Drawer2",CreateItem("c#hu2let",0,0,0))
+        SetGlobal("C#Husam2_MaeVarLetter","GLOBAL",1) 
+END 
+	
+>>>>>>>>
+/* patch area script with letter placement */
+EXTEND_BOTTOM ~AR0303.bcs~ ~...inlined/C#Husam2_AR0303.baf~ EVALUATE_BUFFER
+
+
+/* handle turning hostile of Mae'Var's guild if PC confronts Mae'Var before exposing him to Renald. No Arkanis Gath! */
+
+COPY_EXISTING ~MVALLY.bcs~ ~override~
+DECOMPILE_AND_PATCH BEGIN
+REPLACE_TEXTUALLY ~\(!Global("MaeVarExposed","GLOBAL",1)\)~
+~\1 !Global("MaeVarExposed","GLOBAL",1) GlobalLT("C#Husam2_ConfrontMaeVar","GLOBAL",2)~
+END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~MVALLY2.bcs~ ~override~
+DECOMPILE_AND_PATCH BEGIN
+REPLACE_TEXTUALLY ~\(!Global("MaeVarExposed","GLOBAL",1)\)~
+~\1 !Global("MaeVarExposed","GLOBAL",1) GlobalLT("C#Husam2_ConfrontMaeVar","GLOBAL",2)~
+END
+BUT_ONLY_IF_IT_CHANGES
+
+<<<<<<<< ...inlined/C#Husam2_MVALLY.baf
+IF
+	Global("C#Husam2_ConfrontMaeVar","GLOBAL",2)
+	Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+>>>>>>>>
+EXTEND_BOTTOM ~MVALLY.bcs~ ~...inlined/C#Husam2_MVALLY.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~MVALLY2.bcs~ ~...inlined/C#Husam2_MVALLY.baf~ EVALUATE_BUFFER
+
+
+/* spawn Husam in ar0301.are for a new game */
+
+EXTEND_BOTTOM ~ar0301.bcs~ ~c#husam/scripts/ar0301.baf~
+  EVALUATE_BUFFER
+
+/* C#Husam4.cre: dummy cre if PC attacks the Shadow Thieves' hideout, either for Bodhi or Alternatives */
+
+COPY ~C#Husam/cre/c#husam1.CRE~ ~override/C#HUSAM4.CRE~
+  SAY NAME1 #12695 //~Husam~
+  SAY NAME2 #12695 //~Husam~
+SAY INITIAL_MEETING @0 
+SAY MORALE @1 
+SAY BATTLE_CRY1 @9 
+SAY BATTLE_CRY2 @10  
+SAY BATTLE_CRY3 @11  
+SAY BATTLE_CRY4 @12   
+SAY BATTLE_CRY5 @13   
+SAY DAMAGE @14
+SAY DYING @15
+SAY HURT @16
+WRITE_EVALUATED_ASCII 0x280 ~C#HUSAM1~ #32 // script name / DV
+WRITE_EVALUATED_ASCII 0x2cc ~C#HUSAM4~ #8
+WRITE_EVALUATED_ASCII 0x248 ~C#HUSAM4~ #8   // Override script
+WRITE_EVALUATED_ASCII 0x250 ~GENSHT01~ #8   // Class script
+WRITE_EVALUATED_ASCII 0x268 ~WTASIGHT~ #8   // Default script
+WRITE_BYTE 0x2c 27 // Metal color
+WRITE_BYTE 0x2d 63 // Minor color
+WRITE_BYTE 0x2e 51 // Major color
+WRITE_BYTE 0x2f 8 // Skin color
+WRITE_BYTE 0x30 22 // Leather color
+WRITE_BYTE 0x31 21 // Armor color
+WRITE_BYTE 0x32 0 // Hair color
+
+
+
+/* first patch AR0327.are Shadow Thief Entrance (sided with Bodhi) with area script */
+
+COPY_EXISTING ~AR0327.ARE~ ~override~ 
+  WRITE_EVALUATED_ASCII 0x94 ~%SOURCE_RES%~ #8 // area script
+BUT_ONLY_IF_IT_CHANGES
+
+/* spawn Husam in ar0327.are if PC attacks guild */
+
+EXTEND_BOTTOM ~ar0327.bcs~ ~c#husam/scripts/ar0327.baf~
+  EVALUATE_BUFFER
+
+
+/* Husam will help fight against Bodhi if not in party */
+
+EXTEND_BOTTOM ~AR0808.bcs~ ~c#husam/scripts/ar0808.baf~
+  EVALUATE_BUFFER
+EXTEND_BOTTOM ~AR0809.bcs~ ~c#husam/scripts/ar0809.baf~
+  EVALUATE_BUFFER
+
+/* dialogue */
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sva.d~
+
+END //~bgt eet tob bg2ee~
+
+/* POST: C#HusamP */
+
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/C#HusamP.d~
+
+
+/* PID */
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_pid.d~
+
+
+/////////////////////////////////////////////////////////////////
+// Assign the mod's portrait and soundset to the original Husam in game
+/////////////////////////////////////////////////////////////////
+BEGIN @50004 /* ~Assign the mod's portrait and soundset to the original Husam in game~ */
+DESIGNATED 1
+LABEL BragesRedemption-portrait_sound_original_Brage
+REQUIRE_COMPONENT ~c#husam.tp2~ 0 @50003 /* ~Husam main component needs to be installed for this.~ */
+REQUIRE_PREDICATE (GAME_IS ~bgt eet bgee~) @50008 /* This component is only available for BGT, BG:EE, and EET */
+
+COPY_EXISTING ~husam.cre~ ~override~ 
+  WRITE_ASCII 0X34 ~c#husams~ #8 //small portrait
+
+COPY_EXISTING ~husam2.cre~ ~override~
+  WRITE_ASCII 0X34 ~c#husams~ #8 //small portrait
+SAY INITIAL_MEETING @0
+SAY MORALE @1
+SAY HAPPY @2   
+SAY UNHAPPY_ANNOYED @3
+SAY UNHAPPY_SERIOUS @4    
+SAY UNHAPPY_BREAKING @5  
+SAY LEADER  @6  
+SAY TIRED @7  
+SAY BORED @8   
+SAY BATTLE_CRY1 @9 
+SAY BATTLE_CRY2 @10  
+SAY BATTLE_CRY3 @11  
+SAY BATTLE_CRY4 @12   
+SAY BATTLE_CRY5 @13   
+SAY DAMAGE @14
+SAY DYING @15
+SAY HURT @16
+SAY AREA_FOREST @17  
+SAY AREA_CITY @18  
+SAY AREA_DUNGEON @19  
+SAY AREA_DAY @20 
+SAY AREA_NIGHT @21 
+SAY SELECT_COMMON1 @22
+SAY SELECT_COMMON2 @23
+SAY SELECT_COMMON3 @24
+SAY SELECT_ACTION1 @25
+SAY SELECT_ACTION2 @26  
+SAY SELECT_ACTION3 @27 
+SAY SELECT_ACTION4 @28   
+SAY SELECT_ACTION5 @29   
+SAY SELECT_ACTION6 @30   
+SAY SELECT_ACTION7 @31  
+SAY REACT_TO_DIE_GENERAL @32 
+
+
+///////////////////////////////////////////////////////////////
+/* Crossmod */
+//////////////////////////////////////////////////////////////
+
+BEGIN @50005 /* ~Husam NPC: Crossmod Content~ */  
+DESIGNATED 10
+LABEL c#husam-crossmod
+REQUIRE_COMPONENT ~c#husam.tp2~ ~0~  @50003 /* ~Husam main component needs to be installed for this.~ */
+
+
+ACTION_IF GAME_INCLUDES ~sod~ THEN BEGIN
+
+/* SoD */
+
+/* Ajantis SoD */
+ACTION_IF FILE_EXISTS_IN_GAME ~C#AjSoDG.dlg~ THEN BEGIN
+PRINT @50016 /* Ajantis SoD detected: Installing crossmod... */ 
+
+// Get state for C#HusamJ %thievesguild_contact_14% (in husam_sod_coalition_thievesguild.d)
+/* @0  = ~Why - but yes, <CHARNAME>, as does any other greater organisation - or do you seriously believe that the Order of the Radiant Heart, the Zentharim, the Harper, the Red Mages of Thay are *not* monitoring and meddling in affairs so the outcome would be to their preference?~
+*/
+OUTER_SET thievesguild_contact_14 = STATE_WHICH_SAYS 0 IN ~c#husam/translations/autotra/%s/husam_sod_coalition_thievesguild.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %ajantis_int% (in husam_sod.d)
+/* @22  = ~[Husam]I will join you and support you in your fight - and in exchange I will have first-hand information about your march against the crusade.~ */
+OUTER_SET ajantis_int = STATE_WHICH_SAYS 22 IN ~c#husam/translations/autotra/%s/husam_sod.tra~ FROM ~C#Husam1~
+
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_ajantis_sod.d~
+END /* Ajantis SoD */
+
+
+/* The Boareskyr Bridge Scene */
+ACTION_IF (MOD_IS_INSTALLED ~c#sodboabri/setup-c#sodboabri.tp2~ ~0~) THEN BEGIN
+PRINT @50009 /* The Boareskyr Bridge Scene mod detected. */
+
+// Get state for c#stff24 %after_incident_at_bridge_10% (in c#sodboabri/dialogues/bhaalheritage_boareskyr_bridge.d)
+/* @76  = ~[FF Healer (female)]Everyone saw the sign of Bhaal painting itself on the ground around you. I fear what happened here will be the source of much speculation and rumors. Let us move on and leave this place.~
+*/
+OUTER_SET after_incident_at_bridge_10 = STATE_WHICH_SAYS 76 IN ~c#sodboabri/translations/autotra/%s/dialogues.tra~ FROM ~c#stff24~
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_boareskyrbridge.d~ 
+     USING ~c#husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
+END
+
+/* Brage SoD content */
+ACTION_IF FILE_EXISTS_IN_GAME ~c#bragej.dlg~ THEN BEGIN 
+PRINT @50010 /* Brage's Redemption mod detected. */
+/* @99 ~Why are you still here? Go away!~ */
+  OUTER_SET c#besq0a_99 = STATE_WHICH_SAYS 99 IN ~c#brage/tra/autotra/%s/quest_sod.tra~ FROM ~c#besq0a~
+/* @126  = ~[Tilda]What?! You are... you are so mean! You can't do that... (sob)~ */
+  OUTER_SET c#besq0a_126 = STATE_WHICH_SAYS 126 IN ~c#brage/tra/autotra/%s/quest_sod.tra~ FROM ~c#besq0a~
+/* @22  = ~[Husam]I will join you and support you in your fight - and in exchange I will have first-hand information about your march against the crusade.~ */
+OUTER_SET brage_int = STATE_WHICH_SAYS 22 IN ~c#husam/translations/autotra/%s/husam_sod.tra~ FROM ~C#Husam1~
+/* @176  = ~[Husam]No weak poison would have been necessary for that. And a murder causes so much more chaos, <CHARNAME>, let me assure you.~ */
+OUTER_SET brage_int2 = STATE_WHICH_SAYS 176 IN ~c#husam/translations/autotra/%s/husam_sod.tra~ FROM ~C#HusamJ~
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_brage_sod.d~
+END /* Brage */
+
+
+/* Brandock NPC: only SoD crossmod */
+ACTION_IF FILE_EXISTS_IN_GAME ~C#BrandJ.dlg~ THEN BEGIN
+PRINT @50017 /* Brandock NPC detected: Installing SoD crossmod... */ 
+/* @5069  = ~[Rayphus]Hmm, the leather seems to be softer than usual, but I can't prove whether it's lamb skin.~ */
+  OUTER_SET quest_interject_bran = STATE_WHICH_SAYS 5069 IN ~C#Brandock/tra/autotra/%s/brandock_sod.tra~ FROM ~bdrayphu~
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_brandock_sod.d~ USING ~C#Husam/translations/autotra/%LANGUAGE%/husam_brandock.tra~
+END /* Brandock NPC */
+
+/* Imoen 4 Ever */
+ACTION_IF FILE_EXISTS_IN_GAME ~C#IMSQ01.dlg~ THEN BEGIN
+PRINT @50015 /* Imoen 4 Ever SoD component "Give Imoen dialogue content during chapters 8 to 12" detected. */
+  /* Imoen - Lockpick */
+  COPY ~c#husam/crossmod/c#husimo.spl~ ~override~
+    SAY 8 ~Imoen's pickpocketing ability has improved thanks to Husam's teaching.~
+/* @137   = ~[Imoen]Making other people happy is *difficult*, <CHARNAME>. Who would have thought that they would accept gifts so... so badly?~ */
+  OUTER_SET quest_interject = STATE_WHICH_SAYS 137 IN ~imoen_forever/tra/autotra/%s/bdimoenj.TRA~ FROM ~bdimoen~
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_i4e_sod.d~
+  EXTEND_TOP ~C#Husam1.bcs~ ~c#husam/crossmod/husam_i4e_sod.baf~
+    EVALUATE_BUFFER
+END /* Imoen 4 Ever component "Give Imoen dialogue content during chapters 8 to 12" */
+
+
+/* Transitions */
+
+ACTION_IF (MOD_IS_INSTALLED ~transitions/setup-transitions.tp2~ ~0~) THEN BEGIN
+  PRINT @50012 /* Transitions mod detected. */
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_crossmod_transitions.d~ USING ~C#Husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
+  EXTEND_TOP ~C#Husam1.bcs~ ~c#husam/crossmod/husam_crossmod_transitions.baf~
+    EVALUATE_BUFFER /* Husam should not remain dead in case he was upon transition */
+  EXTEND_TOP ~#L_CUT09.bcs~ ~c#husam/crossmod/husam_crossmod_transitions_eet.baf~ 
+    EVALUATE_BUFFER
+END
+
+END //SoD
+
+/* BGII */
+
+ACTION_IF GAME_IS ~bg2ee bgt eet~ THEN BEGIN
+
+/* Ajantis BGII */
+ACTION_IF FILE_EXISTS_IN_GAME ~C#AjanB.dlg~ THEN BEGIN
+PRINT @50018 /* Sir Ajantis NPC for BGII detected: Installing SoD crossmod... */ 
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_ajantis.d~
+END /* Ajantis BGII */
+
+
+/* Alternatives */
+ACTION_IF FILE_EXISTS_IN_GAME ~B!ASTER.dlg~ THEN BEGIN
+  PRINT @50014 /* Alternatives mod detected. */
+
+/* add Husam to Brega's dialogue - PC needs witness */
+/* this will grab the correct state from the language alternatives is installed in - this is great! */
+/* @853  = ~Something I can put my hands on. A document, a witness, something more than your word against his.~ */
+OUTER_SET brega_state_853 = STATE_WHICH_SAYS 853 IN ~alternatives/%s/DIALOGUE.tra~ FROM ~HABREGA.dlg~
+/* @894  = ~Do I know you? I'm sorry, <CHARNAME>, but I can't authorize the detention of a sworn civil servant on the word of someone so completely unknown to myself and the Council.~ */
+OUTER_SET brega_state_894 = STATE_WHICH_SAYS 894 IN ~alternatives/%s/DIALOGUE.tra~ FROM ~HABREGA.dlg~
+
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_alternatives.d~
+
+EXTEND_BOTTOM ~C#Husam2.bcs~ ~c#husam/crossmod/husam_alternatives.baf~ EVALUATE_BUFFER
+END /* Alternatives */
+
+
+
+/* Expanded Thief Stronghold */
+
+ACTION_IF FILE_EXISTS_IN_GAME ~TSAma1.dlg~ THEN BEGIN
+  PRINT @50013 /* Expanded Thief Stronghold mod detected. */
+
+/* Ama's trap 
+Global("AmaWaukeen","GLOBAL",1) */
+<<<<<<<< ...inlined/planarspheremod.d
+
+I_C_T TSAma1 9 C#Husam2_SHTHASS1_9
+== C#HusamJ IF ~InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)~ THEN @42 /* ~This would be a great honor indeed, Shadowmaster Ama of eastern Esmeltaran.~ */
+END
+>>>>>>>>
+COMPILE EVALUATE_BUFFER ~...inlined/planarspheremod.d~
+
+END /* Expanded Thief Stronghold */
+
+
+END //~bg2ee bgt eet~
+
+/* Brandock NPC: crossmod for SoD and BGII */
+ACTION_IF FILE_EXISTS_IN_GAME ~C#BrandJ.dlg~ THEN BEGIN
+PRINT @50011 /* Brandock the Mage mod detected. */
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_brandock.d~
+  EXTEND_TOP ~c#brands.bcs~   ~c#husam/crossmod/husam_brandock.baf~ 
+  ACTION_IF GAME_IS ~bgt tob bg2ee eet~ THEN BEGIN
+    EXTEND_TOP ~c#brand2.bcs~   ~c#husam/crossmod/husam_brandock.baf~ 
+  END
+END /* Brandock NPC */
+
+

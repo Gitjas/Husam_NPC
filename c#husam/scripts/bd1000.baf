@@ -1,0 +1,17 @@
+/* Reaction to Caelar */
+
+IF
+	Global("bd_plot","global",170)
+	Global("C#Husam_bd_mdd016b","bd1000",0)
+	!GlobalTimerNotExpired("bd_mdd016b_timer","bd1000")
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)  
+	TriggerOverride("C#Husam1",Detect(Player1))
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_bd_mdd016b","bd1000",1)
+		SetGlobalTimer("bd_mdd016b_timer","bd1000",ONE_ROUND)
+		DisplayStringHead("C#Husam1",@10002)  
+END
+

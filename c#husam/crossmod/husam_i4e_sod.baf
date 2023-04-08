@@ -1,0 +1,53 @@
+/* Imoen had her dialogue about smuggling gems into refugees' pockets */
+
+/* activation timer */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	InParty("%IMOEN_DV%")
+	See("%IMOEN_DV%")
+	!StateCheck("%IMOEN_DV%",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("C#IM_SoDQuest","GLOBAL",2)
+	Global("C#HuSoD_ImoenBanter","GLOBAL",0)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#HuSoD_ImoenQuestTimer","GLOBAL",200)
+		SetGlobal("C#HuSoD_ImoenBanter","GLOBAL",1)
+END
+
+/* activation timer */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	RealGlobalTimerExpired("C#HuSoD_ImoenQuestTimer","GLOBAL")
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	InParty("%IMOEN_DV%")
+	See("%IMOEN_DV%")
+	!StateCheck("%IMOEN_DV%",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("C#HuSoD_ImoenBanter","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HuSoD_ImoenBanter","GLOBAL",2)
+END
+
+/* trigger */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	See(Player1)
+	CombatCounter(0)
+	!See([ENEMY])
+	InParty("%IMOEN_DV%")
+	See("%IMOEN_DV%")
+	!StateCheck("%IMOEN_DV%",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("C#HuSoD_ImoenBanter","GLOBAL",2)		
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",%Dialog_Timer_SoD%)
+		StartDialogNoSet("%IMOEN_DV%")
+END

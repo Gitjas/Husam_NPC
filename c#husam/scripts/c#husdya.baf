@@ -1,0 +1,18 @@
+IF
+	GlobalGT("C#HU_SoD_BrensQuest","GLOBAL",8)
+	AreaCheck("bd2000")
+THEN
+	RESPONSE #100
+		EscapeArea()
+END
+
+IF
+	OR(2)
+		Global("C#HU_SoD_BrensQuest","GLOBAL",4)
+		Global("C#HU_SoD_BrensQuest","GLOBAL",5)
+	See("c#husgrd")
+THEN
+	RESPONSE #100
+		Wait(2)
+		Kill(Myself)
+END

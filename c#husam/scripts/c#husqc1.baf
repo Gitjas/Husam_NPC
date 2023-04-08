@@ -1,0 +1,21 @@
+/* SoD quest cutscene: move Dyal, Bren and the guard near Kharm */
+IF
+	True()
+THEN
+	RESPONSE #100
+	CutSceneID(Player1)
+	MoveViewObject("bdkharm",INSTANT)
+	FadeToColor([20.0],0)
+	Wait(2)
+	ActionOverride("c#hubren",JumpToPoint([2424.2638]))
+	ActionOverride("c#hubren",FaceObject("bdkharm"))
+	ActionOverride("c#husdya",JumpToPoint([2362.2608]))
+	ActionOverride("c#husdya",FaceObject("bdkharm"))
+	ActionOverride("c#husgrd",JumpToPoint([2458.2604]))
+	ActionOverride("c#husgrd",FaceObject("c#hubren"))
+	FadeFromColor([20.0],0)
+	Wait(2)
+	EndcutSceneMode()
+	SetInterrupt(TRUE)
+	ActionOverride("bdkharm",StartDialogueNoSet("c#hubren"))
+END

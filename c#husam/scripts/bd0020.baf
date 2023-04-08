@@ -1,0 +1,24 @@
+/* spawn Husam in BD0020 Sorcerous/Elf Song City Exterior */
+
+IF 
+	OR(2)
+		GlobalGT("HusamMove","GLOBAL",98) //PC worked with Husam in BG1
+		Global("SOD_fromimport","GLOBAL",0)
+	!Dead("HUSAM") 
+	!Dead("HUSAM2") 
+	!Dead("C#HUSAM") //bg1re
+	!Dead("JA#HUSAM")  //Jarl's adventurer pack (BG1 more UB)
+	Global("C#HusamSpawn","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HusamSpawn","GLOBAL",1)
+		CreateCreature("C#HUSAM1",[1080.120],S)
+		ActionOverride("C#HUSAM1",MakeGlobalOverride())
+		ChangeSpecifics("C#HUSAM1",ALLIES)
+		ActionOverride("C#HUSAM1",ChangeAIScript("",CLASS))
+		ActionOverride("C#HUSAM1",ChangeAIScript("",RACE))
+		ActionOverride("C#HUSAM1",ChangeAIScript("",GENERAL))
+		ActionOverride("C#HUSAM1",ChangeAIScript("",DEFAULT))
+		ActionOverride("C#HUSAM1",SetDialog("C#HUSAM1"))
+		ActionOverride("C#HUSAM1",SetGlobal("C#LevelUp","LOCALS",0))
+END

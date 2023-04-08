@@ -1,0 +1,62 @@
+/* spawn Bren, Dyal, and the guard */
+/* patch area script so bedroll and stash will have items */
+
+IF 
+	!Dead("C#HUSAM1") 
+	InMyArea("C#HUSAM1") 
+	Global("C#Husam_SoD_QuestSpawn","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		CreateCreature("c#hubren",[1801.3354],W)
+		CreateCreature("c#husgrd",[3251.2438],S)
+		CreateCreature("c#husdya",[2314.2707],NE)
+		ActionOverride("c#husbhs",CreateItem("MISC17",1,0,0)) //Lynx Eye Gem
+		ActionOverride("c#husbhs",CreateItem("MISC20",1,0,0)) //Bloodstone Gem
+		ActionOverride("c#husbhs",CreateItem("bdmisc04",1,0,0)) //Seal of Caelar
+		ActionOverride("c#husbhs",CreateItem("AMUL09",1,0,0)) //Silver Necklace
+		ActionOverride("c#husbhs",CreateItem("DAGG02",1,0,0)) //Dagger +1
+		ActionOverride("c#husbhs",CreateItem("c#husknf",1,0,0))
+		ActionOverride("C#HUBedroll",CreateItem("c#husmug",1,0,0))
+		SetGlobal("C#Husam_SoD_QuestSpawn","MYAREA",1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("C#HU_SoD_BrensQuest","GLOBAL",1)
+THEN
+	RESPONSE #100
+		AddMapNoteColor([722.926],~Bren's Hidden Stash~,SLATE)
+		SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",2)
+END
+
+IF
+	OR(2)
+		PartyHasItem("c#huslet")
+		PartyHasItem("c#husmug")
+	Global("C#HU_SoD_DyalItems","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("C#HU_SoD_DyalItemsT","GLOBAL",EIGHT_HOURS)
+		SetGlobal("C#HU_SoD_DyalItems","MYAREA",1)
+END
+
+IF
+	OR(2)
+		GlobalGT("C#Husam_SoDInformantBB","GLOBAL",0)
+		GlobalGT("C#HU_SoD_BrensQuest","GLOBAL",0)
+	GlobalLT("C#HU_SoD_BrensQuest","GLOBAL",3)
+	OR(5)
+		GlobalGT("bd_bridgefort_plot","global",5)
+		GlobalGT("bd_open_drawbridge","bd2000",1)
+		Global("bd_enemy_gone_hostile","bd2000",1)
+		Dead("bdbarghe")
+		GlobalGT("bd_plot","global",239)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@100009)
+		EraseJournalEntry(@100010)
+		EraseJournalEntry(@100013)
+		AddJournalEntry(@100019,QUEST_DONE)
+		SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",12)
+END

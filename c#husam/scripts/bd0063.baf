@@ -1,0 +1,11 @@
+/* bd0063.baf */
+
+IF
+	Global("C#HUSAM_BD_NPC02","MYAREA",0)
+	IfValidForPartyDialog("C#HUSAM1")  
+	Delay(3)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HUSAM_BD_NPC02","MYAREA",1)
+		DisplayStringHead("C#HUSAM1",@10000)  
+END

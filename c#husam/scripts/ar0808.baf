@@ -1,0 +1,13 @@
+IF
+	Global("ShadowFightBodhi","GLOBAL",1)
+	Global("ArkanisSpawn","AR0808",1)
+	!Dead("C#Husam1")  
+	Global("C#Husam3_AgainstBodhi","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam3_AgainstBodhi","GLOBAL",1)
+		MoveGlobalObject("C#Husam1",Player1)
+		ActionOverride("C#Husam1",ChangeAIScript("c#husam3",OVERRIDE))
+//		ActionOverride("C#Husam1",ChangeAIScript("##",CLASS))
+		ActionOverride("C#Husam1",ChangeAIScript("WTASIGHT",DEFAULT))
+END

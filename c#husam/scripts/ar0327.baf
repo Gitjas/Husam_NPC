@@ -1,0 +1,22 @@
+/* script for Husam4, a dummy cre if PC fights the Shadow Thieves' Guild (for Bodhi and Alternatives) */
+
+
+/*
+
+Global("C#Husam2_PCAttacksGuild","GLOBAL",1)
+
+*/
+
+IF
+	Global("C#Husam2_PCAttacksGuild","GLOBAL",1)
+	!Dead("C#Husam1")
+THEN
+	RESPONSE #100
+		CreateCreature("C#Husam4",[1095.620],0)
+		GiveItemCreate("LEAT07","C#Husam1",0,0,0)
+		ActionOverride("C#Husam1",FillSlot(SLOT_ARMOR))
+		GiveItemCreate("SW1H10","C#Husam1",0,0,0)
+		ActionOverride("C#Husam1",FillSlot(SLOT_WEAPON0))
+		ActionOverride("C#Husam1",Enemy())
+		SetGlobal("C#Husam2_PCAttacksGuild","GLOBAL",2)
+END

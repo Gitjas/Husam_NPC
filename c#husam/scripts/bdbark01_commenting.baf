@@ -1,0 +1,14 @@
+/* bdbark01_commenting.baf */
+/* Comment in Dragonspear Castle Exterior */
+IF
+	Name("bark_mdd1246a",Myself)
+	Global("C#Husam_bd_mdd1246a_ot","bd4000",0)  
+	Range("C#Husam1",35)  
+	Global("chapter","global",11)
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	!StateCheck("C#Husam1",CD_STATE_NOTVALID)   
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_bd_mdd1246a_ot","bd4000",1)  
+		DisplayStringHead("C#Husam1",@10012)
+END

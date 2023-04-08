@@ -1,0 +1,16 @@
+/* bdasc3.baf */
+/* Move NPC to entrance of the Allied Siege Camp (Crusade battle) */
+IF
+	InMyArea("C#Husam1")
+	OR(2) InParty("C#Husam1") Global("C#HusamJoined","GLOBAL",2)
+	Global("bd_battle","global",1)
+	Global("bd_move_npcs","bd3000",1)  // Allied Siege Camp
+	Global("bd_move_to_entrance","locals",0)
+	Name("C#HUSAM1",Myself)  
+THEN
+	RESPONSE #100
+		SetGlobal("bd_move_to_entrance","locals",1)
+		JumpToPoint([1419.393]) //Coordinates at the entrance of the Siege Camp. Minsc for example jumps to [1465.400]
+		Face(N)
+		SaveObjectLocation("LOCALS","bd_default_loc",Myself)
+END

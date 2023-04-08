@@ -1,0 +1,17 @@
+/* spawn Bren */
+
+IF 
+	!Dead("C#HUSAM1") 
+	InMyArea("C#HUSAM1") 
+	!Dead("c#hubren")
+	OR(3)
+		Global("C#HU_SoD_BrensQuest","GLOBAL",5)
+		Global("C#HU_SoD_BrensQuest","GLOBAL",6)
+		Global("C#HU_SoD_BrensQuest","GLOBAL",7)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		CreateCreature("c#hubren",[1726.315],W)
+		SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",13)
+		SetInterrupt(TRUE)
+END
