@@ -2,7 +2,7 @@
 
 IF 
 	OR(2)
-		GlobalGT("HusamMove","GLOBAL",98) //PC worked with Husam in BG1
+		Global("HusamMove","GLOBAL",7) //PC worked with Husam in BG1
 		Global("SOD_fromimport","GLOBAL",0)
 	!Dead("HUSAM") 
 	!Dead("HUSAM2") 
