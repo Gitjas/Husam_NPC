@@ -1,5 +1,5 @@
 
-I_C_T C#HusamJ %brage_int% C#BESoD_Husam_Int1
+I_C_T C#HUSAM1 %brage_int% C#BESoD_Husam_Int1
 == c#bragej IF ~InParty("C#Brage") See("C#Brage") !StateCheck("C#Brage",CD_STATE_NOTVALID)~ THEN @8 /* ~[Brage]I do not need to warn you about how powerful and shady this organisation is, <CHARNAME>.~ */
 END
 

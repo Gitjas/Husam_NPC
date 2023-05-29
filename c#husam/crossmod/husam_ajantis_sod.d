@@ -51,13 +51,13 @@ END
 
 /* interjection into Husam's greetings dialogue */
 /* @22  = ~[Husam]I will join you and support you in your fight - and in exchange I will have first-hand information about your march against the crusade.~ */
-I_C_T3 C#husamJ %ajantis_int% C#AjSoD_Husam_Ajantis_Int
+I_C_T3 C#HUSAM1 %ajantis_int% C#AjSoD_Husam_Ajantis_Int
 == bdajantJ IF ~Global("C#AjantisBG1Husam2_6","GLOBAL",1)
 InParty("Ajantis") See("Ajantis") !StateCheck("Ajantis",CD_STATE_NOTVALID)~ THEN @16 /* ~[Ajantis]The Shadow Thief - again.~ */
 == C#Husam1 IF ~Global("C#AjantisBG1Husam2_6","GLOBAL",1)
 InParty("Ajantis") See("Ajantis") !StateCheck("Ajantis",CD_STATE_NOTVALID)~ THEN @17 /* ~[Husam]The paladin and squire of the Order of the Radiant Heart. I am *thankful* you didn't fell me right there in front of the Ilmater shrine when I revealed myself back then.~ */
 END
 
-I_C_T C#husamJ %ajantis_int% C#AjantisBG1Husam2_6
+I_C_T C#HUSAM1 %ajantis_int% C#AjantisBG1Husam2_6
 == bdajantJ IF ~InParty("Ajantis") See("Ajantis") !StateCheck("Ajantis",CD_STATE_NOTVALID)~ THEN @18 /* ~[Ajantis]A Shadow Thief - walking openly, revealing himself. The organisation behind him is a powerful and evil one - one I would rather not join forces with!~ */
 END

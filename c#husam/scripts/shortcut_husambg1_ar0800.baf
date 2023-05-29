@@ -1,0 +1,12 @@
+IF
+	Global("Chapter","GLOBAL",7)
+	!Exists("Husam2")  // Husam
+	!Dead("Husam2")  // Husam
+	!Dead("Husam")  // Husam
+	Global("HusamMove","GLOBAL",0)
+	Global("C#HU_HusamMove","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C#HU_HusamMove","GLOBAL",1)
+		CreateCreature("Husam2",[3393.1397],S)  // Husam
+END

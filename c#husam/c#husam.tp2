@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230501~
+VERSION ~Beta_230529~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -34,6 +34,7 @@ END
     OUTER_SPRINT ~IT_IS_BG2~ ~False()~
     OUTER_SPRINT ~Husam_MakeGlobalOverride~ ~ActionOverride("C#Husam1",MakeGlobalOverride())~
     OUTER_SPRINT ~eet_2~ ~~
+    OUTER_SPRINT ~eet_0~ ~~
     OUTER_SPRINT ~Dialog_Timer_SoD~ ~2400~
   END
 
@@ -48,6 +49,7 @@ END
     OUTER_SPRINT ~IT_IS_BG2~ ~Global("ENDOFBG1","GLOBAL",2)~
     OUTER_SPRINT ~Husam_MakeGlobalOverride~ ~ActionOverride("C#Husam1",MakeGlobalOverride())~
     OUTER_SPRINT ~eet_2~ ~2~
+    OUTER_SPRINT ~eet_0~ ~0~
     OUTER_SPRINT ~Dialog_Timer_SoD~ ~2400~
   END
 
@@ -525,7 +527,7 @@ END
 
 /* dialogue valid for both SoD and BGII */
 
-COMPILE EVALUATE_BUFFER ~c#husam/dialogues/c#husamj.d~
+COMPILE EVALUATE_BUFFER ~c#husam/dialogues/c#husamj.d~ USING ~C#Husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
 
 
 /* SoD content */
@@ -1010,6 +1012,7 @@ COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_sva.d~
 
 END //~bgt eet tob bg2ee~
 
+//////////////////////////////////////////////////////////////
 /* POST: C#HusamP */
 
 COMPILE EVALUATE_BUFFER ~c#husam/dialogues/C#HusamP.d~
@@ -1017,6 +1020,16 @@ COMPILE EVALUATE_BUFFER ~c#husam/dialogues/C#HusamP.d~
 
 /* PID */
 COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_pid.d~
+
+
+///////////////////////////////////////////////////////////////
+/* shortcut to meet Husam in BG1 - in case the player does not talk to him in the Thieves' Guild before chapter 7 */
+
+ACTION_IF GAME_IS ~eet bgee~ THEN BEGIN
+  COMPILE EVALUATE_BUFFER ~c#husam/dialogues/shortcut_husambg1.d~
+  EXTEND_BOTTOM ~%EBaldursGate%.bcs~ ~c#husam/scripts/shortcut_husambg1_ar0800.baf~
+  EVALUATE_BUFFER
+END
 
 
 /////////////////////////////////////////////////////////////////

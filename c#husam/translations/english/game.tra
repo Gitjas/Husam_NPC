@@ -2,9 +2,9 @@
 @0  = ~The Shadow Thieves send their regards.~ [HUSAM03]  //INITIAL_MEETING
 @1  = ~There are too many, retreat!~ [HUSAM02]  //MORALE
 @2  = ~~ //HAPPY
-@3  = ~Lying, causing murder and terror - those are my past times.~ [HUSAM07] //UNHAPPY_ANNOYED
-@4  = ~Lying, causing murder and terror - those are my past times.~ [HUSAM07] //UNHAPPY_SERIOUS
-@5  = ~Lying, causing murder and terror - those are my past times.~ [HUSAM07] //UNHAPPY_BREAKING
+@3  = ~Lying, causing murder and terror - those are my pastimes.~ [HUSAM07] //UNHAPPY_ANNOYED
+@4  = ~Lying, causing murder and terror - those are my pastimes.~ [HUSAM07] //UNHAPPY_SERIOUS
+@5  = ~Lying, causing murder and terror - those are my pastimes.~ [HUSAM07] //UNHAPPY_BREAKING
 @6  = ~~ //LEADER
 @7  = ~~ //TIRED
 @8  = ~~ //BORED

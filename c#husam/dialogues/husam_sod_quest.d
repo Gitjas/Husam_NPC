@@ -439,7 +439,8 @@ SAY @124 /* What do you think? I'm *guarding* something. A crime scene, so to sp
 IF ~~ THEN + too_near_01
 END
 
-IF ~Global("C#HuS_c#husgrd_2","MYAREA",1)~ THEN opened_it
+IF ~Global("C#HuS_c#husgrd_2","MYAREA",1)
+GlobalLT("C#HU_SoD_BrensQuest","GLOBAL",3)~ THEN opened_it
 SAY @125 /* You... did you just tinker with the evidence? Do you think I am here for show?! */
 IF ~~ THEN DO ~EraseJournalEntry(@100009)
 		EraseJournalEntry(@100010)
@@ -447,7 +448,8 @@ IF ~~ THEN DO ~EraseJournalEntry(@100009)
 SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",15) ActionOverride("c#husgrd",Enemy())~ SOLVED_JOURNAL @100021 EXIT
 END
 
-IF ~Global("C#HuS_c#husgrd_1","LOCALS",1)~ THEN too_near_03
+IF ~Global("C#HuS_c#husgrd_1","LOCALS",1)
+GlobalLT("C#HU_SoD_BrensQuest","GLOBAL",3)~ THEN too_near_03
 SAY @126 /* Hey, what are you doing there? Get away from that tree! */
 IF ~~ THEN DO ~RealSetGlobalTimer("C#HuS_c#husgrd","GLOBAL",5)~ EXIT
 END

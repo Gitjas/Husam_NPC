@@ -125,14 +125,19 @@ END
 
 IF ~~ THEN meeting_15
 SAY @45 /* [Husam]I'll stay in the back. */
-IF ~~ THEN DO ~SetGlobal("C#HusamSoDInParty","GLOBAL",1) SetGlobal("C#HusamSpawn","GLOBAL",3) SetGlobal("C#HusamJoined","GLOBAL",2)
+IF ~~ THEN DO ~SetGlobal("C#HusamSoDInParty","GLOBAL",1) SetGlobal("C#HusamSpawn","GLOBAL",3) 
 RealSetGlobalTimer("C#HusamDialogTimer","GLOBAL",900)
 RealSetGlobalTimer("C#HusamNPCBanterTimer","GLOBAL",1200)
 SetGlobal("C#Husam_Dialog","GLOBAL",1)  
-MakeGlobal()
+MakeGlobalOverride()
+SetGlobal("C#HusamJoined","GLOBAL",2)
 ChangeEnemyAlly(Myself, FAMILIAR)
 SetDialog("C#Husamj")
 AddFamiliar()
+ChangeAIScript("",CLASS)
+ChangeAIScript("",RACE)
+ChangeAIScript("",GENERAL)
+ChangeAIScript("",DEFAULT)
 SetGlobal("C#LevelUp","LOCALS",0)~ EXIT
 END
 
@@ -156,7 +161,7 @@ IF ~~ THEN + meeting_19
 END
 
 IF ~~ THEN meeting_19
-SAY @49 /* [Husam]We will find a way to get the information we seek. I am here for another reason: We want first-hand information about the doings of the Bhaal spawn that defended Sarevok and prevented a war between Amn and Baldur's Gate - you. */
+SAY @49 /* [Husam]We will find a way to get the information we seek. I am here for another reason: We want first-hand information about the doings of the Bhaal spawn that defeated Sarevok and prevented a war between Amn and Baldur's Gate - you. */
 = @50 /* [Husam]You did the Shadow Thieves a good service, cleansing our name from the Scar murder accusations. I don't see a reason why I should try to spy on and stalk you with hidden informants if I can get what I want the direct way. We worked quite well together in the past, <CHARNAME>. I would like to join you. */
 = @51 /* [Husam]I will support you in your endeavors, and in exchange I will have first-hand information about what you will be doing next, learning what kind of person you are, and whether you might become a threat to the Shadow Thieves. */
 IF ~~ THEN DO ~SetGlobal("C#HU_JoinedPCNoColaition","GLOBAL",1)~ + meeting_20
@@ -686,7 +691,7 @@ END
 
 /* Gold Bust bdmisc57 */
 IF ~Global("C#Husam_SoDbdmisc57","GLOBAL",1)~ THEN goldbust
-SAY @131 /* [Husam]Yes, this gold bust looks like what some rich nobles would spend their gold for. Albeit, mostly it would be their own bust, of course. But if that's not impressing enough, a gold bust from a hero always works. Let me know if you want me to make this to gold for you, <CHARNAME>. I could robably get a good prize for it. */
+SAY @131 /* [Husam]Yes, this gold bust looks like what some rich nobles would spend their gold for. Albeit, mostly it would be their own bust, of course. But if that's not impressing enough, a gold bust from a hero always works. Let me know if you want me to make this to gold for you, <CHARNAME>. I could probably get a good prize for it. */
 IF ~~ THEN DO ~SetGlobal("C#Husam_SoDbdmisc57","GLOBAL",2)~ EXIT
 END
 

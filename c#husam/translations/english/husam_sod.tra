@@ -18,7 +18,7 @@
 @11   = ~You are approaching me directly with information like these?~
 @12   = ~Why would I believe you?~
 @13   = ~[Husam]Is that so! Interesting.~
-@14   = ~[Husam]We Shadow Thieves watch this Caelar with great interest. Any warlord with an army of this size should be watched carefully. But... as embarrassing as it is to admit, we are not so good stationed with informants if it comes to her opponents - the Flaminf Fist forces, to be precise.~
+@14   = ~[Husam]We Shadow Thieves watch this Caelar with great interest. Any warlord with an army of this size should be watched carefully. But... as embarrassing as it is to admit, we are not so good stationed with informants if it comes to her opponents - the Flaming Fist forces, to be precise.~
 @15   = ~[Husam]My sources are good enough to know that you will be marching against this Caelar.~
 @16   = ~This is true.~
 @17   = ~What concern of yours would this be?~
@@ -53,7 +53,7 @@
 @46   = ~[Husam]My sources are good enough to know that you declined to march against this Caelar.~
 @47   = ~[Husam]I do not expect you to.~
 @48   = ~[Husam]Non, to be honest.~
-@49   = ~[Husam]We will find a way to get the information we seek. I am here for another reason: We want first-hand information about the doings of the Bhaal spawn that defended Sarevok and prevented a war between Amn and Baldur's Gate - you.~
+@49   = ~[Husam]We will find a way to get the information we seek. I am here for another reason: We want first-hand information about the doings of the Bhaal spawn that defeated Sarevok and prevented a war between Amn and Baldur's Gate - you.~
 @50   = ~[Husam]You did the Shadow Thieves a good service, cleansing our name from the Scar murder accusations. I don't see a reason why I should try to spy on and stalk you with hidden informants if I can get what I want the direct way. We worked quite well together in the past, <CHARNAME>. I would like to join you.~
 @51   = ~[Husam]I will support you in your endeavors, and in exchange I will have first-hand information about what you will be doing next, learning what kind of person you are, and whether you might become a threat to the Shadow Thieves.~
 @52   = ~[Husam]I have only one condition. Once I join you, I will not leave your side. Tell me to fall behind if you need, but the moment you send me away I will retreat to the shadows and be gone from your sight. What say you?~
@@ -135,7 +135,7 @@
 @128  = ~[Husam]Our collaboration ends here. It was... interesting, indeed. Farewell, <CHARNAME>.~
 @129  = ~[Husam]We can sift through the ashes of the ruin for those items you promised to return, but I bet my knife that they already found 'new' owners in a place and times like these. Let me know if you want me to have a... look into pockets that are not our own.~
 @130  = ~[Husam]This Gemblade is more of a trinket than a real weapon. And yet - I'd know people who would stab themselves just to get the gems they want, and for some of them, that would be the less violent option.~
-@131  = ~[Husam]Yes, this gold bust looks like what some rich nobles would spend their gold for. Albeit, mostly it would be their own bust, of course. But if that's not impressing enough, a gold bust from a hero always works. Let me know if you want me to make this to gold for you, <CHARNAME>. I could robably get a good prize for it.~
+@131  = ~[Husam]Yes, this gold bust looks like what some rich nobles would spend their gold for. Albeit, mostly it would be their own bust, of course. But if that's not impressive enough, a gold bust from a hero always works. Let me know if you want me to make this to gold for you, <CHARNAME>. I could probably get a good prize for it.~
 @132  = ~[Husam]We managed to sell the gold bust, <CHARNAME>. This is what we got for it - it now decorates the home of a rich salesman in Tethyr.~
 @133  = ~[Husam]So, your "half-brother" Sarevok knew about your heritage way sooner than you did, as it seems.~
 @134  = ~(scoff) You think?~
@@ -175,7 +175,7 @@
 @168  = ~I already came to the conclusion that they were trying to kidnap me.~
 @169  = ~No intention to kill but only to incapacitate? Well, I *am* the hero of Baldur's Gate and obviously, I am here and going against the crusade. Maybe Caelar just wanted to prevent that?~
 @170  = ~I don't care what the assassins' purpose were, Husam.~
-@171  = ~[Husam]You'd be surprised. There is a reason assassins are trained for years. The attack was amateurish to no end. That, or driven by a melagomaniac. Attacking inside the palace? In a way that all the guards are roused? This is not the doing of an assassin's guild.~
+@171  = ~[Husam]You'd be surprised. There is a reason assassins are trained for years. The attack was amateurish to no end. That, or driven by a megalomaniac. Attacking inside the palace? In a way that all the guards are roused? This is not the doing of an assassin's guild.~
 @172  = ~I don't want to speculate about it.~
 @173  = ~[Husam]I believe that the weak poison was on purpose. The attack was amateurish, but it would fit to a war lord who is marching with an army - Caelar was not exactly subtle in her performance so far.~
 @174  = ~[Husam]Maybe. And yet, there is no reports from other coalition parties being attacked this way.~
