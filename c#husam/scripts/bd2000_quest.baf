@@ -26,7 +26,7 @@ IF
 	Global("C#HU_SoD_BrensQuest","GLOBAL",1)
 THEN
 	RESPONSE #100
-		AddMapNoteColor([722.926],~Bren's Hidden Stash~,SLATE)
+		AddMapNoteColor([3206.2551],@10025,SLATE)
 		SetGlobal("C#HU_SoD_BrensQuest","GLOBAL",2)
 END
 

@@ -113,7 +113,7 @@
 @112  = ~[Husam]Commanders don't like seeing their soldiers in distress. You crossed a line and upset quite a few soldiers with your *queries*. It was a mere matter of time until a captain would come and take a closer look, or decide you should be estinguished altogether, as it now happened. I am here to prevent that. Are you ready to listen?~
 @113  = ~[Husam]Oh, but you don't have to. Hear me out, will you? But one thing has to be perfectly clear: <CHARNAME> standing right next to me is a mere coincidence and has nothing to do with you or the Shadow Thieves, you understand?~
 @114  = ~[Husam]Oh, but you don't have to. Hear me out, will you? But one thing has to be perfectly clear: <CHARNAME> standing right next to me is because <PRO_HESHE> was given the task to deal with you from General Stonehand and has nothing to do with the Shadow Thieves, you understand?~
-@115  = ~[Rhynwis]Crystal clear, Husam.~
+@115  = ~[Rhynwis]Crystal clear.~
 @116  = ~[Husam]Fine. Then listen carefully.~
 @117  = ~Go on, I'm interested in hearing this, too.~
 @118  = ~Husam, could you do this so I don't have to sit through it all?~
@@ -146,10 +146,10 @@
 @145  = ~[Husam](smiles) You are good at hearing between the lines.~
 @146  = ~[Husam]Direct bullying is - well, for brutes. What is needed to make it work without causing ripples of opposition is what I would call "subtle" bullying. For something like this to work you need appropriate political support from the relevant authorities. Make the leaders bully their soldiers themselves.~
 @147  = ~[Husam]Doing anything without securing your standing is short-sighted at least, and a disgrace for any guild. You don't need to train as a thief if all you want to do is bullying people into giving you their gold and values.~
-@148  = ~I'm always surprised to hear you use words like "honor" if talking about thieves, Husam.~
+@148  = ~You also do not need to train as a rogue if all you then do is politics and persuasion.~
 @149  = ~So you're basically saying that the Shadow Thieves would infiltrate the whole hirarchy to do their business in peace.~
 @150  = ~This is really important to you, isn't it?~
-@151  = ~[Husam]That's why I said *our* honor code. The words do not necessarily mean the same as when a paladin uses them - but we Shadow Tieves *do* have a code of conduct and honor our word. You'll only have bad surprises with the Shadow Thieves if you do not understand the rules we are playing by - well, and if you dispise of theft, torture, and assassinations, of course.~
+@151  = ~[Husam]Good point. But it helps a lot in this métier, believe me.~
 @152  = ~[Husam]That - or win the authorities over with blackmail or promises. It often suffices to have the second highest level of command in your hands - high enough to have leading power, but low enough they are not constantly monitored by everyone.~
 @153  = ~[Husam]I know that it's an uncongenial topic for many, but the Shadow Thieves are an important political influence and important to stabilize the powers in the cities and lands we are active in. We are keeping some of what one would call "negative" forces under check, offering security and protection measures to many authorities and nobles - against their foes, I might add.~
 @154  = ~Threats from other cutthroat guilds, you mean?~

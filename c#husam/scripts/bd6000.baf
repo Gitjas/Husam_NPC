@@ -1,0 +1,14 @@
+IF 
+	!InMyArea("C#HUSAM1")
+	!Dead("C#HUSAM1")
+	Global("C#HusamSoDInParty","GLOBAL",1)
+	Global("C#Husam_SoDEnd","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("C#Husam_SoDEnd","GLOBAL",4)
+		MoveGlobal("bd6000","C#HUSAM1",[2137.3105])
+	   	ActionOverride("C#HUSAM1",Face(E))
+		ReallyForceSpellRES("SPWM168","C#HUSAM1") //Heal 
+	   	ActionOverride("C#HUSAM1",SetDialog("C#HusamS")
+		ActionOverride("C#HUSAM1",ChangeAIScript("",DEFAULT))
+END

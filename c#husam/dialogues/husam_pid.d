@@ -32,6 +32,9 @@ Global("C#HU_SoD_questPID1","LOCALS",0)~ + @4 /* It's good that this "Bren drama
 + ~%IT_IS_SOD% Global("C#HusamSoD_PID_career","LOCALS",0)~ + @6 /* So, the Shadow Thief is using the Bhaalspawn for his own career boost. */ DO ~SetGlobal("C#HusamSoD_PID_career","LOCALS",1)~ + career
 + ~%IT_IS_SOD% Global("C#HusamSoD_PID_career","LOCALS",0)~ + @7 /* Busy writing your reports about our progress? */ DO ~SetGlobal("C#HusamSoD_PID_career","LOCALS",1)~ + career
 
++ ~Global("C#HusamSoD_PID_career","LOCALS",1)~ + @124 /* I'm surprised to hear you use a word like "honor" if talking about thieves, Husam. */ DO ~SetGlobal("C#HusamSoD_PID_career","LOCALS",2)~ + career_followup
++ ~Global("C#HusamSoD_PID_career","LOCALS",1)~ + @125 /* You mentioned an honor code of Shadow Thieves? */ DO ~SetGlobal("C#HusamSoD_PID_career","LOCALS",2)~ + career_followup_01
+
 + ~%IT_IS_SOD% Global("C#HusamSoD_PID_marchlaw","LOCALS",0)~ + @8 /* And, how does it feel to march at the side of law and official forces? */ DO ~SetGlobal("C#HusamSoD_PID_marchlaw","LOCALS",1)~ + marching_law_order
 
 /* general statement about the crusade */
@@ -642,6 +645,21 @@ IF ~~ THEN career_05
 SAY @119 /* I *was* assigned to work with you by my Shadow Master first, but that doesn't explain why he took an interest in you, of course. Let's say you made a name of yourself. The decision to join you was my idea, though. I have certain... freedom to fulfill my orders. */ 
 = @120 /* Don't forget that I did not join merely to watch your Bhaalspawn's steps, but to have a front-row look at how the crisis with the Crusade is handled. And the reason why you are the right person for that is nothing I decided, it's what the Dukes of Baldur's Gate are thinking, as well. */
 = @121 /* Do not worry, <CHARNAME>. We Shadow Thieves do have a code of honor, even if using that very word makes a do-gooder snort with distaste. I know very well which incidents to report and which to consider private... and I do have a sense of loyalty to my leader - and the readiness to... "surpass" Shadow Thieves dogmas if loyalty requires it - as long as it does not mean giving away my guild or my Shadow Master. */
+IF ~~ THEN EXIT
+END
+
+IF ~~ THEN career_followup
+SAY @126 /* [Husam]I understand where you come from. That's why I said *an* honor code.~ */
+IF ~~ THEN + career_followup_02
+END
+
+IF ~~ THEN career_followup_01
+SAY @127 /* [Husam]Yes, <CHARNAME>, absolutely.~ */
+IF ~~ THEN + career_followup_02
+END
+
+IF ~~ THEN career_followup_02
+SAY @128 /* [Husam]The words do not necessarily mean the same as when a paladin uses them - but we Shadow Tieves *do* have a code of conduct and honor our word. You'll only have bad surprises with the Shadow Thieves if you do not understand the rules we are playing by - well, and if you dispise of theft, torture, and assassinations, of course. */ 
 IF ~~ THEN EXIT
 END
 

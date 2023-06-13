@@ -182,6 +182,9 @@ IF ~Global("C#Husam_SoD_BBridgeInfo","GLOBAL",1)~ THEN c#husamj bbridge_info
 DO ~SetGlobal("C#Husam_SoD_BBridgeInfo","GLOBAL",2)~
 == bdcorwij IF ~InParty("CORWIN") See("CORWIN") !StateCheck("CORWIN",CD_STATE_NOTVALID)~ THEN @44 /* [Corwin]That is bad news. - Don't think I value you or your "informants" any more than I did before, Husam. */
 == c#husamj @45 /* [Husam]They didn't take the bridge the time my spy talked to me, but seeing the delay and the time it will take us to get there, I am sure we will have to face a siege camp. */
+EXIT
+
+/* deprecated! -----
 = @46 /* One thing - there is a mage with this delegation of crusaders, by the name of Oloneiros. *She* knows your face, <CHARNAME>. She drew a sketch herself, so everyone would recognize you. */
 END
 ++ @47 /* Dang, that's bad. */ + bbridge_info_01
@@ -212,6 +215,7 @@ IF ~~ THEN c#husamj bbridge_info_04
 @54 /* [Husam]Oloneiros needed to draw a sketch, which means that noone *else* seems to know you. And she drew it herself - that is the advantage if the arrogance of people grows at the same rate as their power. It is a real bad sketch. It could be you or any other <PRO_MANWOMAN>. */
 = @55 /* [Husam]It still doesn't mean noone else will know you - but chances are rather high. Oloneiros is the one we need to avoid on all costs, should we ever have to infiltrate the crusader's forces at Bridgefort.  */
 EXIT
+----- */
 
 /* witnessed scrying pool - Hooded man scene */
 ADD_TRANS_ACTION BDIRENI BEGIN 78 END BEGIN END ~IncrementGlobal("C#Husam_HepherScryPool","GLOBAL",1)~

@@ -567,28 +567,26 @@ SAY @124 /* [Husam]Our collaboration ends here. It was... interesting, indeed. F
 
 /* Husam in Party */
 IF ~InParty("C#Husam1")~ THEN DO ~SetInterrupt(FALSE)
-SetGlobal("C#Husam_SoDEnd","GLOBAL",2)
+SetGlobal("C#Husam_SoDEnd","GLOBAL",3)
 SetGlobal("C#HusamJoined","GLOBAL",0)
 LeaveParty()
-SetDialog("C#HusamS")
 ChangeAIScript("",DEFAULT)
 //DestroyItem("##")
 GivePartyAllEquipment()
-MoveBetweenAreas("bd6000",[2137.3105],E)
+EscapeAreaDestroy(5)
 SetInterrupt(TRUE)~ EXIT
 
 /* Husam was 7th party member */
 IF ~Global("C#HusamJoined","GLOBAL",2)~ THEN DO ~SetInterrupt(FALSE)
 MakeGlobal()
-SetGlobal("C#Husam_SoDEnd","GLOBAL",2)
+SetGlobal("C#Husam_SoDEnd","GLOBAL",3)
 SetGlobal("C#HusamJoined","GLOBAL",0)
 RemoveFamiliar()
 ChangeEnemyAlly(Myself,NEUTRAL)
-SetDialog("C#HusamS")
 ChangeAIScript("",DEFAULT)
 //DestroyItem("##")
 GivePartyAllEquipment()
-MoveBetweenAreas("bd6000",[2137.3105],E)
+EscapeAreaDestroy(5)
 SetInterrupt(TRUE)~ EXIT
 END
 
@@ -622,21 +620,21 @@ InMyArea("C#Husam1") !StateCheck("C#Husam1",CD_STATE_NOTVALID)~ THEN @128 /* [Hu
 DO ~SetInterrupt(FALSE)
 MakeGlobal()
 SetGlobal("C#HusamJoined","GLOBAL",0)
-SetDialog("C#HusamS")
+SetGlobal("C#Husam_SoDEnd","GLOBAL",3)
 ChangeAIScript("",DEFAULT)
 LeaveParty()
-MoveBetweenAreas("bd6000",[2137.3105],E)
+EscapeAreaDestroy(5)
 SetInterrupt(TRUE)~ 
 /* Husam is 7th party member */
 == C#HusamJ IF ~Global("C#HusamJoined","GLOBAL",2) InMyArea("C#Husam1") !StateCheck("C#Husam1",CD_STATE_NOTVALID)~ THEN @128 /* [Husam]Our collaboration ends here. It was... interesting, indeed. Farewell, <CHARNAME>. */ 
 DO ~SetInterrupt(FALSE)
 MakeGlobal()
 SetGlobal("C#HusamJoined","GLOBAL",0)
+SetGlobal("C#Husam_SoDEnd","GLOBAL",3)
 RemoveFamiliar()
 ChangeEnemyAlly("C#Husam1",NEUTRAL)
-SetDialog("C#HusamS")
 ChangeAIScript("",DEFAULT)
-MoveBetweenAreas("bd6000",[2137.3105],E)
+EscapeAreaDestroy(5)
 SetInterrupt(TRUE)~ 
 END
 
@@ -1017,7 +1015,7 @@ END //APPEND
 BEGIN C#HusamS
 
 CHAIN
-IF ~Global("C#Husam_SoDEnd","GLOBAL",3)~ THEN C#HusamS pc_free
+IF ~Global("C#Husam_SoDEnd","GLOBAL",4)~ THEN C#HusamS pc_free
 @223 /* [Husam]<CHARNAME>! What an unexpected surprise. Unexpected, but pleasant - except for the fact that I seem to be *too late* and out of the loop - again. Seems my resources are slacking off again, just like regarding Hephernaan's master. I returned as fast as possible when I heard what was going on, and was searching for a way to sneak in - to get to you. They are guarding the grounds with the intensity of a watch dog! */
 == C#HusamS IF ~Global("C#AfHSoD_RevisedEnd","GLOBAL",0)~ THEN @224 /* [Husam]How did you escape? - Well, it doesn't matter now, I guess. But seeing you here tells me it wasn't the official way out. And what can I say... it wasn't the Shadow Thieves this time, either - obviously. */
 == C#HusamS IF ~GlobalGT("C#AfHSoD_RevisedEnd","GLOBAL",0)~ THEN @225 /* [Husam]Seeing you here tells me it wasn't the official way out for you, either. */
@@ -1048,7 +1046,7 @@ END
 IF ~~ THEN pc_free_04
 SAY @234 /* [Husam]The city is in chaos! There are people fighting in the streets - your followers against the ones that want to see you dead sooner than later. The Dukes will be happy to be rid of you, one way or the other. Lay low for a while. And do it away from Baldur's Gate, preferably. */
 = @235 /* [Husam]Maybe your way leads you to Amn. People there are busy with their own chores and schemes. They do not care what happened somewhere at the Sword Coast. Noone there knows the name Sarevok. And only a few will know the name <CHARNAME>, there. Farewell. */
-IF ~~ THEN DO ~SetGlobal("C#Husam_SoDEnd","GLOBAL",4)
+IF ~~ THEN DO ~SetGlobal("C#Husam_SoDEnd","GLOBAL",5)
 EscapeAreaDestroy(5)~ EXIT
 END
 

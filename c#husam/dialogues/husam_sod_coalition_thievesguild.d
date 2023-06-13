@@ -476,7 +476,7 @@ Global("C#Husam_SoDCampThievesGuild","GLOBAL",9)~ THEN BDRHYNWI husam_meeting
 == c#husamj IF ~Global("bd_sdd305_den_of_thieves","global",1)~ THEN @114 /* [Husam]Oh, but you don't have to. Hear me out, will you? But one thing has to be perfectly clear: <CHARNAME> standing right next to me is because <PRO_HESHE> was given the task to deal with you from General Stonehand and has nothing to do with the Shadow Thieves, you understand? */
 
 /* all quest paths */
-== BDRHYNWI @115 /* [Rhynwis]Crystal clear, Husam. */
+== BDRHYNWI @115 /* [Rhynwis]Crystal clear. */
 == c#husamj @116 /* [Husam]Fine. Then listen carefully. */
 END
 ++ @117 /* Go on, I'm interested in hearing this, too. */ EXTERN c#husamj husam_meeting_01
@@ -613,14 +613,14 @@ END
 
 IF ~~ THEN thievesguild_followup_06
 SAY @147 /* [Husam]Doing anything without securing your standing is short-sighted at least, and a disgrace for any guild. You don't need to train as a thief if all you want to do is bullying people into giving you their gold and values. */ 
-++ @148 /* I'm always surprised to hear you use words like "honor" if talking about thieves, Husam. */ + thievesguild_followup_07
+++ @148 /* You also do not need to train as a rogue if all you then do is politics and persuasion. */ + thievesguild_followup_07
 ++ @149 /* So you're basically saying that the Shadow Thieves would infiltrate the whole hirarchy to do their business in peace. */ + thievesguild_followup_08
 ++ @150 /* This is really important to you, isn't it? */ + thievesguild_followup_10
 ++ @141 /* I don't want to talk about this. */ + thievesguild_followup_15
 END
 
 IF ~~ THEN thievesguild_followup_07
-SAY @151 /* [Husam]That's why I said *our* honor code. The words do not necessarily mean the same as when a paladin uses them - but we Shadow Tieves *do* have a code of conduct and honor our word. You'll only have bad surprises with the Shadow Thieves if you do not understand the rules we are playing by - well, and if you dispise of theft, torture, and assassinations, of course. */ 
+SAY @151 /* [Husam]Good point. But it helps a lot in this métier, believe me. */ 
 IF ~~ THEN + thievesguild_followup_09
 END
 

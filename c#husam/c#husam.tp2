@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230529~
+VERSION ~Beta_230613~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -13,7 +13,7 @@ ALWAYS
 /* check for a ready SoD */
 
 ACTION_IF ((FILE_EXISTS ~dlc/sod-dlc.zip~) OR (FILE_EXISTS ~sod-dlc.zip~)) THEN BEGIN
-  FAIL ~Modmerge is required before mods can be installed on this game. Check the readme for more information and a link to download Modmerge.~
+  FAIL @50019
 END
 
 /* continuous chapter for EET */

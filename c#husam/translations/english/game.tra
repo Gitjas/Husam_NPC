@@ -36,7 +36,7 @@
 @34  = ~Breakfast Knife~
 @35  = ~This is a small knife like it is used to cut fruit for eating. It doesn't have a name or any ornaments on it, but it is colored in a very unique way and looks like it was used a lot.~
 @36  = ~Dyal's Note~
-@37  = ~This is a note, issued to Dyal, about a smaller sum of gold from a name you don't know. It is signed by the borrower as well as Dyal.~
+@37  = ~This is a note, issued to Dyal, about a smaller sum of gold. It is signed by a name you don't know as well as Dyal.~
 @38  = ~Dyal's Victory Cup~
 @39  = ~This cup says "Dyal's Victory Cup" in crooked letters on the side.~
 @40  = ~Bren~ 
@@ -72,6 +72,7 @@
 @10022 = ~Hm. Interesting design! A bit messy, but very effective.~
 @10023 = ~Damn it, Husam! I was always loyal to you!~
 @10024 = ~Yes, and I will honor it by making this quick and painless.~
+@10025 = ~Bren's Hidden Stash~
 
 /* c#7thpmm_thingies.tpa */
 @200000 = ~(yawn)~

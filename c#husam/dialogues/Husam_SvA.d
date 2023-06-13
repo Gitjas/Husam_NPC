@@ -30,7 +30,7 @@ END
 EXTEND_BOTTOM THIEF1 1 
 + ~GlobalLT("C#HusamSpawn","GLOBAL",11) !Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1") Global("C#Husam2_AskedSidge","LOCALS",0)~ + ~The Shadow Thieves' Guild! I am looking for Husam. I know he is one of you.~ DO ~SetGlobal("C#Husam2_AskedSidge","LOCALS",1)~ UNSOLVED_JOURNAL ~Finding Husam
 
-If I want to know more about Husam, I should talk to The Blookdskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_1
+If I want to know more about Husam, I should talk to The Bloodskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_1
 END
 
 /* Heh.  If you have to ask, you sure haven't been here long.  I be Sidge, one of the good fellows here in the Shadow Thieves.
@@ -38,7 +38,7 @@ END
 EXTEND_BOTTOM THIEF1 2 
 + ~GlobalLT("C#HusamSpawn","GLOBAL",11) !Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1") Global("C#Husam2_AskedSidge","LOCALS",0)~ + ~The Shadow Thieves' Guild! I am looking for Husam. I know he is one of you.~ DO ~SetGlobal("C#Husam2_AskedSidge","LOCALS",1)~ UNSOLVED_JOURNAL ~Finding Husam
 
-If I want to know more about Husam, I should talk to The Blookdskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_2
+If I want to know more about Husam, I should talk to The Bloodskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_2
 END
 
 /* Bite yer tongue, I'm no thief!  I'm an assassin of the highest order.  You'd be well-advised to guard your tongue here amongst the Shadow Thieves.
@@ -46,7 +46,7 @@ END
 EXTEND_BOTTOM THIEF1 5 
 + ~GlobalLT("C#HusamSpawn","GLOBAL",11) !Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1") Global("C#Husam2_AskedSidge","LOCALS",0)~ + ~The Shadow Thieves' Guild! I am looking for Husam. I know he is one of you.~ DO ~SetGlobal("C#Husam2_AskedSidge","LOCALS",1)~ UNSOLVED_JOURNAL ~Finding Husam
 
-If I want to know more about Husam, I should talk to The Blookdskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_5
+If I want to know more about Husam, I should talk to The Bloodskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_5
 END
 
 /* Renal Bloodscalp runs this place.  Chances are he has business with you if he let you in.  You can find him upstairs, on the second floor.  I'd watch yourself around him... 
@@ -54,7 +54,7 @@ END
 EXTEND_BOTTOM THIEF1 6
 + ~GlobalLT("C#HusamSpawn","GLOBAL",11) !Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1") Global("C#Husam2_AskedSidge","LOCALS",0)~ + ~I am looking for Husam. I know he is one of you.~ DO ~SetGlobal("C#Husam2_AskedSidge","LOCALS",1)~ UNSOLVED_JOURNAL ~Finding Husam
 
-If I want to know more about Husam, I should talk to The Blookdskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_6
+If I want to know more about Husam, I should talk to The Bloodskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_6
 END
 
 /* Good day, once again.  Somethin' you needed?
@@ -62,7 +62,7 @@ END
 EXTEND_BOTTOM THIEF1 8
 + ~GlobalLT("C#HusamSpawn","GLOBAL",11) !Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1") Global("C#Husam2_AskedSidge","LOCALS",0)~ + ~I am looking for Husam. I know he is one of you.~ DO ~SetGlobal("C#Husam2_AskedSidge","LOCALS",1)~ UNSOLVED_JOURNAL ~Finding Husam
 
-If I want to know more about Husam, I should talk to The Blookdskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_8
+If I want to know more about Husam, I should talk to The Bloodskalp in the Shadow Thieves' Guild in Athkatla.~ + husam_8
 END
 
 APPEND THIEF1
@@ -104,7 +104,7 @@ END //APPEND
 INTERJECT RENAL 24 c#Husam2_RENAL_24
 == RENAL IF ~!Dead("HUSAM") !Dead("HUSAM2") !Dead("C#HUSAM") !Dead("JA#HUSAM") !Dead("C#HUSAM1")~ THEN ~Before you answer, let me tell you that there is another thing which might increase your interest in persuing Mae'Var. Two, actually. The first is that he helds captive one of my loyalst rogues. You know him, I am talking about Husam. He disappeared the same time you did, <CHARNAME>.~
 END
-+ ~Global("C#Husam_SoDEnd","GLOBAL",5)~ + ~Husam? Why would I be interested in the wereabouts of this cutthroat assassin? Did you forget how we parted ways near Dragonspear Castle?~ + husam_sod
++ ~Global("C#Husam_SoDEnd","GLOBAL",6)~ + ~Husam? Why would I be interested in the wereabouts of this cutthroat assassin? Did you forget how we parted ways near Dragonspear Castle?~ + husam_sod
 ++ ~One of your loyalst rogues is held captive and you don't do anything about it?~ + husam_05
 ++ ~You know of my capture?~ + husam_02
 ++ ~Husam disappeared the same time I did?~ + husam_03
@@ -148,7 +148,7 @@ IF ~~ THEN husam_04
 SAY ~This is the second reason you might have an own interest in persuing the task I offered, <CHARNAME>. Let's put it like this. You were taken captive and transferred to an unknown client in a shady fashion, unnoticed by city or other authorities - and it wasn't *us* - not the Shadow Thieves, officially. And yet, it was our style. Don't you think a rebellious guild master would be the ideal person to start searching? Mae'Var has accepted one or two assignments not authorised by me, lately - not that I could prove anything, but I have my sources. Maybe your captor offered him a good price - gold that helped him making his rogues loyal while planning my fall.~
 IF ~~ THEN DO ~EraseJournalEntry(%Finding Husam
 
-If I want to know more about Husam, I should talk to The Blookdskalp in the Shadow Thieves' Guild in Athkatla.%)~ UNSOLVED_JOURNAL ~Finding Husam
+If I want to know more about Husam, I should talk to The Bloodskalp in the Shadow Thieves' Guild in Athkatla.%)~ UNSOLVED_JOURNAL ~Finding Husam
 
 Renal, the head of Shadow Thieves' in Athkatla, told me that I might find Husam with one of his guild masters, Mae'Var, one he suspects to plan treason. Rumor is that Husam is a traitor! The question is - to whom? This guild master could also be the one responsible for my capture!~ + husam_06
 END
@@ -236,7 +236,7 @@ I found Husam! He is held captive in Mae'Var's guild house. There seems no possi
 Renal, the head of Shadow Thieves' in Athkatla, told me that I might find Husam with one of his guild masters, Mae'Var, one he suspects to plan treason. Rumor is that Husam is a traitor! The question is - to whom? This guild master could also be the one responsible for my capture!%)~ UNSOLVED_JOURNAL ~Finding Husam
 
 I found Husam! He is held captive in Mae'Var's guild house. There seems no possibility to free him other than to play along with our disguise and perform Mae'Var's tasks until Renal agrees to killing Mae'Var.~ EXTERN MAEVAR husam 
-+ ~Global("C#Husam_SoDEnd","GLOBAL",5)~ + ~So, you managed not only to ruin your alliance with me, but also with your fellow rogues? A masterpiece.~ DO ~SetGlobal("C#HusamSpawn","GLOBAL",11) EraseJournalEntry(%Finding Husam
++ ~Global("C#Husam_SoDEnd","GLOBAL",6)~ + ~So, you managed not only to ruin your alliance with me, but also with your fellow rogues? A masterpiece.~ DO ~SetGlobal("C#HusamSpawn","GLOBAL",11) EraseJournalEntry(%Finding Husam
 
 Renal, the head of Shadow Thieves' in Athkatla, told me that I might find Husam with one of his guild masters, Mae'Var, one he suspects to plan treason. Rumor is that Husam is a traitor! The question is - to whom? This guild master could also be the one responsible for my capture!%)~ UNSOLVED_JOURNAL ~Finding Husam
 
@@ -293,11 +293,9 @@ END //APPEND C#Husam2
 CHAIN
 IF ~~ THEN C#Husam2 meeting_bg2_06
 ~Mae'Var betrayed my mother guild.~
-== C#Husam2 IF ~Global("C#HU_SoDWitnessedArrest","GLOBAL",0)~ THEN ~I followed you out of Baldur's Gate. I did not conceal that we find you very interesting, so I was ordered to watch you after we parted, which I did.~
-== C#Husam2 IF ~Global("C#HU_SoDWitnessedArrest","GLOBAL",0)~ THEN ~What I didn't consider was treachery. Mae'Var's followers infiltrated ours, and I was captured just as were you.~
-== C#Husam2 IF ~Global("C#HU_SoDWitnessedArrest","GLOBAL",1)~ THEN ~I was captured just as were you - but you found me here, while you were taken to this Irenicus.~
-== C#Husam2 ~Yes, in case you didn't figure it out by now: Mae'Var and his men were the ones taking you captive and delivering you to this mage Irenicus, a name Mae'Var liked to tell me when he poked hot iron into my sides.~
-= ~I was held prisoner since. Mae'Var tried to get secrets from me, but I told him *nothing*. (Husam coughs and spits on the ground.)~
+== C#Husam2 ~I followed you out of Baldur's Gate. I did not conceal that we find you very interesting, so I was ordered to watch you after we parted, which I did. What I didn't consider was treachery. Mae'Var's followers infiltrated ours, and I was captured just as were you.~
+= ~Yes, in case you didn't figure it out by now: Mae'Var and his men were the ones taking you captive and delivering you to this mage Irenicus, a name Mae'Var liked to tell me when he poked hot iron into my sides.~
+= ~I was held prisoner since. Mae'Var tried to get secrets from me, but I told him *nothing*. (cough)~
 = ~So, he is dead now, no revenge for me. But it leaves the client, this Irenicus. Heard he wrecked a quarter of the Promenade, something Mae'Var whined about, fearing for his last payment. I also heard about him decimating my fellow guild members. Is it true?~
 END
 ++ ~Oh yes. They fought him, which gave me possibility to escape.~ + meeting_bg2_09

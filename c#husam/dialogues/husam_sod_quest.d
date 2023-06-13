@@ -106,7 +106,7 @@ END //APPEND
 BEGIN c#hubren
 
 IF ~~ THEN husam_and_bren_01
-SAY @25 /* [Bren, Shadow Thief]It's fairly simple. Just make sure there is something personal of Dyal inside my hidden stack when they investigate it thoroughly. Stove it a bit deeper into the hole so it looks like it was missed before. Maybe you'll find something on him - or you can use his stupid victory cup, he didn't use this yet with the fight going on. You'll find his bedroll open between the tents, he's the only one too lazy to roll it up during the day. */
+SAY @25 /* [Bren, Shadow Thief]It's fairly simple. Just make sure there is something personal of Dyal inside my secret stash when they investigate it thoroughly. Stove it a bit deeper into the hole so it looks like it was missed before. Maybe you'll find something on him - or you can use his stupid victory cup, he didn't use this yet with the fight going on. You'll find his bedroll open between the tents, he's the only one too lazy to roll it up during the day. */
 = @26 /* My stack is between the trees on the east palisade wall, near the tents. They put a guard there until Lieutenant Kharm had the time to investigate it personally. I don't have to tell you to make absolutely sure noone spots you when putting Dyal's stuff into the hidden stash. And that, when you rearranged the evidence, you should hurry to talk to Lieutenant Kharm about my pending trial in the hopes that he will take time for it then - before Dyal can extract his stuff again. */ 
 IF ~~ THEN EXTERN C#HusamJ bren_and_husam_09
 END
@@ -199,7 +199,7 @@ GlobalGT("C#HU_SoD_BrenDialogue_2","LOCALS",0)~ + @55 /* Bren, what would we nee
 + ~Global("C#HU_SoD_BrenDialogue_5","LOCALS",0)~ + @57 /* Do you think your man is a threat to us being here, Husam? */ DO ~SetGlobal("C#HU_SoD_BrenDialogue_5","LOCALS",1)~ + bren_and_husam_10
 + ~Global("C#HU_SoD_BrenDialogue_6","LOCALS",0)
 GlobalGT("C#HU_SoD_BrenDialogue_2","LOCALS",0)~ + @58 /* What is your opinion, Husam? */ DO ~SetGlobal("C#HU_SoD_BrenDialogue_6","LOCALS",1)~ + bren_and_husam_07
-+ ~Global("C#HU_SoD_BrenDialogue_3","LOCALS",1)~ + @59 /* He might have missed his objective, but we could have use for someone closer to Caelar and her advisor. Let's swap evidence like suggested and make Bren a crusader hero. */ EXTERN C#husamj bren_and_husam_chain_03
++ ~Global("C#HU_SoD_BrenDialogue_3","LOCALS",1)~ + @59 /* He might have missed his objective, but we could have use for someone closer to Caelar and her advisor. Let's place evidence like suggested and make Bren a crusader hero. */ EXTERN C#husamj bren_and_husam_chain_03
 ++ @60 /* I don't think he failed, but we will not risk anything to help a prisoner here. */ + bren_and_husam_chain_02
 ++ @61 /* He failed, Husam. You were flying blind the last days, that's unacceptible. */ + bren_and_husam_11
 ++ @62 /* He failed out flat. Why are we discussing this? */ + bren_and_husam_11
@@ -208,7 +208,7 @@ GlobalGT("C#HU_SoD_BrenDialogue_2","LOCALS",0)~ + @58 /* What is your opinion, H
 
 CHAIN
 IF ~~ THEN c#hubren bren_and_husam_chain_00
-@65 /* [Bren, Shadow Thief]Dyal found my hidden stack and concluded it's mine. Don't look like that, Husam - he's a pretty good thief himself. It's of no consequence, though, because noone - including Dyal - saw me using it, and even *if* he'd actually caught me at it, he still can't prove it's mine, since I put nothing personal inside. I'm in here because push came to shove since they are a bit over suspicious for traitors. */
+@65 /* [Bren, Shadow Thief]Dyal found my secret stash and concluded it's mine. Don't look like that, Husam - he's a pretty good thief himself. It's of no consequence, though, because noone - including Dyal - saw me using it, and even *if* he'd actually caught me at it, he still can't prove it's mine, since I put nothing personal inside. I'm in here because push came to shove since they are a bit over suspicious for traitors. */
 END
 IF ~~ THEN EXTERN c#husamJ bren_and_husam_09
 
@@ -300,7 +300,7 @@ GlobalGT("C#HU_SoD_BrenDialogue_2","LOCALS",0)~ + @55 /* Bren, what would we nee
 + ~Global("C#HU_SoD_BrenDialogue_5","LOCALS",0)~ + @57 /* Do you think your man is a threat to us being here, Husam? */ DO ~SetGlobal("C#HU_SoD_BrenDialogue_5","LOCALS",1)~ + bren_and_husam_10
 + ~Global("C#HU_SoD_BrenDialogue_6","LOCALS",0)
 GlobalGT("C#HU_SoD_BrenDialogue_2","LOCALS",0)~ + @58 /* What is your opinion, Husam? */ DO ~SetGlobal("C#HU_SoD_BrenDialogue_6","LOCALS",1)~ + bren_and_husam_07
-+ ~Global("C#HU_SoD_BrenDialogue_3","LOCALS",1)~ + @59 /* He might have missed his objective, but we could have use for someone closer to Caelar and her advisor. Let's swap evidence like suggested and make Bren a crusader hero. */ EXTERN C#husamj bren_and_husam_chain_03
++ ~Global("C#HU_SoD_BrenDialogue_3","LOCALS",1)~ + @59 /* He might have missed his objective, but we could have use for someone closer to Caelar and her advisor. Let's place evidence like suggested and make Bren a crusader hero. */ EXTERN C#husamj bren_and_husam_chain_03
 ++ @60 /* I don't think he failed, but we will not risk anything to help a prisoner here. */ + bren_and_husam_chain_02
 ++ @61 /* He failed, Husam. You were flying blind the last days, that's unacceptible. */ + bren_and_husam_11
 ++ @62 /* He failed out flat. Why are we discussing this? */ + bren_and_husam_11
@@ -394,7 +394,7 @@ END
 IF ~~ THEN bren_dead_06
 SAY @118 /* [Husam]I will just fall back into the shadows, as I probably should have done right from the start. Our alliance is over - the Shadow Thieves aren't done with you yet. */
 /* Husam in Party */
-IF ~InParty("C#Husam1")~ THEN DO ~SetGlobal("C#Husam_SoDEnd","GLOBAL",5)
+IF ~InParty("C#Husam1")~ THEN DO ~SetGlobal("C#Husam_SoDEnd","GLOBAL",6)
 SetGlobal("C#HusamJoined","GLOBAL",0)
 LeaveParty()
 SetLeavePartyDialogFile()
@@ -404,7 +404,7 @@ GivePartyAllEquipment()
 EscapeAreaDestroy(5)~ EXIT
 
 /* Husam was 7th party member */
-IF ~Global("C#HusamJoined","GLOBAL",2)~ THEN DO ~SetGlobal("C#Husam_SoDEnd","GLOBAL",5)
+IF ~Global("C#HusamJoined","GLOBAL",2)~ THEN DO ~SetGlobal("C#Husam_SoDEnd","GLOBAL",6)
 SetGlobal("C#HusamJoined","GLOBAL",0)
 RemoveFamiliar()
 ChangeEnemyAlly(Myself,NEUTRAL)
@@ -506,7 +506,7 @@ IF WEIGHT #-1
 @136 /* Bren, you are accused of being a spy by Dyal. The only evidence we have is a hidden stash Dyal claims to be yours. We guarded the hideout since we found it, so I will take anything we'll find in there as evidence for this case. */
 == BDKHARM IF ~Global("C#HuS_bhs_c#husknf","MYAREA",1)~ THEN @137 /* This little knife was found in the stash. It is said to be yours, Bren. Even I saw you use it. Finding this inside the stash seems like evidence to me. */
 == c#hubren IF ~Global("C#HuS_bhs_c#husknf","MYAREA",1)
-Global("C#HU_SoDBrenKnife","LOCALS",0)~ THEN @138 /* (mutters) Dyal, you sneaky bastard. Snuggeling in my knife? Well played, I guess. */
+Global("C#HU_SoDBrenKnife","LOCALS",0)~ THEN @138 /* (mutters) Dyal, you sneaky bastard. Smuggeling in my knife? Well played, I guess. */
 == c#hubren IF ~Global("C#HuS_bhs_c#husknf","MYAREA",1)
 Global("C#HU_SoDBrenKnife","LOCALS",1)~ THEN @139 /* What? Why would it be... Damn it, I am being played?! */
 == BDKHARM IF ~Global("C#HuS_bhs_c#husmug","MYAREA",1)~ THEN @140 /* Hmm, this cup is Dyal's victory cup! We all saw him stow it away with the proclamation of only using it once the fort has fallen. */
