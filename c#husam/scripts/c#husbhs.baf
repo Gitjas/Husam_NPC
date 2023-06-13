@@ -1,4 +1,4 @@
-/* c#husbhs.baf - Bren's Hidden Stash in bd2000.are */
+/* c#husbhs.baf - Bren's Secret Stash in bd2000.are */
 
 IF 
 	!Range([PC],1)

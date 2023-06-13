@@ -704,7 +704,7 @@ THEN
 		SetInterrupt(FALSE)
 		ActionOverride("C#HUCrevice",CreateItem("bdchan03",1,0,0))
 		ActionOverride("C#HUCrevice",CreateItem("bdmisc04",1,0,0))
-		AddMapNoteColor([722.926],~Husam's Hidden Stash~,SLATE)
+		AddMapNoteColor([722.926],@10026,SLATE)
 		SetGlobal("C#HusamSoD_PID_SoC","GLOBAL",5)
 		SetInterrupt(TRUE)
 END
@@ -738,7 +738,7 @@ COPY_EXISTING ~bd2000.are~ ~override~
     fj_name           = ~C#HUBedroll~
   END
 /* still bd2000.are */
-//Bren's hidden stash
+//Bren's secret stash
   LPF ~fj_are_structure~
     INT_VAR
     fj_type        = 8 //nonvisible

@@ -72,7 +72,8 @@
 @10022 = ~Hm. Interesting design! A bit messy, but very effective.~
 @10023 = ~Damn it, Husam! I was always loyal to you!~
 @10024 = ~Yes, and I will honor it by making this quick and painless.~
-@10025 = ~Bren's Hidden Stash~
+@10025 = ~Bren's Secret Stash~
+@10026  = ~Husam's Secret Stash~
 
 /* c#7thpmm_thingies.tpa */
 @200000 = ~(yawn)~

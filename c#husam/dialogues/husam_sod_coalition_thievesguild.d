@@ -625,7 +625,7 @@ IF ~~ THEN + thievesguild_followup_09
 END
 
 IF ~~ THEN thievesguild_followup_08
-SAY @152 /* [Husam]That - or win the authorities over with blackmail or promises. It often suffices to have the second highest level of command in your hands - high enough to have leading power, but low enough they are not constantly monitored by everyone. */
+SAY @152 /* [Husam]That - or win the authorities over with blackmail or promises. It often suffices to have the second or third highest level of command in your hands - high enough to have decision power, but low enough not to be in public monitoring all the time, which simplifies things for us. */
 IF ~~ THEN + thievesguild_followup_09
 END
 

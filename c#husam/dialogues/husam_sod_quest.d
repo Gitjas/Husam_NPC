@@ -107,7 +107,7 @@ BEGIN c#hubren
 
 IF ~~ THEN husam_and_bren_01
 SAY @25 /* [Bren, Shadow Thief]It's fairly simple. Just make sure there is something personal of Dyal inside my secret stash when they investigate it thoroughly. Stove it a bit deeper into the hole so it looks like it was missed before. Maybe you'll find something on him - or you can use his stupid victory cup, he didn't use this yet with the fight going on. You'll find his bedroll open between the tents, he's the only one too lazy to roll it up during the day. */
-= @26 /* My stack is between the trees on the east palisade wall, near the tents. They put a guard there until Lieutenant Kharm had the time to investigate it personally. I don't have to tell you to make absolutely sure noone spots you when putting Dyal's stuff into the hidden stash. And that, when you rearranged the evidence, you should hurry to talk to Lieutenant Kharm about my pending trial in the hopes that he will take time for it then - before Dyal can extract his stuff again. */ 
+= @26 /* My stack is between the trees on the east palisade wall, near the tents. They put a guard there until Lieutenant Kharm had the time to investigate it personally. I don't have to tell you to make absolutely sure noone spots you when putting Dyal's stuff into the secret stash. And that, when you rearranged the evidence, you should hurry to talk to Lieutenant Kharm about my pending trial in the hopes that he will take time for it then - before Dyal can extract his stuff again. */ 
 IF ~~ THEN EXTERN C#HusamJ bren_and_husam_09
 END
 
@@ -255,7 +255,7 @@ SAY @74 /* [Husam]There is only one way to treat such failure amongst the Shadow
 END
 
 IF ~~ THEN bren_and_husam_03
-SAY @78 /* [Husam]You want me to say it? Fine. I say he failed, because his task was to keep me informed, be my eyes and ears in this crusader camp - and to *inform me* if he can't perform the task so I can assign someone else. On top of that, he lost his stash - which is called *hidden* for a reason. And yet, I bow to being found out by a fellow thief. This Dyal seems to be a very capable rogue, it is a pity he is lost to the crusade or I'd try to recruit him. */
+SAY @78 /* [Husam]You want me to say it? Fine. I say he failed, because his task was to keep me informed, be my eyes and ears in this crusader camp - and to *inform me* if he can't perform the task so I can assign someone else. On top of that, he lost his stash - which is called *secret* for a reason. And yet, I bow to being found out by a fellow thief. This Dyal seems to be a very capable rogue, it is a pity he is lost to the crusade or I'd try to recruit him. */
 ++ @79 /* So you see Bren guilty, yet leaving the final decision to me. */ + bren_and_husam_08
 ++ @80 /* He's locked up - how do you expect him to inform you from inside a cage? */ + bren_and_husam_04
 ++ @81 /* How was he supposed to inform you without revealing himself now that he's imprisoned? */ + bren_and_husam_05
@@ -503,7 +503,7 @@ END //APPEND
 CHAIN
 IF WEIGHT #-1
 ~Global("C#HU_SoD_BrensQuest","GLOBAL",3)~ THEN BDKHARM trial
-@136 /* Bren, you are accused of being a spy by Dyal. The only evidence we have is a hidden stash Dyal claims to be yours. We guarded the hideout since we found it, so I will take anything we'll find in there as evidence for this case. */
+@136 /* Bren, you are accused of being a spy by Dyal. The only evidence we have is a secret stash Dyal claims to be yours. We guarded the hideout since we found it, so I will take anything we'll find in there as evidence for this case. */
 == BDKHARM IF ~Global("C#HuS_bhs_c#husknf","MYAREA",1)~ THEN @137 /* This little knife was found in the stash. It is said to be yours, Bren. Even I saw you use it. Finding this inside the stash seems like evidence to me. */
 == c#hubren IF ~Global("C#HuS_bhs_c#husknf","MYAREA",1)
 Global("C#HU_SoDBrenKnife","LOCALS",0)~ THEN @138 /* (mutters) Dyal, you sneaky bastard. Smuggeling in my knife? Well played, I guess. */
