@@ -2,11 +2,11 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230615_interim~
+VERSION ~Beta_230615_interim_2~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
-AUTO_TRA ~C#Husam/Translations/%s~
+AUTO_TRA ~C#Husam/Translations/autotra/%s~
 
 ALWAYS
 
@@ -1042,7 +1042,7 @@ END
 /////////////////////////////////////////////////////////////////
 BEGIN @50004 /* ~Assign the mod's portrait and soundset to the original Husam in game~ */
 DESIGNATED 1
-LABEL BragesRedemption-portrait_sound_original_Brage
+LABEL c#husam-portrait_sound_original_Husam
 REQUIRE_COMPONENT ~c#husam.tp2~ 0 @50003 /* ~Husam main component needs to be installed for this.~ */
 REQUIRE_PREDICATE (GAME_IS ~bgt eet bgee~) @50008 /* This component is only available for BGT, BG:EE, and EET */
 
