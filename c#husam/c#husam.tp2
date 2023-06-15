@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230613~
+VERSION ~Beta_230615_interim~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -147,6 +147,11 @@ LANGUAGE ~English~
          ~C#Husam/Translations/english/gametra~
 	 ~C#Husam/Translations/english/journal.tra~
 
+LANGUAGE ~German~
+         ~deutsch~   
+         ~C#Husam/Translations/deutsch/setup.tra~
+         ~C#Husam/Translations/deutsch/gametra~
+	 ~C#Husam/Translations/deutsch/journal.tra~
 
 BEGIN @50000 /* ~Husam NPC for SoD, BGT, BGII:EE, BGII:ToB, and EET~ */
 DESIGNATED 0
