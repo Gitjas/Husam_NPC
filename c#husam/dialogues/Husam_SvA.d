@@ -1221,17 +1221,6 @@ END
 
 /*
 
-/* reaction if SoD eventsm happened: */
-Global("C#Husam_HepherFiend","GLOBAL",2)
-
-~Do you remember the smart words I said to you when we learned about Caelar being betrayed? About how treachery is something everyone can fall prey to? Well.~
-++ ~You are right! If I recall correctly, you also pointed out how the Shadow Thieves take extra measures so it doesn't happen for you.~ + 
-
-~Pride goes before a fall, I guess. I learned my lesson. (scoff) Ah - where is my sharp tongue, my clever replies that turn any unvavorable moment into a success. I am getting old.~
-
-~Well, the times where I could boast about me being a source of almost endless information are more or less over as well. What you see is what you get is the situation with regard to me now.
-
-
 /* tree of life */
 
 ~Yes, I will come down with you, <CHARNAME>. I told you I want revenge, and that is still true. Irenicus is down there, so that is where I'll go, too.~
