@@ -33,8 +33,8 @@
 @26   = ~[Husam]Oh, but there is no need for name calling. In the past, <CHARNAME> was approached by Zentharim, by Harpers, by Red Wizard's of Thay, and now by the Flaming Fist. Don't you agree that it is advantageous to combine forces with potent allies against a foe like Caelar? Look around you. Don't you think having a capable rogue alongside you would be the best choice for this city, your home, your responsibility?~
 @27   = ~[Corwin]You leave my *home* out of this, rogue. <CHARNAME> - this is your decision, but I advise strongly against opening the door to a Shadow Thief like this.~
 @28   = ~[Husam]You'll have a patient companion with me, <CHARNAME>. Let me join, and I promise you I will not judge your decisions - as long as they do not explicitely harm me or my guild. I can even follow further back, if you want other people to take the valuable spots next to you.~
-@29   = ~[Husam]Oh, but I am not 'the' Shadow Thieves, <CHARNAME>. I am merely a rogue with, let's say, very good connections. A very good rogue, I might add. I know how to handle my tools.~
-@30   = ~[Husam]...As you well know. (He smiles.)~
+@29   = ~[Husam]Oh, but I am not 'the' Shadow Thieves, <CHARNAME>. I am merely a rogue with, let's say, very good connections. A very good rogue, I might add. I can keep you save from traps and poisoned ale, <CHARNAME>, and whatever your foes might throw at you.~
+@30   = ~[Husam]That you do. (He smiles.)~
 @31   = ~Information about me? What do you mean?~
 @32   = ~Are you offering me to 'relieve the tension' again, my dextrous rogue?~
 @33   = ~Yes, I would like you to join me.~
@@ -44,9 +44,9 @@
 @37   = ~Your informants aren't that good, eh?~
 @38   = ~What is your piont?~
 @39   = ~[Husam]Maybe because I never lied to you in the past. The Shadow Thieves have no interest in harming you, <CHARNAME>.~
-@40   = ~[Husam]That - if you insist on it. But I offer so much more this time. I can keep you save from traps and poisoned ale, <CHARNAME>.~
-@41   = ~[Husam]Not that you would need it, considering your own profession... But I am offering it nontheless. Two pairs of eyes see better in the dark than one.~
-@42   = ~Join forces with the Shadow Thieves? I am not sure I want to do that.~
+@40   = ~[Husam]That - if you insist on it. But I offer so much more this time. I can keep you save from traps and poisoned ale, and whatever else your foes might have planned at you.~
+@41   = ~[Husam]Not that you would need one, considering your own profession... But I am offering it nontheless. Two pairs of eyes see better in the dark than one.~
+@42   = ~Join forces with the Shadow Thieves alongisde the Flaming Fist?~
 @43   = ~[Husam]A pity. We do wish you good fortune in this fight, <CHARNAME>. Do not mistake the Shadow Thieves as your enemies - in this war, we are not.~
 @44   = ~[Husam]It is my pleasure, <CHARNAME>.~
 @45   = ~[Husam]I'll stay in the back.~
@@ -249,3 +249,9 @@
 @242  = ~[Husam]I indeed came to see you guided out of the city safely. You are my asset, remember?~
 @243  = ~Your asset thanks for your affection.~
 @244  = ~[Husam]I won't, not that I know now that you are safe.~
+@245  = ~Wait, I know where this ends - the *Shadow Thieves* would have done it *so* much better! Right?~
+@246  = ~[Husam](smiles) We would have, indeed. After an attack orchestrated by the Shadow Thieves, you would not wonder whether it was meant to kill - or not.~
+@247  = ~(teasingly) Now I get it - you came to clearify that the attack wasn't the Shadow Thieves' doing to prevent your reputation as an assassin guild to drop!~
+@248  = ~[Husam]Hahaha! There is some truth to that, I guess. But can I hope for an answer regarding my original question?~
+@249  = ~I will not join forces with you, Husam.~
+@250  = ~Yes, I know you know how to handle your 'tools'... after the *detailed* demonstration back in Badur's Gate.~

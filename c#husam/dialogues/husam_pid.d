@@ -279,6 +279,15 @@ SAY @42 /* What do you want me to tell you? */
 /* after coming to bd3000; before castle assault (is checked in transition to this state) */
 + ~Global("C#Husam_SoD1stCamp","GLOBAL",5)~ + @43 /* Tell me the newest info you gathered. */ DO ~SetGlobal("C#Husam_SoD1stCamp","GLOBAL",6)~ + update_bd3000
 
++ ~GlobalGT("C#Husam_Dialog","GLOBAL",4)
+!GlobalGT("C#RtD_KnowsPortalBlood","GLOBAL",2)
+Global("C#HusamSoD_PID_WhyKN","LOCALS",0)~ + @129 /* If Caelar wants to kidnap me, I want to know why. Can you provide any intel on that?~ */ DO ~SetGlobal("C#HusamSoD_PID_WhyKN","LOCALS",1)~ + why_kidnap+ ~GlobalGT("C#Husam_Dialog","GLOBAL",4)
+!GlobalGT("C#RtD_KnowsPortalBlood","GLOBAL",2)
+Global("C#HusamSoD_PID_WhyKN","LOCALS",1)~ + @130 /* Any news on what Caelar wanted to kidnap me for?~ */ DO ~IncrementGlobal("C#HusamSoD_PID_WhyKN","LOCALS",1)~ + why_kidnap
++ ~GlobalGT("C#Husam_Dialog","GLOBAL",4)
+!GlobalGT("C#RtD_KnowsPortalBlood","GLOBAL",2)
+Global("C#HusamSoD_PID_WhyKN","LOCALS",2)~ + @130 /* Any news on what Caelar wanted to kidnap me for?~ */ DO ~IncrementGlobal("C#HusamSoD_PID_WhyKN","LOCALS",1)~ + why_kidnap
+
 + ~Global("C#Husam_HephernaanBetrayal","GLOBAL",2)
 Global("C#RtD_HepherFiend","GLOBAL",0)
 Global("C#HusamSoD_PID_UmbAcc","LOCALS",0)~ + @44 /* Any insight on how Hephernaan is betraying Caelar? */ DO ~SetGlobal("C#HusamSoD_PID_UmbAcc","LOCALS",1)~ + hephernaan_betrayal_pid
@@ -359,6 +368,22 @@ OR(2) !PartyHasItem("bdchan03") !PartyHasItem("bdmisc04")~ + @58 /* Is there any
 
 ++ @39 /* Let me ask something else. */ + pid
 ++ @40 /* I have no more questions. */ EXIT
+END
+
+
+IF ~~ THEN why_kidnap
+SAY @131 /* ~Not yet. I have my spies on that - of course. This knowledge is imperative to understand our foe. I'll let you know if I gather any intel.~ */
+IF ~~ THEN EXIT
+END
+
+IF ~~ THEN why_kidnap_01
+SAY @132 /* ~No, nothing besides what the *crusaders* think Caelar wants you for - prestige, fighting power, moral support for them, weaken the coalition, showing dominance against their enemies. This sounds awfully nice, but it's not a reason to kidnap someone. I'll let you know if I'll learn anything new.~ */
+IF ~~ THEN EXIT
+END
+
+IF ~~ THEN why_kidnap_02
+SAY @133 /* ~No - nothing yet, <CHARNAME>. Whatever Caelar *really* wants from you is a secret very well hidden in the crusade.~ */
+IF ~~ THEN EXIT
 END
 
 IF ~~ THEN caelar_child_bhaal 
