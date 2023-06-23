@@ -511,16 +511,22 @@ SAY @154 /* ~I know you received powers through dreams. But this - this was some
 END
 
 IF ~Global("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",1)
-Global("C#Husam_c#stff24_10","GLOBAL",1)~ THEN bhaal_bridge_00
+Global("C#Husam_c#stff24_10","GLOBAL",1)
+!AreaCheck("bd2000")~ THEN bhaal_bridge_00
 SAY @135 /* All seems to indicate that what happened on Boareskyr Bridge was caused by divine magic. */
 ++ @132 /* You don't say! */ + bhaal_bridge_02
 ++ @133 /* That it was, indeed. */ + bhaal_bridge_02
 ++ @134 /* Well, it's over now. Let's move on. */ + bhaal_bridge_06
 END
 
-IF ~~ THEN bhaal_bridge_01
+IF ~Global("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",1)
+Global("C#Husam_c#stff24_10","GLOBAL",1)
+AreaCheck("bd2000")~ THEN bhaal_bridge_01
 SAY @136 /* All seems to indicate that what happened here was caused by divine magic. */
-IF ~~ THEN + bhaal_bridge_02
++ ~Global("C#Husam_c#stff24_10","GLOBAL",1)~ + @132 /* You don't say! */ + bhaal_bridge_02
++ ~Global("C#Husam_c#stff24_10","GLOBAL",1)~ + @133 /* That it was, indeed. */ + bhaal_bridge_02
++ ~Global("C#Husam_c#stff24_10","GLOBAL",1)~ + @134 /* Well, it's over now. Let's move on. */ + bhaal_bridge_06
+IF ~Global("C#Husam_c#stff24_10","GLOBAL",0)~ THEN + bhaal_bridge_02
 END
 
 IF ~~ THEN bhaal_bridge_02
