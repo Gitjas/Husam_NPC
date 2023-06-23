@@ -503,7 +503,7 @@ APPEND c#husamJ
 
 IF ~Global("C#Husam_SoDBoareskyrBridgeScene","GLOBAL",1)
 Global("C#Husam_c#stff24_10","GLOBAL",0)~ THEN bhaal_bridge
-SAY @0 /* ~I know you received powers through dreams. But this - this was something different.~ */
+SAY @154 /* ~I know you received powers through dreams. But this - this was something different.~ */
 ++ @131 /* What *was* that? */ + bhaal_bridge_01
 ++ @132 /* You don't say! */ + bhaal_bridge_01
 ++ @133 /* That it was, indeed. */ + bhaal_bridge_01

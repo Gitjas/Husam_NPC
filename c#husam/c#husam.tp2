@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230620_interim~
+VERSION ~Beta_230623_interim~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -1126,7 +1126,7 @@ PRINT @50009 /* The Boareskyr Bridge Scene mod detected. */
 */
 OUTER_SET after_incident_at_bridge_10 = STATE_WHICH_SAYS 76 IN ~c#sodboabri/translations/autotra/%s/dialogues.tra~ FROM ~c#stff24~
   COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_boareskyrbridge.d~ 
-     USING ~c#husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
+     USING ~c#husam/translations/autotra/%LANGUAGE%/husam_sod_reaction_main_events.tra~
 END
 
 /* Brage SoD content */
