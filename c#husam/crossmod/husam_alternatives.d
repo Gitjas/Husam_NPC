@@ -109,7 +109,7 @@ END
 
 IF ~~ THEN malficus_path_02
 SAY ~Nevertheless, I will go with you. Why? Because I am convinced that if you don't go to Irenicus, he will come for you. And that is all that matters.~
-IF ~~ THEN DO ~Global("C#Husam2_CM_AltMal","GLOBAL",2)~ EXIT
+IF ~~ THEN DO ~SetGlobal("C#Husam2_CM_AltMal","GLOBAL",2)~ EXIT
 END
 
 

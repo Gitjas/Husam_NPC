@@ -69,13 +69,13 @@ END
 IF ~~ THEN + meeting_20
 
 CHAIN
-IF ~~ THEN meeting_09
-SAY @29 /* [Husam]Oh, but I am not 'the' Shadow Thieves, <CHARNAME>. I am merely a rogue with, let's say, very good connections. A very good rogue, I might add. */
+IF ~~ THEN C#HUSAM1 meeting_09
+@29 /* [Husam]Oh, but I am not 'the' Shadow Thieves, <CHARNAME>. I am merely a rogue with, let's say, very good connections. A very good rogue, I might add. */
 == C#HUSAM1 IF ~Class(Player1,THIEF_ALL)~ THEN @41 /* [Husam]Not that you would need one, considering your own profession... But I am offering it nontheless. Two pairs of eyes see better in the dark than one. */
 END
 ++ @31 /* Information about me? What do you mean? */ + meeting_21
 + ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @250 /* ~Yes, I know you know how to handle your 'tools'... after the *detailed* demonstration back in Badur's Gate.~ */ + meeting_09a
-+ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @32 /* Are you offering me to 'relieve the tension' again, my dextrous rogue? */ DO ~Global("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
++ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @32 /* Are you offering me to 'relieve the tension' again, my dextrous rogue? */ DO ~SetGlobal("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
 ++ @33 /* Yes, I would like you to join me. */ + meeting_14
 ++ @249 /* I will not join forces with you, Husam. */ + meeting_13
 
@@ -85,7 +85,7 @@ APPEND C#HUSAM1
 IF ~~ THEN meeting_09a
 SAY @30 /* [Husam]That you do. (He smiles.) */
 ++ @31 /* Information about me? What do you mean? */ + meeting_21
-+ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @32 /* Are you offering me to 'relieve the tension' again, my dextrous rogue? */ DO ~Global("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
++ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @32 /* Are you offering me to 'relieve the tension' again, my dextrous rogue? */ DO ~SetGlobal("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
 ++ @33 /* Yes, I would like you to join me. */ + meeting_14
 ++ @249 /* I will not join forces with you, Husam. */ + meeting_13
 END
@@ -178,7 +178,7 @@ IF ~~ THEN meeting_20
 SAY @52 /* [Husam]I have only one condition. Once I join you, I will not leave your side. Tell me to fall behind if you need, but the moment you send me away I will retreat to the shadows and be gone from your sight. What say you? */
 ++ @31 /* Information about me? What do you mean? */ + meeting_21
 ++ @42 /* Join forces with the Shadow Thieves alongisde the Flaming Fist? */ + meeting_09
-+ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @53 /* Are you offering me to 'relieve the tention' again, my dextrous rogue? */ DO ~Global("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
++ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @53 /* Are you offering me to 'relieve the tention' again, my dextrous rogue? */ DO ~SetGlobal("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
 ++ @54 /* I can't let myself be connected to the Shadow Thieves, Husam. This would come with a certain reputation I can't afford. */ + meeting_24
 ++ @55 /* Does "support me in my endeavors" also include that you'll share anything you'll learn about Caelar and the crusade with me and the Dukes? */ + meeting_25
 ++ @33 /* Yes, I would like you to join me. */ + meeting_14
@@ -220,7 +220,7 @@ IF ~~ THEN meeting_24
 SAY @61 /* [Husam]Oh, but none other than the people who already know would have to know who I am, <CHARNAME>. You know best that I can and will disguise myself to stay unnoticed. So, what do you say? */
 ++ @31 /* Information about me? What do you mean? */ + meeting_21
 ++ @42 /* Join forces with the Shadow Thieves alongisde the Flaming Fist? */ + meeting_09
-+ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @53 /* Are you offering me to 'relieve the tention' again, my dextrous rogue? */ DO ~Global("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
++ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @53 /* Are you offering me to 'relieve the tention' again, my dextrous rogue? */ DO ~SetGlobal("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
 ++ @55 /* Does "support me in my endeavors" also include that you'll share anything you'll learn about Caelar and the crusade with me and the Dukes? */ + meeting_25
 ++ @33 /* Yes, I would like you to join me. */ + meeting_14
 ++ @34 /* No, definitely not. */ + meeting_13
@@ -230,7 +230,7 @@ IF ~~ THEN meeting_25
 SAY @62 /* [Husam]That it would, yes. Any information related to the crusade which will help the coalition forces to defeat Caelar and her minions I will share willingly and for free. */
 ++ @31 /* Information about me? What do you mean? */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1)~ + meeting_21
 ++ @42 /* Join forces with the Shadow Thieves alongisde the Flaming Fist? */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1)~ + meeting_09
-+ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @53 /* Are you offering me to 'relieve the tention' again, my dextrous rogue? */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1) Global("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
++ ~GlobalGT("RE1_HusamFlirt","GLOBAL",0)~ + @53 /* Are you offering me to 'relieve the tention' again, my dextrous rogue? */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1) SetGlobal("C#HU_HeSaidInsists","LOCALS",1)~ + meeting_12
 ++ @54 /* I can't let myself be connected to the Shadow Thieves, Husam. This would come with a certain reputation I can't afford. */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1)~ + meeting_24
 ++ @33 /* Yes, I would like you to join me. */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1)~ + meeting_14
 ++ @34 /* No, definitely not. */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",1)~ + meeting_13
