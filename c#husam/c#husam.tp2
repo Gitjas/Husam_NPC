@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230623_interim~
+VERSION ~Beta_230717_interim~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -535,6 +535,13 @@ END
 COMPILE EVALUATE_BUFFER ~c#husam/dialogues/c#husamj.d~ USING ~C#Husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
 
 
+/* Prepare Husam's dream script */
+<<<<<<<< ...inlined/c#husamd.baf
+>>>>>>>>
+COMPILE ~...inlined/c#husamd.baf~
+
+
+
 /* SoD content */
 
 ACTION_IF (GAME_IS ~bgee eet~ AND FILE_EXISTS_IN_GAME ~bd0103.are~) THEN BEGIN
@@ -1025,6 +1032,9 @@ COMPILE EVALUATE_BUFFER ~c#husam/dialogues/C#HusamP.d~
 
 /* PID */
 COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_pid.d~
+
+/* romance */
+INCLUDE ~c#husam/romance/tpa/sod_romance.tpa~
 
 
 ///////////////////////////////////////////////////////////////
