@@ -1,0 +1,15 @@
+/* VerrSza - he has too good a sense of smell! Husam is worried -> crossmod */
+IF
+	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+	!See([ENEMY])
+	See(Player1) 
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	CombatCounter(0)
+	GlobalLT("C#HU_SoD_OtherRomance","GLOBAL",5)
+	Global("L#1VerrRomanceActive","GLOBAL",2)
+	InMyArea("L#1VERR")
+	!Dead("L#1VERR")
+THEN
+	RESPONSE #100
+		SetGlobal("C#HU_SoD_OtherRomance","GLOBAL",5)
+END

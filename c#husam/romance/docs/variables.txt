@@ -1,0 +1,6 @@
+/* variables from bg1re */
+/* Global("C#LC_HusamEncounter","GLOBAL",25): encounter was declined */
+/* Global("C#LC_HusamEncounter","GLOBAL",4): encounter was accepted but no sex (could also be checked via "Global("RE1_HusamFlirt","GLOBAL",1) Global("RE1_HusamSex","GLOBAL",0)") */
+/* Global("RE1_HusamSex","GLOBAL",1): HC and Husam had sex in first encounter (only) */
+/* Global("RE1_HusamSex","GLOBAL",2): HC and Husam had sex in second encounter, only PC */
+/* Global("RE1_HusamSex","GLOBAL",3): HC and Husam had sex in second encounter, also Husam */

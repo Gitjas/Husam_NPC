@@ -1,0 +1,146 @@
+/* tp2 additions */
+
+
+// Get state for C#HusamJ %pid% (in husam_pid.d)
+/* @0  = ~[PID first line]What can I do for you?~ */
+OUTER_SET pid = STATE_WHICH_SAYS 0 IN ~c#husam/translations/autotra/%s/husam_pid.tra~ FROM ~C#HusamJ~
+// Get state for C#HusamJ %st_alliance% (in husam_pid.d)
+/* @26 /* Which is very beneficial for me. What of it? */ */
+OUTER_SET st_alliance = STATE_WHICH_SAYS 26 IN ~c#husam/translations/autotra/%s/husam_pid.tra~ FROM ~C#HusamJ~
+// Get state for C#HusamJ %script_chose% (in husam_pid.d)
+/* @200015 /* ~What do you want me to do?~ */ */
+OUTER_SET script_chose = STATE_WHICH_SAYS 200015 IN ~c#husam/translations/autotra/%s/game.tra~ FROM ~C#HusamJ~
+
+    OUTER_SPRINT ~HC_FLIRTCOUNTER_NOTICEABLE~ ~GlobalGT("C#HU_SoD_FlirtCount","LOCALS",2)~
+
+    OUTER_SPRINT ~HC_FLIRTCOUNTER_HIGHENOUGH~ ~GlobalGT("C#HU_SoD_FlirtCount","LOCALS",6)~
+
+    OUTER_SPRINT ~ROMANCE_TIMER_LONG~ ~10~ //600
+    OUTER_SPRINT ~ROMANCE_TIMER_SHORT~ ~10~ //300
+
+    OUTER_SPRINT ~Generelle_PID_Optionen~ 
+    ~~~~~++ ~Lasst mich noch etwas anderes fragen.~ + %pid%
++ ~%IT_IS_SOD%
+Global("C#HU_SoDPID_persoenlich","LOCALS",0)~ + ~Erzählt mir etwas von Euch, Husam.~ DO ~SetGlobal("C#HU_SoDPID_persoenlich","LOCALS",1)~ + persoenlich_00
++ ~%IT_IS_SOD%
+Global("C#HU_SoDPID_persoenlich","LOCALS",1)~ + ~Erzählt mir etwas von Euch, Husam.~ + persoenlich
++ ~%IT_IS_SOD%
+Global("C#HU_SoDPID_zusarb","LOCALS",1)
+!Global("C#HusamRomanceActive","GLOBAL",3)~ + ~(Ihr möchtet mit Husam flirten.)~ + pid_flirts
++ ~%IT_IS_SOD%
+Global("C#HU_SoDPID_zusarb","LOCALS",1)
+!Global("C#HusamRomanceActive","GLOBAL",3)~ + ~(Ihr versucht, Husam näher zu kommen.)~ + pid_flirts_01
++ ~%IT_IS_SOD%~ + @13 /* About our alliance... */ + %st_alliance%
+++ ~Ich habe keine weiteren Fragen.~ EXIT~~~~~
+
+OUTER_SPRINT ~Generelle_PID_Optionen_bd_plot99~ 
+~~~~~+ ~GlobalGT("bd_plot","global",99)~ + ~Lasst mich noch etwas anderes fragen.~ + %pid%
++ ~%IT_IS_SOD%
+GlobalGT("bd_plot","global",99)
+Global("C#HU_SoDPID_persoenlich","LOCALS",0)~ + ~Erzählt mir etwas von Euch, Husam.~ DO ~SetGlobal("C#HU_SoDPID_persoenlich","LOCALS",1)~ + persoenlich_00
++ ~%IT_IS_SOD%
+GlobalGT("bd_plot","global",99)
+Global("C#HU_SoDPID_persoenlich","LOCALS",1)~ + ~Erzählt mir etwas von Euch, Husam.~ + persoenlich
++ ~GlobalGT("bd_plot","global",99)
+%IT_IS_SOD%
+Global("C#HU_SoDPID_zusarb","LOCALS",1)
+!Global("C#HusamRomanceActive","GLOBAL",3)~ + ~(Ihr möchtet mit Husam flirten.)~ + pid_flirts
++ ~GlobalGT("bd_plot","global",99)
+%IT_IS_SOD%
+Global("C#HU_SoDPID_zusarb","LOCALS",1)
+!Global("C#HusamRomanceActive","GLOBAL",3)~ + ~(Ihr versucht, Husam näher zu kommen.)~ + pid_flirts_01
++ ~%IT_IS_SOD%~ + @13 /* About our alliance... */ + %st_alliance%
++ ~GlobalGT("bd_plot","global",99)~ + ~Ich habe keine weiteren Fragen.~ EXIT~~~~~
+
+/* SoD Romance */
+ACTION_IF (GAME_IS ~bgee~ AND FILE_EXISTS_IN_GAME ~bd0103.are~) THEN BEGIN
+
+/* dream script compilation */
+  EXTEND_BOTTOM ~c#husamd.bcs~ ~c#husam/romance/scripts/c#husamd_sod.baf~ EVALUATE_BUFFER
+
+  EXTEND_BOTTOM ~c#husam1.bcs~ ~c#husam/romance/scripts/c#husam_sod_romance.baf~ EVALUATE_BUFFER
+
+  COMPILE EVALUATE_BUFFER ~c#husam/romance/dialogues/sod_romance_pid_requests.d~
+~c#husam/romance/dialogues/sod_romance_pid.d~
+		~c#husam/romance/dialogues/sod_romance_phase3.d~
+		~c#husam/romance/dialogues/sod_romance_phase3b.d~
+		~c#husam/romance/dialogues/sod_romance_conflict.d~
+
+
+/* crossmod */
+/* Gavin, Isra - not available in SoD - Husam doesn't care */
+/* Ishlika - sets RA = 2 after flirty reply option - Husam doesn't care */
+/* SharTeel - SoD mod is still in beta */
+
+/* Ajantis SoD (+ BG1NPC romance) */
+ACTION_IF FILE_EXISTS_IN_GAME ~C#AjSoDG.dlg~ THEN BEGIN
+
+  EXTEND_TOP ~c#husam1.bcs~ ~c#husam/romance/crossmod/husam_ajantis_sod_romance.baf~ EVALUATE_BUFFER
+
+// Get state for C#HusamJ %other_romance_00% (in sod_romance_conflict.d)
+/* @0  = ~[Husam]Hmmm, da gibt es nur ein offensichtliches Problem.~ */
+OUTER_SET other_romance_00 = STATE_WHICH_SAYS 0 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %other_romance_01% (in sod_romance_conflict.d)
+/* @1  = ~[Husam]Hmm, reger Austausch ohne Konversation, meint Ihr? Es gibt in der Tat viele Möglichkeiten sich besser - um nicht zu sagen, INTIM - kennen zu lernen.~ */
+OUTER_SET other_romance_01 = STATE_WHICH_SAYS 1 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %other_romance_02% (in sod_romance_conflict.d)
+/* @2  = ~[Husam]Zumindest, wenn ich Eure Beziehung nicht komplett falsch einschätze.~ */
+OUTER_SET other_romance_02 = STATE_WHICH_SAYS 2 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+  COMPILE EVALUATE_BUFFER ~c#husam/romance/crossmod/husam_ajantis_sod_romance.d~ USING ~c#husam/translations/autotra/%LANGUAGE%/husam_ajantis_sod.tra~
+END /* Ajantis SoD */
+
+/* Aura ## */
+
+/* Drake - sets RA = 2 after PC said she's not sure m( ## */
+
+/* Dynaheir BG1NPC romance */
+ACTION_IF FILE_EXISTS_IN_GAME ~X#EDCUT1.bcs~ THEN BEGIN 
+
+  EXTEND_TOP ~c#husam1.bcs~ ~c#husam/romance/crossmod/husam_dynaheir_sod_romance.baf~ EVALUATE_BUFFER
+
+// Get state for C#HusamJ %other_romance_00% (in sod_romance_conflict.d)
+/* @0  = ~[Husam]Hmmm, da gibt es nur ein offensichtliches Problem.~ */
+OUTER_SET other_romance_00 = STATE_WHICH_SAYS 0 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %other_romance_01% (in sod_romance_conflict.d)
+/* @1  = ~[Husam]Hmm, reger Austausch ohne Konversation, meint Ihr? Es gibt in der Tat viele Möglichkeiten sich besser - um nicht zu sagen, INTIM - kennen zu lernen.~ */
+OUTER_SET other_romance_01 = STATE_WHICH_SAYS 1 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %other_romance_02% (in sod_romance_conflict.d)
+/* @2  = ~[Husam]Zumindest, wenn ich Eure Beziehung nicht komplett falsch einschätze.~ */
+OUTER_SET other_romance_02 = STATE_WHICH_SAYS 2 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+  COMPILE EVALUATE_BUFFER ~c#husam/romance/crossmod/husam_dynaheir_sod_romance.d~ 
+END /* Dynaheir BG1NPC romance */
+
+/* Sirine ##  */
+
+/* Verr'Sza SoD */
+ACTION_IF FILE_EXISTS_IN_GAME ~L#1DVerJ.dlg~ THEN BEGIN
+
+  EXTEND_TOP ~c#husam1.bcs~ ~c#husam/romance/crossmod/husam_verrsza_sod_romance.baf~ EVALUATE_BUFFER
+
+// Get state for C#HusamJ %other_romance_00% (in sod_romance_conflict.d)
+/* @0  = ~[Husam]Hmmm, da gibt es nur ein offensichtliches Problem.~ */
+OUTER_SET other_romance_00 = STATE_WHICH_SAYS 0 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %other_romance_01% (in sod_romance_conflict.d)
+/* @1  = ~[Husam]Hmm, reger Austausch ohne Konversation, meint Ihr? Es gibt in der Tat viele Möglichkeiten sich besser - um nicht zu sagen, INTIM - kennen zu lernen.~ */
+OUTER_SET other_romance_01 = STATE_WHICH_SAYS 1 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %pid_wohlbefinden_14% (in sod_romance_phase3.d)
+/* @0  = ~[Husam]Ich verstehe. (Er lächelt.) Dieses Spiel können wir ohne Einschränkung spielen, wenn Ihr wollt - so, wie wir es bereits taten. Ich jedenfalls werde es tun, solange Ihr willig seid.~ */
+OUTER_SET pid_wohlbefinden_14 = STATE_WHICH_SAYS 0 IN ~c#husam/translations/autotra/%s/sod_romance_phase3~ FROM ~C#HusamJ~
+
+// Get state for C#HusamJ %other_romance_reaction_04% (in sod_romance_conflict.d)
+/* @3  = ~I understand. Very well - let me say, it was my pleasure, indeed, <CHARNAME>, while it lasted.~ */
+OUTER_SET other_romance_reaction_04 = STATE_WHICH_SAYS 3 IN ~c#husam/translations/autotra/%s/sod_romance_conflict.tra~ FROM ~C#HusamJ~
+
+  COMPILE EVALUATE_BUFFER ~c#husam/romance/crossmod/husam_verrsza_sod_romance.d~
+END /* Verr'Sza SoD */
+
+END //SoD
+
