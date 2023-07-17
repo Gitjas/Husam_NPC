@@ -531,14 +531,14 @@ END
 
 /* Follow up: pondering about the camp Thieves Guild  */
 IF
-    RealGlobalTimerExpired("C#HusamDialogTimer","GLOBAL")
 	OR(2) InParty(Myself) Global("C#HusamJoined","GLOBAL",2)
+  RealGlobalTimerExpired("C#HusamDialogTimer","GLOBAL")
   !See([ENEMY])
   See(Player1) 
   !StateCheck(Player1,CD_STATE_NOTVALID)
   CombatCounter(0)
 //	GlobalLT("bd_plot","global",##) //before main camp attack
-	GlobalTimerExpired("C#HU_SoDCampTGTimer","GLOBAL")
+//	GlobalTimerExpired("C#HU_SoDCampTGTimer","GLOBAL")
 	AreaCheck("bd3000")
 	!Dead("bdwaizah")
 	See("bdwaizah")
