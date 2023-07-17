@@ -565,7 +565,7 @@ END
 
 /* Follow up dialogue after dealing with Rhynwis - all quest paths */
 
-/* guild got Husam'd advice and is striving */
+/* guild got Husam'd advice and is thriving */
 IF ~Global("C#Husam_SoDCampTGFollowUp","LOCALS",1)
 OR(3)
 Global("C#Husam_SoDCampThievesGuild","GLOBAL",12)

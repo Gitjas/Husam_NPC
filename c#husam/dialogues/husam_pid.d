@@ -3,7 +3,7 @@
 APPEND C#HusamJ
 
 IF ~IsGabber(Player1)~ THEN pid
-SAY @0 /* What can I do for you? */
+SAY @0 /* [PID first line]What can I do for you? */
 
 /* SoD  */
 
@@ -37,6 +37,8 @@ Global("C#HU_SoD_questPID1","LOCALS",0)~ + @4 /* It's good that this "Bren drama
 
 + ~%IT_IS_SOD% Global("C#HusamSoD_PID_marchlaw","LOCALS",0)~ + @8 /* And, how does it feel to march at the side of law and official forces? */ DO ~SetGlobal("C#HusamSoD_PID_marchlaw","LOCALS",1)~ + marching_law_order
 
+/* romance PIDs will be inersted here */
+
 /* general statement about the crusade */
 + ~%IT_IS_SOD% GlobalLT("bd_plot","global",410) GlobalLT("C#Husam_SoD_CaelInfoPID","LOCALS",3)~ + @9 /* Husam, I want you to tell me any information your sources gather about Caelar. Anything that might be important to our cause. */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",3)~ + general_info_PID
 + ~%IT_IS_SOD% GlobalLT("bd_plot","global",410) GlobalLT("C#Husam_SoD_CaelInfoPID","LOCALS",2)~ + @10 /* You don't need to tell me informations about Caelar's crusade, Husam. I am sure we'll learn about it anyway. */ DO ~SetGlobal("C#Husam_SoD_CaelInfoPID","LOCALS",2)~ + general_info_PID_00
@@ -58,8 +60,6 @@ Global("C#Husam_SoD1stCamp","GLOBAL",5)~ + @12 /* You said you had current infor
 /* after castle assault; before portal is opened */
 + ~%IT_IS_SOD% GlobalGT("bd_plot","global",409) GlobalLT("bd_plot","global",490)~ + @11 /* I have questions about Caelar and her crusade. */ + no_more_crusade_questions
 
-+ ~%IT_IS_SOD%~ + @13 /* About our alliance... */ + st_alliance
-
 /* BGII */
 
 + ~%IT_IS_BG2%  Global("C#HusamSoA_PID_career","LOCALS",0)~ + @14 /* So, watching me didn't turn out to be the career boost you hoped for, hmm? */ DO ~SetGlobal("C#HusamSoA_PID_career","LOCALS",1)~ + career2
@@ -73,7 +73,9 @@ This is what usually is dealt with by the kicked out "P" dialogue for re-joining
 
 + ~!InParty(Myself) Global("C#HusamJoined","GLOBAL",2) NumInParty(6)~ + @15 /* Husam, would you grant me access to your inventory? */ + join
 
-+ ~Global("C#%NPCname%Joined","GLOBAL",2)~ + @200020 /* ~I want to give you orders how to follow me.~ */ + script_chose
++ ~Global("C#%NPCname%Joined","GLOBAL",2)~ + @200020 /* ~I want to give you instructions how to follow me.~ */ + script_chose
+
++ ~%IT_IS_SOD%~ + @13 /* About our alliance... */ + st_alliance
 
 ++ @16 /* Nothing at the moment. */ EXIT
 END

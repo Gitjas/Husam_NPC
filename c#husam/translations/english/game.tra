@@ -91,7 +91,7 @@
 @200012 = ~I want you to only defend yourself if attacked.~
 @200013 = ~Do not fight at all, no matter what.~
 @200014 = ~I have no new instructions for fights.~
-@200015 = ~What do you want me to do?~
+@200015 = ~[special PID comment - translators leave this comment in]What do you want me to do?~
 @200016 = ~Yes?~
 @200017   = ~Please warn me if your health gets too low in the next fight.~
 @200018   = ~I want you to stop warning me about your health conditions in our fights.~
