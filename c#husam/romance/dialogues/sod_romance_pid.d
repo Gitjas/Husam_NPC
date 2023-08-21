@@ -101,7 +101,7 @@ OR(2)
 
 + ~Global("C#HU_SoDPID_pid_flirts","LOCALS",0)
 !Global("C#HusamRomanceActive","GLOBAL",3)~ + ~Wer sagt denn was von Informationen? Wir können ja auch einfach miteinander ... reden. (Augenaufschlag)~ DO ~IncrementGlobal("C#HU_SoD_FlirtCount","LOCALS",1) SetGlobal("C#HU_SoDPID_pid_flirts","LOCALS",1)~ + pid_flirts
-+ ~Global("C#HU_SoDPID_pid_more_02","LOCALS",0)~ + ~Ihr seid nicht der Typ, der sich emotional bindet, oder? ~ DO ~SetGlobal("C#HU_SoDPID_pid_more_02","LOCALS",1)~ + more_02
++ ~Global("C#HU_SoDPID_pid_more_02","LOCALS",0)~ + ~Ihr seid nicht der Typ, der sich emotional bindet, oder?~ DO ~SetGlobal("C#HU_SoDPID_pid_more_02","LOCALS",1)~ + more_02
 ++ ~Lasst mich noch etwas anderes fragen.~ + %pid%
 + ~%IT_IS_SOD%
 Global("C#HU_SoDPID_zusarb","LOCALS",1)
@@ -647,7 +647,7 @@ END
 
 IF ~~ THEN no_drunk
 SAY ~[Husam](er lächelt) Ein wenig unausstehlich zu wirken, ist Teil meiner Tarnung.~
-+ ~Global("C#HU_SoDPID_no_drunk2","LOCALS",0)~ + ~Ihr habt mich ganz schön überrascht, als Ihr Euch in Baldurs Tor zu erkennen gegeben habt.~ DO ~SetGlobal("C#HU_SoDPID_no_drunk2","LOCALS",1)~ + no_drunk_01
++ ~Global("C#HU_SoDPID_no_drunk2","LOCALS",0)~ + ~Es kam unerwartet, als Ihr Euch in Baldurs Tor zu erkennen gegeben habt.~ DO ~SetGlobal("C#HU_SoDPID_no_drunk2","LOCALS",1)~ + no_drunk_01
 %Generelle_PID_Optionen%
 END
 

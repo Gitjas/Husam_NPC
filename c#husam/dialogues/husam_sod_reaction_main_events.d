@@ -350,14 +350,14 @@ IF ~~ THEN c#husamj heph_traitor_chain
 !Global("C#HU_SoD_BrensQuest","GLOBAL",6)
 !Global("C#HU_SoD_BrensQuest","GLOBAL",7)
 !Global("C#HU_SoD_BrensQuest","GLOBAL",13)
-!Global("C#HU_SoD_BrensQuest","GLOBAL",14)~ THEN @90 /* Hephernaan is an enemy we should not underestimate, <CHARNAME>. He seems to be master of perception, and I am completely blind when it comes to him. */
+!Global("C#HU_SoD_BrensQuest","GLOBAL",14)~ THEN @90 /* Hephernaan is an enemy we should not underestimate, <CHARNAME>. He seems to be master of deception, and I am completely blind when it comes to him. */
 == c#husamJ IF ~GlobalLT("bd_plot","global",485)
 OR(3) Global("C#HU_SoD_BrensQuest","GLOBAL",5)
 Global("C#HU_SoD_BrensQuest","GLOBAL",6)
-Global("C#HU_SoD_BrensQuest","GLOBAL",7)~ THEN @91 /* Hephernaan is an enemy we should not underestimate, <CHARNAME>. He seems to be master of perception. I was so far completely blind when it comes to him - and Bren didn't report back any details, either. */
+Global("C#HU_SoD_BrensQuest","GLOBAL",7)~ THEN @91 /* Hephernaan is an enemy we should not underestimate, <CHARNAME>. He seems to be master of deception. I was so far completely blind when it comes to him - and Bren didn't report back any details, either. */
 == c#husamJ IF ~GlobalLT("bd_plot","global",485)
 OR(2) Global("C#HU_SoD_BrensQuest","GLOBAL",13)
-Global("C#HU_SoD_BrensQuest","GLOBAL",14)~ THEN @92 /* Hephernaan is an enemy we should not underestimate, <CHARNAME>. He seems to be master of perception. I was so far completely blind when it comes to him - Bren was only one victim of several of Hephernaan's power. */
+Global("C#HU_SoD_BrensQuest","GLOBAL",14)~ THEN @92 /* Hephernaan is an enemy we should not underestimate, <CHARNAME>. He seems to be master of deception. I was so far completely blind when it comes to him - Bren was only one victim of several of Hephernaan's power. */
 END
 IF ~~ THEN DO ~SetGlobal("C#Husam_HepherFiend","GLOBAL",2)~ EXIT
 
