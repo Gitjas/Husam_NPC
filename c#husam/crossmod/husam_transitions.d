@@ -6,7 +6,7 @@
 APPEND C#HusamJ 
 IF WEIGHT #-1
 ~Global("C#Husam_TransitionsLeave","GLOBAL",1)~ THEN sod_leave
-@1 /* ~If you leave the Sword Coast and the Crusade I am afraid our companionship ends here. It was a pleasure to work with you, <CHARNAME>. Farewell.~ */
+SAY @1 /* ~If you leave the Sword Coast and the Crusade I am afraid our companionship ends here. It was a pleasure to work with you, <CHARNAME>. Farewell.~ */
 IF ~InParty("C#Husam1")~ THEN DO ~SetInterrupt(FALSE)
 SetGlobal("#L_BG2ExitModded","LOCALS",2)
 SetGlobal("C#Husam_TransitionsLeave","GLOBAL",4)

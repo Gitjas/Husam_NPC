@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230xxx_interim~
+VERSION ~Beta_230919~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -147,11 +147,13 @@ LANGUAGE ~English~
          ~C#Husam/Translations/english/gametra~
 	 ~C#Husam/Translations/english/journal.tra~
 
+/*
 LANGUAGE ~German~
          ~deutsch~   
          ~C#Husam/Translations/deutsch/setup.tra~
          ~C#Husam/Translations/deutsch/gametra~
 	 ~C#Husam/Translations/deutsch/journal.tra~
+*/
 
 BEGIN @50000 /* ~Husam NPC for SoD, BGT, BGII:EE, BGII:ToB, and EET~ */
 DESIGNATED 0
@@ -1033,8 +1035,6 @@ COMPILE EVALUATE_BUFFER ~c#husam/dialogues/C#HusamP.d~
 /* PID */
 COMPILE EVALUATE_BUFFER ~c#husam/dialogues/husam_pid.d~
 
-/* romance */
-INCLUDE ~c#husam/romance/tpa/sod_romance.tpa~
 
 
 ///////////////////////////////////////////////////////////////
@@ -1180,10 +1180,10 @@ END /* Imoen 4 Ever component "Give Imoen dialogue content during chapters 8 to 
 
 ACTION_IF (MOD_IS_INSTALLED ~transitions/setup-transitions.tp2~ ~0~) THEN BEGIN
   PRINT @50012 /* Transitions mod detected. */
-  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_crossmod_transitions.d~ USING ~C#Husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
-  EXTEND_TOP ~C#Husam1.bcs~ ~c#husam/crossmod/husam_crossmod_transitions.baf~
+  COMPILE EVALUATE_BUFFER ~c#husam/crossmod/husam_transitions.d~ USING ~C#Husam/translations/autotra/%LANGUAGE%/husam_sod.tra~
+  EXTEND_TOP ~C#Husam1.bcs~ ~c#husam/crossmod/husam_transitions.baf~
     EVALUATE_BUFFER /* Husam should not remain dead in case he was upon transition */
-  EXTEND_TOP ~#L_CUT09.bcs~ ~c#husam/crossmod/husam_crossmod_transitions_eet.baf~ 
+  EXTEND_TOP ~#L_CUT09.bcs~ ~c#husam/crossmod/husam_transitions_eet.baf~ 
     EVALUATE_BUFFER
 END
 
