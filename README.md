@@ -26,7 +26,7 @@ So far, only the SoD content of the mod is finished. In BGII, Husam can be taken
 
 [Detailed readme in English](https://htmlpreview.github.io/?https://github.com/Gitjas/Husam_NPC/blob/master/c%23husam/readme.husam.english.html)
 
-[German Discussion Thread at Kerzenburgforum](https://baldurs-gate.de/index.php?threads/brandock-der-magier-npc-mod-f%C3%BCr-baldurs-gate.44913](https://baldurs-gate.de/index.php?threads/husam-npc-f%C3%BCr-sod-und-bgii-noch-auf-englisch-und-bgii-noch-nicht-beendet.45501/)
+[German Discussion Thread at Kerzenburgforum](https://baldurs-gate.de/index.php?threads/husam-npc-f%C3%BCr-sod-und-bgii-noch-auf-englisch-und-bgii-noch-nicht-beendet.45501/)
 
 ## Copyright
 This mod is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC. This mod is also not developed, supported, or endorsed by BioWare, Black Isle Studios, Interplay Entertainment Corp., Overhaul Games or Beamdog. All other trademarks and copyrights are property of their respective owners. 
