@@ -3,13 +3,15 @@ Adds Husam, the Shadow Thief from BG1, as a joinable NPC in SoD and BGII. Please
 
 ## General Info
 Husam is a Shadow Thief from Amn, who was sent in BG1 to make sure the accusations against his guild regarding the murders where proven to be wrong. In the original game, he reveals himself to the PC near the end of BG1 and guides the PC to the real culprits.
-The mod contains 3 components:
+The mod contains 4 components:
 
 Component 1 is the main component that will insert Husam as an NPC into SoD and BGII. All other components are dependent on this one but optional.
 
 As a second, optional component, the mod's portrait and soundset can be assigned to the original game Husam, as well. This will not change his very first line if met while he is still pretending to be drunk.
 
 The 3rd component installs the crossmod with other mods and should be installed late.
+
+The 4th component gives a choice of an alternate portrait by Acifer, which was the default portrait for the first releases.
 
 Please note: For Husam to react to game events in SoD accordingly, the main component (Tracking System, 2nd component) of "Road to Discovery" needs to be included in your install (independent of install order).
 
