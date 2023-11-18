@@ -2,7 +2,7 @@ BACKUP ~C#Husam/backup~
 AUTHOR ~Please post at G3 or Kerzenburgforum, refer to readme.~ 
 
 
-VERSION ~Beta_230919~
+VERSION ~Beta_231118~
 
 README ~C#Husam/readme.husam.%LANGUAGE%.html~ ~C#Husam/readme.husam.english.html~
 
@@ -1251,3 +1251,39 @@ PRINT @50011 /* Brandock the Mage mod detected. */
 END /* Brandock NPC */
 
 
+
+///////////////////////////////////////////////////////////
+// Install alternate portrait, also from Acifer    //
+/////////////////////////////////////////////////////////
+
+
+BEGIN @50020 /* ~Alternative #1, by Acifer~ */ DESIGNATED 20 
+LABEL c#husam-Portrait_Alternative_1
+	SUBCOMPONENT @50021 /* ~Install Alternate Portrait~ */
+REQUIRE_COMPONENT ~c#husam.tp2~ ~0~  @50003 /* ~Husam main component needs to be installed for this.~ */
+
+COPY ~c#husam/Portraits/alternate_1/c#husamL.bmp~ ~override~
+
+ACTION_IF GAME_IS ~tob bgt~ BEGIN
+  COPY ~c#husam/Portraits/alternate_1/c#husamM.bmp~ ~override~
+  COPY ~c#husam/Portraits/alternate_1/c#husamS.bmp~ ~override~
+END ELSE BEGIN
+  COPY ~c#husam/Portraits/alternate_1/c#husamL.bmp~ ~override/c#husamM.bmp~
+  COPY ~c#husam/Portraits/alternate_1/c#husamL.bmp~ ~override/c#husamS.bmp~
+END
+
+
+BEGIN @50022 /* ~Default, by Acifer (included in main component)~ */ DESIGNATED 21 
+LABEL c#husam-Portrait_Default
+	SUBCOMPONENT @50021
+REQUIRE_COMPONENT ~c#husam.tp2~ ~0~  @50003 /* ~Husam main component needs to be installed for this.~ */
+
+COPY ~c#husam/Portraits/c#husamL.bmp~ ~override~
+
+ACTION_IF GAME_IS ~tob bgt~ BEGIN
+  COPY ~c#husam/Portraits/c#husamM.bmp~ ~override~
+  COPY ~c#husam/Portraits/c#husamS.bmp~ ~override~
+END ELSE BEGIN
+  COPY ~c#husam/Portraits/c#husamL.bmp~ ~override/c#husamM.bmp~
+  COPY ~c#husam/Portraits/c#husamL.bmp~ ~override/c#husamS.bmp~
+END
