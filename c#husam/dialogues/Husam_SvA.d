@@ -306,7 +306,7 @@ END
 APPEND C#Husam2
 
 IF ~~ THEN meeting_bg2_07
-SAY ~(grimasses) As I thought.~
+SAY ~(grimaces) As I thought.~
 IF ~~ THEN + meeting_bg2_08
 END
 
@@ -339,7 +339,7 @@ SAY ~After the attack The Shadowmaster launched against Irenicus and the losses 
 + ~Global("C#HusamSoDInParty","GLOBAL",1)~ + ~Would it be possible you come along, again?~ + meeting_bg2_13
 ++ ~Join me, Husam.~ + meeting_bg2_13
 + ~Global("C#HusamSoDInParty","GLOBAL",1)~ + ~Why not secure your position as an informant, Husam. Come with me! I think it worked well the last time.~ + meeting_bg2_13
-++ ~Fine, but never forget I helped you. You are in my dept.~ + meeting_bg2_21
+++ ~Fine, but never forget I helped you. You are in my debt.~ + meeting_bg2_21
 ++ ~Farewell, then.~ + meeting_bg2_22
 END
 
@@ -350,7 +350,7 @@ SAY ~Join you instead of retrieving my position?~
 ++ ~Retrieve your position *by* joining me. I'm the famous Bhaalspawn-hero-of-Baldur's-Gate everyone has an interest in, remember?~ + meeting_bg2_16
 + ~Global("C#HusamSoDInParty","GLOBAL",1)~ + ~Right back to business, Husam. Be an informant at the front row, just as you were!~ + meeting_bg2_16
 ++ ~I need a capable rogue, and you are one.~ + meeting_bg2_15
-++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my dept.~ + meeting_bg2_21
+++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my debt.~ + meeting_bg2_21
 ++ ~Maybe not. Farewell, then.~ + meeting_bg2_22
 END
 
@@ -365,7 +365,7 @@ SAY ~I am still a quite capable thief, weeks of torture or no, that is true. But
 ++ ~The fight against Irenicus is important for the Shadow Thieves. Plus it is a personal one for you now, too - in a way. I'll persue him and make him account for his deeds!~ + meeting_bg2_14
 ++ ~Retrieve your position *by* joining me. I'm the famous Bhaalspawn-hero-of-Baldur's-Gate everyone has an interest in, remember?~ + meeting_bg2_16
 + ~Global("C#HusamSoDInParty","GLOBAL",1)~ + ~Right back to business, Husam. Be an informant at the front row, just as you were!~ + meeting_bg2_16
-++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my dept.~ + meeting_bg2_21
+++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my debt.~ + meeting_bg2_21
 ++ ~Maybe not. Farewell, then.~ + meeting_bg2_22
 END
 
@@ -374,7 +374,7 @@ SAY ~(smiles) Not with gold, <CHARNAME>. Offer me someting else.~
 ++ ~The fight against Irenicus is important for the Shadow Thieves. Plus it is a personal one for you now, too - in a way. I'll persue him and make him account for his deeds!~ + meeting_bg2_14
 ++ ~Retrieve your position *by* joining me. I'm the famous Bhaalspawn-hero-of-Baldur's-Gate everyone has an interest in, remember?~ + meeting_bg2_16
 + ~Global("C#HusamSoDInParty","GLOBAL",1)~ + ~Right back to business, Husam. Be an informant at the front row, just as you were!~ + meeting_bg2_16
-++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my dept.~ + meeting_bg2_21
+++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my debt.~ + meeting_bg2_21
 ++ ~Maybe not. Farewell, then.~ + meeting_bg2_22
 END
 
@@ -385,14 +385,14 @@ SAY ~(smiles) Well, I *was* assigned to watch you. I could continue to do it by 
 ++ ~You look battled. You'd need a rest before going adventuring, I think.~ + meeting_bg2_17
 ++ ~Do you expect me to heal and equipp you?~ + meeting_bg2_17
 ++ ~Yes, Husam, come along.~ + meeting_bg2_18
-++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my dept.~ + meeting_bg2_21
+++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my debt.~ + meeting_bg2_21
 ++ ~Maybe not. Farewell, then.~ + meeting_bg2_22
 END
 
 IF ~~ THEN meeting_bg2_17
 SAY ~Do not worry. I don't expect you to take me along unequipped and hurt. I know a thing or two about Mae'Var's hideout, and also know that my things are still here.~
 ++ ~Yes, Husam, come along.~ + meeting_bg2_18
-++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my dept.~ + meeting_bg2_21
+++ ~Well, maybe it's not such a good idea. Never forget I helped you, though. You are in my debt.~ + meeting_bg2_21
 ++ ~Maybe not. Farewell, then.~ + meeting_bg2_22
 END
 
