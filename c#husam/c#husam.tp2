@@ -64,7 +64,7 @@ END
     OUTER_SPRINT ~IT_IS_BG2~ ~Global("endofbg1","GLOBAL",2)~
   END
 
-//CamDawgs CD_STATE_NOTVALID zum Checken der Dialogf‰higkeit eines Char
+//CamDawgs CD_STATE_NOTVALID zum Checken der Dialogf√§higkeit eines Char
 //Thank you very much, CamDawg!
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
 
@@ -144,14 +144,20 @@ END //ALWAYS
 LANGUAGE ~English~
          ~english~   
          ~C#Husam/Translations/english/setup.tra~
-         ~C#Husam/Translations/english/gametra~
+         ~C#Husam/Translations/english/game.tra~
 	 ~C#Husam/Translations/english/journal.tra~
+
+LANGUAGE ~Schinese~
+         ~schinese~   
+         ~C#Husam/Translations/schinese/setup.tra~
+         ~C#Husam/Translations/schinese/game.tra~
+	 ~C#Husam/Translations/schinese/journal.tra~
 
 /*
 LANGUAGE ~German~
          ~deutsch~   
          ~C#Husam/Translations/deutsch/setup.tra~
-         ~C#Husam/Translations/deutsch/gametra~
+         ~C#Husam/Translations/deutsch/game.tra~
 	 ~C#Husam/Translations/deutsch/journal.tra~
 */
 
