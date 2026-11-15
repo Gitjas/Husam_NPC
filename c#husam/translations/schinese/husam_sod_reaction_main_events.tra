@@ -45,6 +45,7 @@
 @44   = ~[科温]这可不是好消息。——别以为我会比以前更看重你或者你那些“线人”，胡萨姆。~
 @45   = ~[胡萨姆]我的间谍跟我说话那会儿他们还没拿下桥，但看这拖延和我们赶到那儿要花的时间，我确信我们会面对一座围城营地。~
 /* --- deprecated until @55 ---
+<<<<<<< HEAD
 @46   = ~还有一件事——这支十字军使团里有个法师，名叫奥洛涅罗斯。*她*认得你的长相，<CHARNAME>。她亲手画了你的像，好让人人都能认出你。~
 @47   = ~糟了，这可不妙。~
 @48   = ~也就是说那些十字军都认得我，没法悄悄混进去了？~
@@ -55,6 +56,18 @@
 @53   = ~[胡萨姆]还有一点，把话说清楚。~
 @54   = ~[胡萨姆]奥洛涅罗斯得靠画像才能认出你，说明*旁人*似乎都不认识你。而且画像是她亲手画的——人越是权大势大、傲气也跟着涨，便越有这个破绽。那画像画得真烂。兴许是你，兴许是随便哪个<PRO_MANWOMAN>。~
 @55   = ~[胡萨姆]这仍不代表旁人就一定认不出你——但把握相当大。万一我们要混进桥堡的十字军，无论如何都得避开奥洛涅罗斯这个人。~
+=======
+@46   = ~One thing - there is a mage with this delegation of crusaders, by the name of Oloneiros. *She* knows your face, <CHARNAME>. She drew a sketch herself, so everyone would recognize you.~
+@47   = ~Dang, that's bad.~
+@48   = ~That means all of those crusaders know who I am and there is no possibility to infiltrate them undetected?~
+@49   = ~Can't your spies place wrong bounty notes about me? You know, as a diversion.~
+@50   = ~Thank you for the info, we need to get going.~
+@51   = ~[Husam]Not necessarily.~
+@52   = ~[Husam]That's a good idea, but it might not be necessary here.~
+@53   = ~[Husam]Just one more thing, to make my point clear.~
+@54   = ~[Husam]Oloneiros needed to draw a sketch, which means that noone *else* seems to know you. And she drew it herself - that is the advantage if the arrogance of people grows at the same rate as their power. It is a real bad sketch. It could be you or any other <PRO_MANWOMAN>.~
+@55   = ~[Husam]It still doesn't mean noone else will know you - but chances are rather high. Oloneiros is the one we need to avoid on all costs, should we ever have to infiltrate the crusader's forces at Bridgefort.~
+>>>>>>> parent of a4df92a (typo)
 ---- */
 @56   = ~看来占卜池给我们看了关键的信息。兜帽人身边那个男人就是赫弗南——凯拉的顾问。~
 @57   = ~看来我不用再安排人画一张素描给你认他了。~
